@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, Phone, MapPin } from "lucide-react";
-import { SocialLinks } from "./SocialLinks";
 
 export function SiteFooter() {
   return (
@@ -19,10 +18,6 @@ export function SiteFooter() {
             A parent-led neurodevelopment system. Founded by Dr. Diptanshu Das in 2020.
             10,000+ families served across 10+ countries.
           </p>
-          <div className="mt-5">
-            <div className="mb-2 text-xs uppercase tracking-wide text-muted-foreground">Follow us</div>
-            <SocialLinks size="sm" />
-          </div>
         </div>
 
         <div>

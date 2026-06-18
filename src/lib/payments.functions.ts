@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import crypto from "node:crypto";
 
 const ScheduleRow = z.object({
   n: z.number().int().min(1).max(24),
@@ -130,15 +131,15 @@ export const verifyRazorpayPayment = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const keySecret = process.env.RAZORPAY_KEY_SECRET;
     if (!keySecret) throw new Error("Payment gateway is not configured.");
-    const { createHmac, timingSafeEqual } = await import("node:crypto");
 
-    const expected = createHmac("sha256", keySecret)
+    const expected = crypto
+      .createHmac("sha256", keySecret)
       .update(`${data.razorpayOrderId}|${data.razorpayPaymentId}`)
       .digest("hex");
 
     const ok =
       expected.length === data.razorpaySignature.length &&
-      timingSafeEqual(Buffer.from(expected), Buffer.from(data.razorpaySignature));
+      crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(data.razorpaySignature));
 
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 

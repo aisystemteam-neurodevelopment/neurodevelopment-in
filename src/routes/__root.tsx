@@ -31,7 +31,7 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Institute of NeuroDevelopment" },
+      { title: "Institute of NeuroDevelopment — Parent-led progress for your child" },
       {
         name: "description",
         content:
@@ -44,10 +44,6 @@ export const Route = createRootRoute({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:title", content: "Institute of NeuroDevelopment" },
-      { name: "description", content: "Parent-led progress for your child" },
-      { property: "og:description", content: "Parent-led progress for your child" },
-      { name: "twitter:description", content: "Parent-led progress for your child" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

@@ -291,7 +291,7 @@ function HomePage() {
       {/* Testimonial stories with measurable outcomes */}
       <TestimonialStories />
 
-      {/* Lead magnet — before the ₹249 masterclass */}
+      {/* Lead magnet — before the masterclass */}
       <LeadMagnetForm />
 
       {/* Proof & credibility */}

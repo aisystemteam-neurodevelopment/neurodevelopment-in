@@ -5,6 +5,7 @@ import { ArrowRight, Compass, HeartHandshake, ListChecks, Sparkles, Phone, Hourg
 import { InvisibleLossCalculator } from "@/components/site/InvisibleLossCalculator";
 import { LeadMagnetForm } from "@/components/site/LeadMagnetForm";
 import { TestimonialStories } from "@/components/site/TestimonialStories";
+import heroBg from "@/assets/hero-bg.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,7 +33,15 @@ function HomePage() {
     <SiteLayout>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_60%_at_30%_0%,var(--warm)_0%,transparent_60%)]" />
+        <div
+          className="pointer-events-none absolute inset-0 -z-20 bg-cover bg-center"
+          style={{ backgroundImage: `url(${heroBg.url})` }}
+          aria-hidden="true"
+        />
+        <div
+          className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(120deg,rgba(30,38,109,0.92)_0%,rgba(74,44,138,0.78)_55%,rgba(124,58,237,0.55)_100%)]"
+          aria-hidden="true"
+        />
         <div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 md:grid-cols-2 md:py-28">
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground">

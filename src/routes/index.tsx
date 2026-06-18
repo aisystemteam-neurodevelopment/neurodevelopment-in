@@ -9,6 +9,9 @@ import heroBg from "@/assets/hero-bg.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
+    links: [
+      { rel: "preload", as: "image", href: heroBg.url, fetchpriority: "high" },
+    ],
     meta: [
       { title: "Institute of NeuroDevelopment — A Parent-Led NeuroDevelopment System" },
       {

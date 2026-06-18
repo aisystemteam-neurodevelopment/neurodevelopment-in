@@ -48,6 +48,8 @@ export const Route = createRootRoute({
       { name: "description", content: "Parent-led progress for your child" },
       { property: "og:description", content: "Parent-led progress for your child" },
       { name: "twitter:description", content: "Parent-led progress for your child" },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d9111706-4d0b-44a5-9739-c24edd07e4d9/id-preview-06a26015--55b144ef-3179-4811-b5f3-5fc7beedd4db.lovable.app-1781778412885.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d9111706-4d0b-44a5-9739-c24edd07e4d9/id-preview-06a26015--55b144ef-3179-4811-b5f3-5fc7beedd4db.lovable.app-1781778412885.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

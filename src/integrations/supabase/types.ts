@@ -14,16 +14,330 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      children: {
+        Row: {
+          age_years: number | null
+          created_at: string
+          current_therapies: string | null
+          id: string
+          name: string | null
+          notes: string | null
+          parent_id: string | null
+          primary_concern: string | null
+        }
+        Insert: {
+          age_years?: number | null
+          created_at?: string
+          current_therapies?: string | null
+          id?: string
+          name?: string | null
+          notes?: string | null
+          parent_id?: string | null
+          primary_concern?: string | null
+        }
+        Update: {
+          age_years?: number | null
+          created_at?: string
+          current_therapies?: string | null
+          id?: string
+          name?: string | null
+          notes?: string | null
+          parent_id?: string | null
+          primary_concern?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "children_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      escalations: {
+        Row: {
+          assigned_role: Database["public"]["Enums"]["app_role"]
+          created_at: string
+          id: string
+          lead_id: string
+          resolution_note: string | null
+          resolved_at: string | null
+          severity: number
+          sla_due_at: string | null
+          status: Database["public"]["Enums"]["escalation_status"]
+          type: Database["public"]["Enums"]["escalation_type"]
+        }
+        Insert: {
+          assigned_role: Database["public"]["Enums"]["app_role"]
+          created_at?: string
+          id?: string
+          lead_id: string
+          resolution_note?: string | null
+          resolved_at?: string | null
+          severity?: number
+          sla_due_at?: string | null
+          status?: Database["public"]["Enums"]["escalation_status"]
+          type: Database["public"]["Enums"]["escalation_type"]
+        }
+        Update: {
+          assigned_role?: Database["public"]["Enums"]["app_role"]
+          created_at?: string
+          id?: string
+          lead_id?: string
+          resolution_note?: string | null
+          resolved_at?: string | null
+          severity?: number
+          sla_due_at?: string | null
+          status?: Database["public"]["Enums"]["escalation_status"]
+          type?: Database["public"]["Enums"]["escalation_type"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "escalations_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      knowledge_snippets: {
+        Row: {
+          active: boolean
+          category: string
+          content: string
+          display_order: number
+          id: string
+          key: string
+          updated_at: string
+          updated_by: string | null
+          version: number
+        }
+        Insert: {
+          active?: boolean
+          category: string
+          content: string
+          display_order?: number
+          id?: string
+          key: string
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+        }
+        Update: {
+          active?: boolean
+          category?: string
+          content?: string
+          display_order?: number
+          id?: string
+          key?: string
+          updated_at?: string
+          updated_by?: string | null
+          version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "knowledge_snippets_updated_by_fkey"
+            columns: ["updated_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lead_messages: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          lead_id: string
+          role: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          lead_id: string
+          role: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          lead_id?: string
+          role?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_messages_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      leads: {
+        Row: {
+          anon_session_id: string | null
+          child_id: string | null
+          contact_email: string | null
+          contact_name: string | null
+          contact_phone: string | null
+          created_at: string
+          id: string
+          owner_id: string | null
+          parent_id: string | null
+          source: string
+          stage: Database["public"]["Enums"]["lead_stage"]
+          summary: string | null
+          updated_at: string
+          urgency: number
+        }
+        Insert: {
+          anon_session_id?: string | null
+          child_id?: string | null
+          contact_email?: string | null
+          contact_name?: string | null
+          contact_phone?: string | null
+          created_at?: string
+          id?: string
+          owner_id?: string | null
+          parent_id?: string | null
+          source?: string
+          stage?: Database["public"]["Enums"]["lead_stage"]
+          summary?: string | null
+          updated_at?: string
+          urgency?: number
+        }
+        Update: {
+          anon_session_id?: string | null
+          child_id?: string | null
+          contact_email?: string | null
+          contact_name?: string | null
+          contact_phone?: string | null
+          created_at?: string
+          id?: string
+          owner_id?: string | null
+          parent_id?: string | null
+          source?: string
+          stage?: Database["public"]["Enums"]["lead_stage"]
+          summary?: string | null
+          updated_at?: string
+          urgency?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "leads_child_id_fkey"
+            columns: ["child_id"]
+            isOneToOne: false
+            referencedRelation: "children"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "leads_owner_id_fkey"
+            columns: ["owner_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "leads_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          city: string | null
+          created_at: string
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          city?: string | null
+          created_at?: string
+          full_name?: string | null
+          id: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          city?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_staff: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      app_role:
+        | "parent_prospect"
+        | "parent_enrolled"
+        | "coordinator"
+        | "clinical_advisor"
+        | "sales"
+        | "content_manager"
+        | "admin"
+      escalation_status: "open" | "in_progress" | "resolved"
+      escalation_type:
+        | "emotional_distress"
+        | "clinical_complexity"
+        | "payment_issue"
+        | "technical_issue"
+        | "conversion_ready"
+        | "other"
+      lead_stage:
+        | "new"
+        | "diagnostic"
+        | "trust_building"
+        | "offer"
+        | "paid"
+        | "onboarded"
+        | "lost"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +464,34 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: [
+        "parent_prospect",
+        "parent_enrolled",
+        "coordinator",
+        "clinical_advisor",
+        "sales",
+        "content_manager",
+        "admin",
+      ],
+      escalation_status: ["open", "in_progress", "resolved"],
+      escalation_type: [
+        "emotional_distress",
+        "clinical_complexity",
+        "payment_issue",
+        "technical_issue",
+        "conversion_ready",
+        "other",
+      ],
+      lead_stage: [
+        "new",
+        "diagnostic",
+        "trust_building",
+        "offer",
+        "paid",
+        "onboarded",
+        "lost",
+      ],
+    },
   },
 } as const

@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, Phone, MapPin } from "lucide-react";
-import indLogo from "@/assets/ind-logo.asset.json";
+import indLogo from "@/assets/ind-logo.png.asset.json";
 import {
   FacebookIcon,
   InstagramIcon,

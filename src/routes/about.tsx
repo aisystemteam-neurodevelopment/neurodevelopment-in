@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { Compass, Layers, HeartHandshake, LineChart, Sparkles, ArrowRight } from "lucide-react";
+import drDas from "@/assets/dr-das.asset.json";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -59,23 +60,33 @@ function AboutPage() {
   return (
     <SiteLayout>
       {/* Founder hero */}
-      <section className="mx-auto max-w-4xl px-5 pt-16 pb-10">
-        <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground">
-          Founder &amp; system architect
-        </span>
-        <h1 className="mt-5 font-display text-5xl leading-[1.05] md:text-6xl">
-          Dr. Diptanshu Das designed the system that{" "}
-          <span className="text-primary">replaces fragmented therapy.</span>
-        </h1>
-        <p className="mt-6 text-xl leading-snug text-foreground/90">
-          IND helps parents create measurable developmental progress through a structured,
-          parent-led, phase-based system.
-        </p>
-        <p className="mt-4 text-lg text-muted-foreground">
-          Dr. Das is the founder of the Institute of NeuroDevelopment and the architect of that
-          system. Not a service provider. Not another clinician on a long list. The category
-          architect behind a parent-led model now used by thousands of families.
-        </p>
+      <section className="mx-auto grid max-w-6xl gap-10 px-5 pt-16 pb-10 md:grid-cols-[1.2fr_1fr] md:items-center">
+        <div>
+          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground">
+            Founder &amp; system architect
+          </span>
+          <h1 className="mt-5 font-display text-5xl leading-[1.05] md:text-6xl">
+            Dr. Diptanshu Das designed the system that{" "}
+            <span className="text-primary">replaces fragmented therapy.</span>
+          </h1>
+          <p className="mt-6 text-xl leading-snug text-foreground/90">
+            IND helps parents create measurable developmental progress through a structured,
+            parent-led, phase-based system.
+          </p>
+          <p className="mt-4 text-lg text-muted-foreground">
+            Dr. Das is the founder of the Institute of NeuroDevelopment and the architect of
+            that system. Not a service provider. Not another clinician on a long list. The
+            category architect behind a parent-led model now used by thousands of families.
+          </p>
+        </div>
+        <div className="relative mx-auto w-full max-w-sm">
+          <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-[radial-gradient(60%_60%_at_50%_50%,var(--warm)_0%,transparent_70%)]" />
+          <img
+            src={drDas.url}
+            alt="Dr. Diptanshu Das, Founder of the Institute of NeuroDevelopment"
+            className="w-full rounded-3xl border border-border bg-card object-cover shadow-[0_30px_80px_-40px_rgba(0,0,0,0.5)]"
+          />
+        </div>
       </section>
 
       {/* Master positioning callout */}

@@ -3,6 +3,7 @@ import { useAuth } from "@/lib/auth-context";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { useState } from "react";
+import indLogo from "@/assets/ind-logo.asset.json";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -22,7 +23,11 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
         <Link to="/" className="flex items-center gap-2">
-          <span className="grid h-8 w-8 place-items-center rounded-full bg-primary text-primary-foreground font-display text-sm">I</span>
+          <img
+            src={indLogo.url}
+            alt="Institute of NeuroDevelopment"
+            className="h-9 w-9 rounded-full object-cover"
+          />
           <span className="font-display text-lg leading-none">
             Institute of <span className="text-primary">NeuroDevelopment</span>
           </span>

@@ -14,6 +14,56 @@ export type Database = {
   }
   public: {
     Tables: {
+      appointments: {
+        Row: {
+          child_id: string | null
+          coordinator_id: string | null
+          created_at: string
+          id: string
+          location: string | null
+          mode: Database["public"]["Enums"]["appt_mode"]
+          notes: string | null
+          parent_id: string
+          scheduled_at: string
+          status: Database["public"]["Enums"]["appt_status"]
+          updated_at: string
+        }
+        Insert: {
+          child_id?: string | null
+          coordinator_id?: string | null
+          created_at?: string
+          id?: string
+          location?: string | null
+          mode?: Database["public"]["Enums"]["appt_mode"]
+          notes?: string | null
+          parent_id: string
+          scheduled_at: string
+          status?: Database["public"]["Enums"]["appt_status"]
+          updated_at?: string
+        }
+        Update: {
+          child_id?: string | null
+          coordinator_id?: string | null
+          created_at?: string
+          id?: string
+          location?: string | null
+          mode?: Database["public"]["Enums"]["appt_mode"]
+          notes?: string | null
+          parent_id?: string
+          scheduled_at?: string
+          status?: Database["public"]["Enums"]["appt_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "appointments_child_id_fkey"
+            columns: ["child_id"]
+            isOneToOne: false
+            referencedRelation: "children"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       children: {
         Row: {
           age_years: number | null
@@ -54,6 +104,33 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      departments: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          slug: string
+          tl_name: string | null
+          tl_user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          slug: string
+          tl_name?: string | null
+          tl_user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          slug?: string
+          tl_name?: string | null
+          tl_user_id?: string | null
+        }
+        Relationships: []
       }
       escalations: {
         Row: {
@@ -251,32 +328,306 @@ export type Database = {
           },
         ]
       }
+      modules: {
+        Row: {
+          child_id: string
+          completed_at: string | null
+          created_at: string
+          description: string | null
+          id: string
+          parent_id: string
+          phase: string
+          status: Database["public"]["Enums"]["task_status"]
+          title: string
+          week: number
+        }
+        Insert: {
+          child_id: string
+          completed_at?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          parent_id: string
+          phase: string
+          status?: Database["public"]["Enums"]["task_status"]
+          title: string
+          week?: number
+        }
+        Update: {
+          child_id?: string
+          completed_at?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          parent_id?: string
+          phase?: string
+          status?: Database["public"]["Enums"]["task_status"]
+          title?: string
+          week?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "modules_child_id_fkey"
+            columns: ["child_id"]
+            isOneToOne: false
+            referencedRelation: "children"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      payment_orders: {
+        Row: {
+          base_amount: number
+          buyer_email: string | null
+          buyer_name: string | null
+          buyer_phone: string | null
+          created_at: string
+          currency: string
+          gst_amount: number
+          id: string
+          notes: Json | null
+          paid_at: string | null
+          plan_type: string
+          processing_fee: number
+          program_key: string
+          program_name: string
+          razorpay_order_id: string | null
+          razorpay_payment_id: string | null
+          razorpay_signature: string | null
+          schedule: Json
+          status: string
+          total_amount: number
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          base_amount: number
+          buyer_email?: string | null
+          buyer_name?: string | null
+          buyer_phone?: string | null
+          created_at?: string
+          currency?: string
+          gst_amount: number
+          id?: string
+          notes?: Json | null
+          paid_at?: string | null
+          plan_type: string
+          processing_fee?: number
+          program_key: string
+          program_name: string
+          razorpay_order_id?: string | null
+          razorpay_payment_id?: string | null
+          razorpay_signature?: string | null
+          schedule?: Json
+          status?: string
+          total_amount: number
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          base_amount?: number
+          buyer_email?: string | null
+          buyer_name?: string | null
+          buyer_phone?: string | null
+          created_at?: string
+          currency?: string
+          gst_amount?: number
+          id?: string
+          notes?: Json | null
+          paid_at?: string | null
+          plan_type?: string
+          processing_fee?: number
+          program_key?: string
+          program_name?: string
+          razorpay_order_id?: string | null
+          razorpay_payment_id?: string | null
+          razorpay_signature?: string | null
+          schedule?: Json
+          status?: string
+          total_amount?: number
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      products: {
+        Row: {
+          assigned_at: string
+          child_id: string | null
+          id: string
+          link: string | null
+          name: string
+          notes: string | null
+          parent_id: string
+          type: string | null
+        }
+        Insert: {
+          assigned_at?: string
+          child_id?: string | null
+          id?: string
+          link?: string | null
+          name: string
+          notes?: string | null
+          parent_id: string
+          type?: string | null
+        }
+        Update: {
+          assigned_at?: string
+          child_id?: string | null
+          id?: string
+          link?: string | null
+          name?: string
+          notes?: string | null
+          parent_id?: string
+          type?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "products_child_id_fkey"
+            columns: ["child_id"]
+            isOneToOne: false
+            referencedRelation: "children"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
+          avatar_url: string | null
           city: string | null
           created_at: string
+          department_id: string | null
           full_name: string | null
           id: string
+          is_tl: boolean
           phone: string | null
           updated_at: string
         }
         Insert: {
+          avatar_url?: string | null
           city?: string | null
           created_at?: string
+          department_id?: string | null
           full_name?: string | null
           id: string
+          is_tl?: boolean
           phone?: string | null
           updated_at?: string
         }
         Update: {
+          avatar_url?: string | null
           city?: string | null
           created_at?: string
+          department_id?: string | null
           full_name?: string | null
           id?: string
+          is_tl?: boolean
           phone?: string | null
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "profiles_department_id_fkey"
+            columns: ["department_id"]
+            isOneToOne: false
+            referencedRelation: "departments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      progress_reports: {
+        Row: {
+          author_id: string | null
+          child_id: string
+          created_at: string
+          id: string
+          parent_id: string
+          phase: string | null
+          summary: string
+          week_start: string
+        }
+        Insert: {
+          author_id?: string | null
+          child_id: string
+          created_at?: string
+          id?: string
+          parent_id: string
+          phase?: string | null
+          summary: string
+          week_start: string
+        }
+        Update: {
+          author_id?: string | null
+          child_id?: string
+          created_at?: string
+          id?: string
+          parent_id?: string
+          phase?: string | null
+          summary?: string
+          week_start?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "progress_reports_child_id_fkey"
+            columns: ["child_id"]
+            isOneToOne: false
+            referencedRelation: "children"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tasks: {
+        Row: {
+          assigned_by: string | null
+          assignee_id: string | null
+          created_at: string
+          department_id: string
+          description: string | null
+          due_date: string | null
+          id: string
+          month_bucket: string
+          priority: Database["public"]["Enums"]["task_priority"]
+          status: Database["public"]["Enums"]["task_status"]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          assigned_by?: string | null
+          assignee_id?: string | null
+          created_at?: string
+          department_id: string
+          description?: string | null
+          due_date?: string | null
+          id?: string
+          month_bucket: string
+          priority?: Database["public"]["Enums"]["task_priority"]
+          status?: Database["public"]["Enums"]["task_status"]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          assigned_by?: string | null
+          assignee_id?: string | null
+          created_at?: string
+          department_id?: string
+          description?: string | null
+          due_date?: string | null
+          id?: string
+          month_bucket?: string
+          priority?: Database["public"]["Enums"]["task_priority"]
+          status?: Database["public"]["Enums"]["task_status"]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tasks_department_id_fkey"
+            columns: ["department_id"]
+            isOneToOne: false
+            referencedRelation: "departments"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_roles: {
         Row: {
@@ -311,6 +662,14 @@ export type Database = {
         }
         Returns: boolean
       }
+      is_department_coordinator: {
+        Args: { _dept: string; _user: string }
+        Returns: boolean
+      }
+      is_department_member: {
+        Args: { _dept: string; _user: string }
+        Returns: boolean
+      }
       is_staff: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
@@ -322,6 +681,9 @@ export type Database = {
         | "sales"
         | "content_manager"
         | "admin"
+        | "employee"
+      appt_mode: "in_person" | "call" | "video"
+      appt_status: "scheduled" | "completed" | "cancelled" | "no_show"
       escalation_status: "open" | "in_progress" | "resolved"
       escalation_type:
         | "emotional_distress"
@@ -338,6 +700,8 @@ export type Database = {
         | "paid"
         | "onboarded"
         | "lost"
+      task_priority: "low" | "normal" | "high" | "urgent"
+      task_status: "todo" | "in_progress" | "done"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -473,7 +837,10 @@ export const Constants = {
         "sales",
         "content_manager",
         "admin",
+        "employee",
       ],
+      appt_mode: ["in_person", "call", "video"],
+      appt_status: ["scheduled", "completed", "cancelled", "no_show"],
       escalation_status: ["open", "in_progress", "resolved"],
       escalation_type: [
         "emotional_distress",
@@ -492,6 +859,8 @@ export const Constants = {
         "onboarded",
         "lost",
       ],
+      task_priority: ["low", "normal", "high", "urgent"],
+      task_status: ["todo", "in_progress", "done"],
     },
   },
 } as const

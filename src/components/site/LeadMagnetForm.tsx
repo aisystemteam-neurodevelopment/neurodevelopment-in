@@ -38,9 +38,10 @@ export function LeadMagnetForm() {
             5 signs your child is stuck in fragmented intervention
           </h2>
           <p className="mt-3 max-w-xl text-muted-foreground">
-            A short, honest PDF written by Dr. Diptanshu Das. Read it before you spend on
+            A short, honest PDF written by Dr. Diptanshu Das. Read it before you book
             another session, evaluation, or programme &mdash; including ours. If even two of
-            the signs match your week, the ₹249 masterclass is the right next step.
+            the signs match your week, get in touch and we&apos;ll point you to the right
+            next step.
           </p>
           <ul className="mt-5 space-y-2 text-sm text-muted-foreground">
             {[
@@ -72,7 +73,7 @@ export function LeadMagnetForm() {
                 <Download className="h-4 w-4" /> Download the PDF now
               </a>
               <p className="mt-4 text-xs text-muted-foreground">
-                We&apos;ll also send the masterclass invite (₹249) when the next cohort opens.
+                We&apos;ll also send the masterclass invite when the next cohort opens.
                 Unsubscribe any time.
               </p>
             </div>

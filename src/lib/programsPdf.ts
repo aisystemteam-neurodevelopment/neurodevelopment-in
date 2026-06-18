@@ -7,7 +7,7 @@ export function downloadProgramsPdf() {
   // Header
   doc.setFont("helvetica", "bold");
   doc.setFontSize(20);
-  doc.text("IND — Programs & Pricing", 40, 50);
+  doc.text("IND — Programs Guide", 40, 50);
 
   doc.setFont("helvetica", "normal");
   doc.setFontSize(10);
@@ -26,39 +26,18 @@ export function downloadProgramsPdf() {
 
   autoTable(doc, {
     startY: 110,
-    head: [["Program", "Duration", "Key benefit", "Price (INR)"]],
+    head: [["Program", "Duration", "Key benefit"]],
     body: [
-      ["Masterclass / Webinar", "Live session", "Understand the system", "Rs 249"],
-      ["Block to Breakthrough", "6 weeks", "Clear mind blockage", "Rs 10,000"],
-      [
-        "Pre-enrollment (B2B + Bootcamp)",
-        "6 weeks + 2 days",
-        "Boost Session weekly",
-        "Rs 20,000",
-      ],
-      [
-        "Flightpath - Core",
-        "Enrollment",
-        "Clarity Session + Progress Partner",
-        "Rs 1,20,000",
-      ],
-      [
-        "Flightpath - Essential",
-        "Enrollment",
-        "Core + Weekly Boost Session",
-        "Rs 2,00,000",
-      ],
-      [
-        "Flightpath - Elite",
-        "Enrollment",
-        "Essential + Strength Finder Session",
-        "Rs 2,40,000",
-      ],
+      ["Masterclass / Webinar", "Live session", "Understand the system"],
+      ["Block to Breakthrough", "6 weeks", "Clear mind blockage"],
+      ["Pre-enrollment (B2B + Bootcamp)", "6 weeks + 2 days", "Boost Session weekly"],
+      ["Flightpath - Core", "Enrollment", "Clarity Session + Progress Partner"],
+      ["Flightpath - Essential", "Enrollment", "Core + Weekly Boost Session"],
+      ["Flightpath - Elite", "Enrollment", "Essential + Strength Finder Session"],
     ],
     styles: { fontSize: 10, cellPadding: 8 },
     headStyles: { fillColor: [30, 30, 30], textColor: 255 },
     alternateRowStyles: { fillColor: [248, 246, 242] },
-    columnStyles: { 3: { halign: "right", fontStyle: "bold" } },
   });
 
   const finalY = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 24;
@@ -72,8 +51,8 @@ export function downloadProgramsPdf() {
     "- The 2-day Bootcamp is only available inside the Pre-enrollment bundle.",
     "- All Flightpath tiers follow the same phase architecture; tiers differ in",
     "  cadence and depth of support.",
-    "- GST (18%) is applicable on all programs.",
-    "- EMI plans available: 3-month (+2% processing) or 6-month (+4% processing).",
+    "- For program details and the right starting point for your family,",
+    "  reach out via the contact form on neurodevelopment.in/contact.",
   ];
   doc.text(notes, 40, finalY + 18);
 
@@ -85,5 +64,5 @@ export function downloadProgramsPdf() {
     doc.internal.pageSize.getHeight() - 30,
   );
 
-  doc.save("IND-Programs-Pricing.pdf");
+  doc.save("IND-Programs-Guide.pdf");
 }

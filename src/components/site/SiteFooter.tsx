@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, Phone, MapPin } from "lucide-react";
+import indLogo from "@/assets/ind-logo.asset.json";
 
 export function SiteFooter() {
   return (
@@ -7,9 +8,11 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="flex items-center gap-2">
-            <span className="grid h-8 w-8 place-items-center rounded-full bg-primary text-primary-foreground font-display text-sm">
-              I
-            </span>
+            <img
+              src={indLogo.url}
+              alt="Institute of NeuroDevelopment"
+              className="h-9 w-9 rounded-full object-cover"
+            />
             <span className="font-display text-lg leading-none">
               Institute of <span className="text-primary">NeuroDevelopment</span>
             </span>

@@ -49,12 +49,12 @@ const QUESTIONS: Question[] = [
   },
   {
     id: "budget",
-    q: "What investment feels right at this stage?",
+    q: "How much time can you realistically commit each week?",
     options: [
-      { label: "Under ₹1,000", weights: { masterclass: 5 } },
-      { label: "₹10,000 – ₹20,000", weights: { b2b: 4, preenrollment: 4 } },
-      { label: "₹1,00,000 – ₹2,00,000", weights: { core: 4, essential: 3 } },
-      { label: "₹2,00,000+", weights: { essential: 3, elite: 5 } },
+      { label: "An hour or two to learn", weights: { masterclass: 5 } },
+      { label: "A few hours a week for 6 weeks", weights: { b2b: 4, preenrollment: 4 } },
+      { label: "Daily practice + weekly review", weights: { core: 4, essential: 3 } },
+      { label: "Full daily practice with high-touch support", weights: { essential: 3, elite: 5 } },
     ],
   },
   {
@@ -85,40 +85,34 @@ const QUESTIONS: Question[] = [
   },
 ];
 
-const PLAN_META: Record<Plan, { name: string; price: string; tagline: string; href: string }> = {
+const PLAN_META: Record<Plan, { name: string; tagline: string; href: string }> = {
   masterclass: {
     name: "Masterclass",
-    price: "₹249",
     tagline: "Start here. Understand the system in 90 minutes.",
     href: "/contact",
   },
   b2b: {
     name: "Block to Breakthrough",
-    price: "₹10,000",
     tagline: "6-week clarity program to clear the mind blockage.",
     href: "/contact",
   },
   preenrollment: {
     name: "Pre-enrollment",
-    price: "₹20,000",
     tagline: "B2B + Bootcamp bundle — most chosen entry path.",
     href: "/contact",
   },
   core: {
     name: "Flightpath — Core",
-    price: "₹1,20,000",
     tagline: "Clarity Session + Progress Partner support.",
     href: "/contact",
   },
   essential: {
     name: "Flightpath — Essential",
-    price: "₹2,00,000",
     tagline: "Core + Weekly Boost Session. Most families choose this.",
     href: "/contact",
   },
   elite: {
     name: "Flightpath — Elite",
-    price: "₹2,40,000",
     tagline: "Essential + Strength Finder + senior-team mapping.",
     href: "/contact",
   },
@@ -208,9 +202,6 @@ export function PlanQuiz({ trigger }: { trigger: React.ReactNode }) {
             </Badge>
             <h3 className="mt-3 font-display text-3xl">{meta.name}</h3>
             <p className="mt-1 text-muted-foreground">{meta.tagline}</p>
-            <div className="mt-4 flex items-baseline gap-2">
-              <span className="font-display text-4xl">{meta.price}</span>
-            </div>
             <div className="mt-6 flex flex-wrap gap-2">
               <Button asChild className="rounded-full">
                 <a href={meta.href}>

@@ -39,8 +39,8 @@ const slowProgress: Faq[] = [
       a: "Slow progress is rarely about effort. It usually means the underlying drivers — regulation, connection, communication, independence — are being worked on out of order, or only inside the therapy room. Real change compounds when the right driver is targeted, in sequence, across the 100+ waking hours your child spends at home.",
     },
     bn: {
-      q: "মাস — কখনো বছর — ধরে থেরাপি করছি, কিন্তু অগ্রগতি ধীর মনে হচ্ছে। কেন?",
-      a: "ধীর অগ্রগতির আসল কারণ পরিশ্রমের অভাব নয়। সাধারণত মূল drivers — regulation, connection, communication, independence — ভুল ক্রমে কাজ হচ্ছে, অথবা শুধু থেরাপি রুমের মধ্যেই সীমাবদ্ধ থাকছে। সঠিক driver-এ, সঠিক sequence-এ, এবং বাড়িতে শিশুর প্রতিদিনের ১০০+ জাগ্রত ঘণ্টায় কাজ হলে তবেই পরিবর্তন জমতে শুরু করে।",
+      q: "মাসের পর মাস — কখনো বছর — থেরাপি করছি, কিন্তু progress ধীরে হচ্ছে মনে হয়। কেন?",
+      a: "Progress ধীরে হওয়ার আসল কারণ effort-এর অভাব নয়। সাধারণত হয় কী — মূল drivers (regulation, connection, communication, independence) ভুল order-এ কাজ হচ্ছে, কিংবা শুধু থেরাপি রুমের ভিতরেই আটকে আছে। সঠিক driver-এ, সঠিক sequence-এ, আর বাড়িতে বাচ্চার রোজকার ১০০+ ঘণ্টায় কাজ করলে তবেই বদলটা জমতে শুরু করে।",
     },
   },
   {
@@ -49,8 +49,8 @@ const slowProgress: Faq[] = [
       a: "Usually not. Adding hours to a fragmented plan multiplies the fragmentation. Sequencing the right driver first — and embedding it in daily routines — moves the needle faster than stacking sessions.",
     },
     bn: {
-      q: "সপ্তাহে আরও বেশি সেশন নিলে কি দ্রুত উন্নতি হবে?",
-      a: "সাধারণত না। ভেঙে যাওয়া প্ল্যানে আরও ঘণ্টা যোগ করলে ভাঙনটাই বাড়ে। আগে সঠিক driver-কে sequence-এ আনা — এবং সেটাকে দৈনন্দিন routine-এ ঢুকিয়ে দেওয়া — সেশন বাড়ানোর চেয়ে অনেক দ্রুত ফল দেয়।",
+      q: "সপ্তাহে আরও বেশি সেশন নিলে কি তাড়াতাড়ি improve করবে?",
+      a: "সাধারণত না। ছড়ানো-ছিটানো প্ল্যানে আরও ঘণ্টা ঢাললে ছড়ানোটাই বাড়ে। আগে সঠিক driver-কে sequence-এ আনা — আর সেটাকে রোজকার routine-এ ঢুকিয়ে দেওয়া — সেশন বাড়ানোর থেকে অনেক তাড়াতাড়ি কাজ করে।",
     },
   },
   {
@@ -59,8 +59,8 @@ const slowProgress: Faq[] = [
       a: "Most families notice shifts in regulation and connection within the first few weeks because that's where the system starts. Communication and independence build from there over the 52-week Flightpath. We don't promise timelines — we promise structure and visible weekly progress.",
     },
     bn: {
-      q: "IND-এ কত তাড়াতাড়ি পরিবর্তন দেখা যাবে?",
-      a: "বেশিরভাগ পরিবার প্রথম কয়েক সপ্তাহেই regulation ও connection-এ পরিবর্তন লক্ষ্য করেন, কারণ system এখান থেকেই শুরু হয়। এরপর ৫২-সপ্তাহের Flightpath ধরে communication ও independence গড়ে ওঠে। আমরা timeline-এর প্রতিশ্রুতি দিই না — আমরা প্রতিশ্রুতি দিই কাঠামো এবং প্রতি সপ্তাহে দৃশ্যমান অগ্রগতির।",
+      q: "IND-এ কত তাড়াতাড়ি বদল দেখা যাবে?",
+      a: "বেশিরভাগ পরিবার প্রথম কয়েক সপ্তাহেই regulation আর connection-এ বদল লক্ষ্য করেন, কারণ system এখান থেকেই শুরু হয়। এরপর ৫২-সপ্তাহের Flightpath ধরে communication আর independence ধীরে ধীরে গড়ে ওঠে। আমরা timeline-এর গ্যারান্টি দিই না — আমরা কথা দিই একটা ঠিকঠাক structure আর প্রতি সপ্তাহে চোখে দেখা যায় এমন progress-এর।",
     },
   },
 ];
@@ -72,8 +72,8 @@ const fragmented: Faq[] = [
       a: "That's the core problem with fragmented care — three specialists, three plans, no one owning the whole child. IND replaces that with one structured system and a single sequence: Regulation → Connection → Communication → Independence. You stop choosing between opinions and start executing one plan.",
     },
     bn: {
-      q: "যত পেশাদারের সাথে দেখা করি, প্রত্যেকে আলাদা কথা বলেন। কাকে শুনব?",
-      a: "এটাই খণ্ড-খণ্ড চিকিৎসার মূল সমস্যা — তিন বিশেষজ্ঞ, তিন প্ল্যান, কেউ পুরো শিশুর দায়িত্ব নিচ্ছেন না। IND এর জায়গায় দেয় একটাই কাঠামোবদ্ধ system এবং একটাই sequence: Regulation → Connection → Communication → Independence। মতামতের মধ্যে বেছে নেওয়া বন্ধ করে, একটাই প্ল্যান কার্যকর করা শুরু হয়।",
+      q: "যত professional-এর সাথে দেখা করি, প্রত্যেকে আলাদা কথা বলেন। কার কথা শুনব?",
+      a: "এটাই ছড়ানো-ছিটানো care-এর আসল সমস্যা — তিনজন specialist, তিন রকম প্ল্যান, পুরো বাচ্চার দায়িত্ব কেউ নিচ্ছেন না। IND এর জায়গায় দেয় একটাই গোছানো system আর একটাই sequence: Regulation → Connection → Communication → Independence। মতামতের মধ্যে বেছে নেওয়া বন্ধ — একটাই প্ল্যান follow করা শুরু।",
     },
   },
   {
@@ -82,8 +82,8 @@ const fragmented: Faq[] = [
       a: "IND doesn't replace them — it gives them a spine. Most therapies optimise a slice. The system organises the whole week around the right driver so each therapy actually compounds instead of pulling in different directions.",
     },
     bn: {
-      q: "আমরা এখনই speech, OT, special ed করছি। IND এর মধ্যে কোথায় বসে?",
-      a: "IND এগুলোকে প্রতিস্থাপন করে না — মেরুদণ্ড দেয়। বেশিরভাগ থেরাপি একটি অংশকে optimise করে। System পুরো সপ্তাহকে সঠিক driver ঘিরে সাজায়, যাতে প্রতিটি থেরাপি আলাদা দিকে না টেনে একসাথে যোগ হয়ে এগোয়।",
+      q: "আমরা এমনিতেই speech, OT, special ed করছি। IND এর মধ্যে কোথায় বসে?",
+      a: "IND এগুলোকে replace করে না — একটা মেরুদণ্ড দেয়। বেশিরভাগ থেরাপি একটা ছোট অংশ optimise করে। System পুরো সপ্তাহটাকে সঠিক driver-এর চারপাশে সাজায়, যাতে প্রতিটা থেরাপি আলাদা দিকে না টেনে একসাথে কাজ করে।",
     },
   },
   {
@@ -92,8 +92,8 @@ const fragmented: Faq[] = [
       a: "It isn't a therapy plan. It's a developmental architecture for the home — phase, week, parent action, measurable signal. Therapies are inputs to it, not the centre of it.",
     },
     bn: {
-      q: "এটা আর-একটা থেরাপি প্ল্যান থেকে আলাদা কীভাবে?",
-      a: "এটা থেরাপি প্ল্যান নয়। এটা বাড়ির জন্য একটা developmental architecture — phase, week, অভিভাবকের action, মাপা যায় এমন signal। থেরাপিগুলো এর input — কেন্দ্র নয়।",
+      q: "এটা আর একটা থেরাপি প্ল্যান থেকে আলাদা কীভাবে?",
+      a: "এটা থেরাপি প্ল্যানই না। এটা বাড়ির জন্য একটা developmental architecture — phase, week, বাবা-মার action, মাপা যায় এমন signal। থেরাপি এর input, কেন্দ্র নয়।",
     },
   },
 ];
@@ -105,8 +105,8 @@ const dependency: Faq[] = [
       a: "That's the trap of input-based care — endless sessions with no exit. The Flightpath is 52 weeks with a defined end. The goal is not lifelong dependency on professionals; it's a parent who can lead their child's development with confidence.",
     },
     bn: {
-      q: "আমরা কি সারাজীবন থেরাপির মধ্যে থাকব?",
-      a: "ইনপুট-নির্ভর চিকিৎসার এটাই ফাঁদ — অশেষ সেশন, কোনো বেরোনোর পথ নেই। Flightpath ৫২ সপ্তাহের, একটা নির্দিষ্ট শেষ আছে। লক্ষ্য পেশাদারদের উপর আজীবন নির্ভরশীলতা নয় — লক্ষ্য এমন একজন অভিভাবক, যিনি আত্মবিশ্বাসের সাথে নিজের সন্তানের বিকাশকে নেতৃত্ব দিতে পারেন।",
+      q: "আমরা কি সারাজীবন থেরাপির মধ্যেই থাকব?",
+      a: "ইনপুট-নির্ভর care-এর এটাই ফাঁদ — অশেষ সেশন, বেরোনোর কোনো রাস্তা নেই। Flightpath ৫২ সপ্তাহের, একটা ঠিক করা শেষ আছে। লক্ষ্য professional-দের উপর সারাজীবনের নির্ভরশীলতা নয় — লক্ষ্য এমন একজন বাবা বা মা, যিনি নিজের কনফিডেন্সে নিজের বাচ্চার বিকাশটা lead করতে পারেন।",
     },
   },
   {
@@ -116,7 +116,7 @@ const dependency: Faq[] = [
     },
     bn: {
       q: "প্রোগ্রাম শেষ হলে কী হবে?",
-      a: "শেষে framework-টা আপনার নিজের হাতে থাকে। আপনি জানেন সন্তানের drivers, এক বছর ধরে system চালিয়েছেন, এবং সন্তান বড় হলে সেটা মানিয়ে নিতে পারেন। কিছু পরিবার নতুন লক্ষ্যের জন্য দ্বিতীয় cycle বেছে নেন — কিন্তু সেটা পছন্দ, নির্ভরশীলতা নয়।",
+      a: "শেষে framework-টা আপনার নিজের হাতে চলে আসে। আপনি জানেন বাচ্চার drivers কী, এক বছর ধরে নিজে system চালিয়েছেন, আর বাচ্চা বড় হতে হতে সেটা adjust করতে পারেন। কিছু পরিবার নতুন লক্ষ্যের জন্য দ্বিতীয় cycle বেছে নেন — কিন্তু সেটা চয়েস, নির্ভরশীলতা নয়।",
     },
   },
   {
@@ -125,8 +125,8 @@ const dependency: Faq[] = [
       a: "Parents are already doing the work — usually without structure, often blaming themselves. IND gives that work a system, a sequence, and a guide. Less guesswork, fewer hours wasted on the wrong thing, more progress per week of effort.",
     },
     bn: {
-      q: "এটা কি কেবল অভিভাবকদের ঘাড়ে কাজ চাপানো নয়?",
-      a: "অভিভাবকরা এমনিতেই কাজটা করছেন — সাধারণত কাঠামো ছাড়া, প্রায়ই নিজেদের দোষ দিতে দিতে। IND সেই কাজকে দেয় একটা system, একটা sequence, এবং একজন guide। কম অনুমান, ভুল জিনিসে কম ঘণ্টা নষ্ট, প্রতি সপ্তাহের চেষ্টার বিনিময়ে বেশি অগ্রগতি।",
+      q: "এটা তো শেষমেশ বাবা-মায়ের ঘাড়ে কাজ চাপানো, তাই না?",
+      a: "বাবা-মা এমনিতেই কাজটা করছেন — সাধারণত কোনো structure ছাড়া, প্রায়ই নিজেদের দোষ দিতে দিতে। IND সেই কাজটার সাথে দেয় একটা system, একটা sequence, আর একজন guide। কম guesswork, ভুল জিনিসে কম ঘণ্টা নষ্ট, প্রতি সপ্তাহের effort-এ বেশি progress।",
     },
   },
 ];
@@ -138,8 +138,8 @@ const practical: Faq[] = [
       a: "Both. Mode depends on your location and your child's needs. Our clinical home base is in Kolkata; families from 10+ countries work with us online.",
     },
     bn: {
-      q: "এটা অনলাইন না সরাসরি?",
-      a: "দুটোই। মাধ্যম নির্ভর করে আপনার অবস্থান ও সন্তানের প্রয়োজনের উপর। আমাদের clinical home base কলকাতায়; ১০+ দেশের পরিবার আমাদের সাথে online কাজ করেন।",
+      q: "এটা online না সরাসরি?",
+      a: "দুটোই। কোনটা হবে, সেটা নির্ভর করে আপনি কোথায় থাকেন আর বাচ্চার কী দরকার তার উপর। আমাদের clinical home base কলকাতায়; ১০+ দেশের পরিবার আমাদের সাথে online কাজ করেন।",
     },
   },
   {
@@ -148,8 +148,8 @@ const practical: Faq[] = [
       a: "Primarily ages 2–12 with autism-related challenges, ADHD, speech delay, behavioural difficulties, and broader social-emotional or learning concerns.",
     },
     bn: {
-      q: "এটা কোন শিশুদের জন্য?",
-      a: "মূলত ২–১২ বছর বয়সী শিশু, যাদের autism-সংক্রান্ত চ্যালেঞ্জ, ADHD, speech delay, আচরণগত সমস্যা, কিংবা বৃহত্তর social-emotional বা শেখার সমস্যা রয়েছে।",
+      q: "এটা কোন বাচ্চাদের জন্য?",
+      a: "মূলত ২–১২ বছর বয়সী বাচ্চা, যাদের autism-related চ্যালেঞ্জ, ADHD, speech delay, behaviour-এর সমস্যা, বা বড় কোনো social-emotional বা শেখার সমস্যা আছে।",
     },
   },
   {
@@ -158,8 +158,8 @@ const practical: Faq[] = [
       a: "No. Diagnosis requires in-person evaluation. Online, we focus on understanding your child and guiding the next right step.",
     },
     bn: {
-      q: "আমার সন্তানের diagnosis কি অনলাইনে হবে?",
-      a: "না। Diagnosis-এর জন্য সরাসরি মূল্যায়ন প্রয়োজন। অনলাইনে আমরা সন্তানকে বোঝা এবং পরবর্তী সঠিক পদক্ষেপের দিকনির্দেশ দেওয়াকেই গুরুত্ব দিই।",
+      q: "আমার বাচ্চার diagnosis কি online-এ হবে?",
+      a: "না। Diagnosis-এর জন্য সরাসরি দেখা দরকার। Online-এ আমরা বাচ্চাকে বোঝা আর পরের সঠিক step দেখিয়ে দেওয়ার উপরেই focus করি।",
     },
   },
   {
@@ -169,7 +169,7 @@ const practical: Faq[] = [
     },
     bn: {
       q: "খরচ কত?",
-      a: "সঠিক প্ল্যান নির্ভর করে আপনার সন্তানের বর্তমান অবস্থা এবং প্রয়োজনীয় সহায়তার মাত্রার উপর। আমাদের team প্রথমে সন্তানকে বোঝে, এরপর উপযুক্ত প্ল্যানের দিকে গাইড করে।",
+      a: "সঠিক প্ল্যান নির্ভর করে আপনার বাচ্চার এখনকার অবস্থা আর কতটা support লাগবে তার উপর। আমাদের team আগে বাচ্চাকে বোঝে, তারপর আপনার জন্য মানানসই প্ল্যানের দিকে guide করে।",
     },
   },
   {
@@ -179,7 +179,7 @@ const practical: Faq[] = [
     },
     bn: {
       q: "ফলাফলের গ্যারান্টি দিতে পারেন?",
-      a: "না — এবং কখনোই দেব না। শিশু-বিকাশে নির্দিষ্ট ফলাফলের গ্যারান্টি যিনি দেন, তিনি সৎ নন। আমরা প্রতিশ্রুতি দিই একটি স্পষ্ট system, সাপ্তাহিক কাঠামো এবং আমাদের পূর্ণ চেষ্টার।",
+      a: "না — এবং কখনোই দেব না। বাচ্চার বিকাশে নির্দিষ্ট ফলাফলের গ্যারান্টি যিনি দেন, তিনি সৎ নন। আমরা কথা দিই একটা পরিষ্কার system, সপ্তাহের গোছানো plan, আর আমাদের পুরো effort-এর।",
     },
   },
 ];
@@ -205,19 +205,19 @@ const pageCopy = {
   },
   bn: {
     eyebrow: "FAQ",
-    h1: "সরাসরি উত্তর, কোনো অতিরঞ্জন নেই",
+    h1: "সরাসরি উত্তর, কোনো বাড়াবাড়ি নয়",
     intro:
-      "বেশিরভাগ পরিবার আমাদের কাছে আসেন ধীর অগ্রগতি, পরস্পরবিরোধী পরামর্শ, এবং থেরাপি কখনো শেষ হবে না — এই ক্লান্তি নিয়ে। IND system প্রতিটির উত্তর কীভাবে দেয়, সৎভাবে বললাম।",
-    s1Title: "অগ্রগতি ধীর মনে হলে",
-    s1Lead: "সমস্যা চেষ্টায় নয় — sequence-এ।",
-    s2Title: "পরামর্শ খণ্ড-খণ্ড মনে হলে",
-    s2Lead: "মতামতের স্তূপের জায়গায় একটাই sequence।",
-    s3Title: "নির্ভরশীলতা নিয়ে চিন্তা থাকলে",
-    s3Lead: "Flightpath-এর একটা শেষ আছে। লক্ষ্য — অভিভাবকের নেতৃত্ব।",
-    s4Title: "বাস্তব প্রশ্ন",
-    s4Lead: "শুরু করার আগে অভিভাবকরা যা সাধারণত জানতে চান।",
-    ctaTitle: "এখনো নিশ্চিত নন কোথায় ফিট করেন?",
-    ctaBody: "সন্তানের কথা আমাদের জানান। আমরা সঠিক শুরুর phase দেখিয়ে দেব — কোনো চাপ নেই, কোনো script নেই।",
+      "বেশিরভাগ পরিবার আমাদের কাছে আসেন ক্লান্ত হয়ে — progress ধীরে হচ্ছে, পরামর্শ একেকজনের একেক রকম, মনে হচ্ছে থেরাপি কোনোদিন শেষ হবে না। IND system এই প্রতিটি জিনিসের উত্তর কীভাবে দেয়, সরাসরি বললাম।",
+    s1Title: "Progress ধীরে মনে হলে",
+    s1Lead: "সমস্যা effort-এ নয় — sequence-এ।",
+    s2Title: "পরামর্শ ছড়ানো-ছিটানো মনে হলে",
+    s2Lead: "অনেক মতামতের জায়গায় একটাই sequence।",
+    s3Title: "নির্ভরশীলতা নিয়ে চিন্তা হলে",
+    s3Lead: "Flightpath-এর একটা শেষ আছে। লক্ষ্য — বাবা-মায়ের নেতৃত্ব।",
+    s4Title: "Practical প্রশ্ন",
+    s4Lead: "শুরু করার আগে বাবা-মায়েরা সাধারণত যা জানতে চান।",
+    ctaTitle: "এখনো বুঝতে পারছেন না কোথায় ফিট করেন?",
+    ctaBody: "বাচ্চার কথা আমাদের জানান। আমরা সঠিক শুরুর phase দেখিয়ে দেব — কোনো চাপ নেই, কোনো script নেই।",
     ctaPrimary: "Appointment নিন",
     ctaSecondary: "Approach দেখুন",
   },

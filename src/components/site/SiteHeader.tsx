@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Menu, MessageCircle } from "lucide-react";
 import { useState } from "react";
-import indLogo from "@/assets/ind-logo.asset.json";
+import indLogo from "@/assets/ind-logo.png.asset.json";
 import {
   FacebookIcon,
   InstagramIcon,

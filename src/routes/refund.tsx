@@ -45,7 +45,7 @@ function RefundPage() {
           <h2 className="mt-8 font-display text-2xl">How to reach us</h2>
           <p className="text-muted-foreground">
             For any refund or rescheduling request, write to
-            <a href="mailto:wecare@neurodevelopment.in" className="ml-1 underline">wecare@neurodevelopment.in</a>
+            <a href="mailto:instituteofneurodevelopment@gmail.com" className="ml-1 underline">instituteofneurodevelopment@gmail.com</a>
             {" "}or call <a href="tel:+919433308880" className="underline">+91 94333 08880</a>.
           </p>
         </div>

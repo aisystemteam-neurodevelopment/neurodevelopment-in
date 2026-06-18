@@ -56,29 +56,29 @@
 :root {
   --radius: 0.875rem;
 
-  /* IND brand: Deep Indigo bg, Warm White ink, Vibrant Violet primary, Gold accent */
-  --background: #1E266D;
+  /* IND brand: Deep Indigo/Purple bg, Warm White ink, Vibrant Violet primary, Gold accent */
+  --background: #0d0b1a;
   --foreground: #FCFBF7;
 
-  --card: #2A2078;
+  --card: #1a1432;
   --card-foreground: #FCFBF7;
 
-  --popover: #2A2078;
+  --popover: #1a1432;
   --popover-foreground: #FCFBF7;
 
   --primary: #7C3AED;
   --primary-foreground: #FCFBF7;
 
-  --secondary: #4A2C8A;
+  --secondary: #2a1b5e;
   --secondary-foreground: #FCFBF7;
 
-  --muted: #3A2A82;
-  --muted-foreground: #CFC8EE;
+  --muted: #241a4a;
+  --muted-foreground: #B8B0D8;
 
   --accent: #F5C242;
-  --accent-foreground: #1E266D;
+  --accent-foreground: #0d0b1a;
 
-  --warm: #4A2C8A;
+  --warm: #3a2570;
   --warm-foreground: #F5C242;
 
   --sage: #7C3AED;
@@ -87,8 +87,8 @@
   --destructive: oklch(0.62 0.22 27);
   --destructive-foreground: #FCFBF7;
 
-  --border: rgba(252, 251, 247, 0.14);
-  --input: rgba(252, 251, 247, 0.14);
+  --border: rgba(252, 251, 247, 0.10);
+  --input: rgba(252, 251, 247, 0.10);
   --ring: #7C3AED;
 
   --chart-1: #7C3AED;
@@ -97,13 +97,13 @@
   --chart-4: #1E266D;
   --chart-5: #FCFBF7;
 
-  --sidebar: #1E266D;
+  --sidebar: #0d0b1a;
   --sidebar-foreground: #FCFBF7;
   --sidebar-primary: #7C3AED;
   --sidebar-primary-foreground: #FCFBF7;
-  --sidebar-accent: #4A2C8A;
+  --sidebar-accent: #2a1b5e;
   --sidebar-accent-foreground: #FCFBF7;
-  --sidebar-border: rgba(252, 251, 247, 0.12);
+  --sidebar-border: rgba(252, 251, 247, 0.08);
   --sidebar-ring: #7C3AED;
 }
 

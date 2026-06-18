@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { supabaseAdmin } from "@/integrations/supabase/client.server";
 import { z } from "zod";
 
 const schema = z.object({
@@ -60,6 +59,8 @@ export const Route = createFileRoute("/api/public/booking")({
         ]
           .filter(Boolean)
           .join(" · ");
+
+        const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
         // Save to leads table
         const { data: lead, error } = await supabaseAdmin

@@ -5,6 +5,7 @@ import { ArrowRight, Compass, HeartHandshake, ListChecks, Sparkles, Phone, Hourg
 import { InvisibleLossCalculator } from "@/components/site/InvisibleLossCalculator";
 import { LeadMagnetForm } from "@/components/site/LeadMagnetForm";
 import { TestimonialStories } from "@/components/site/TestimonialStories";
+import { SocialLinks } from "@/components/site/SocialLinks";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -66,6 +67,10 @@ function HomePage() {
               We do not diagnose online and we never guarantee outcomes. We commit to clarity,
               structure, and our full effort.
             </p>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <span className="text-xs uppercase tracking-wide text-muted-foreground">Follow</span>
+              <SocialLinks size="sm" />
+            </div>
           </div>
 
           <div className="relative">

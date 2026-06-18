@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { supabaseAdmin } from "@/integrations/supabase/client.server";
 import { z } from "zod";
 
 const bodySchema = z.object({
@@ -27,6 +26,8 @@ export const Route = createFileRoute("/api/public/chat")({
 
         const apiKey = process.env.LOVABLE_API_KEY;
         if (!apiKey) return new Response("AI not configured", { status: 500 });
+
+        const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
         // Get-or-create lead
         let leadId = parsed.leadId ?? null;

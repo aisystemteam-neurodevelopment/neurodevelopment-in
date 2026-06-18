@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { supabaseAdmin } from "@/integrations/supabase/client.server";
 import { z } from "zod";
 
 const schema = z.object({
@@ -27,6 +26,8 @@ export const Route = createFileRoute("/api/public/lead-magnet")({
         ]
           .filter(Boolean)
           .join(" · ");
+
+        const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
         const { error } = await supabaseAdmin.from("leads").insert({
           source: "lead_magnet",

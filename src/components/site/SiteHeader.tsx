@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { useAuth } from "@/lib/auth-context";
 import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
+import { Menu, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import indLogo from "@/assets/ind-logo.asset.json";
 
@@ -15,8 +14,9 @@ const nav = [
   { to: "/contact", label: "Contact" },
 ] as const;
 
+const WHATSAPP_URL = "https://wa.me/message/PZQJYUEGGXGZE1";
+
 export function SiteHeader() {
-  const { user, portalPath, signOut } = useAuth();
   const [open, setOpen] = useState(false);
 
   return (
@@ -48,22 +48,12 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
-          {user && (
-            <>
-              <Button asChild variant="ghost" size="sm">
-                <Link to="/profile">Profile</Link>
-              </Button>
-              <Button asChild variant="outline" size="sm" className="rounded-full">
-                <Link to={portalPath}>Portal</Link>
-              </Button>
-              <Button variant="ghost" size="sm" onClick={() => signOut()}>Sign out</Button>
-            </>
-          )}
-          {!user && (
-            <Button asChild variant="ghost" size="sm">
-              <Link to="/auth">Sign in</Link>
-            </Button>
-          )}
+          <Button asChild variant="outline" size="sm" className="rounded-full gap-1.5">
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+              <MessageCircle className="h-4 w-4" />
+              WhatsApp
+            </a>
+          </Button>
           <Button asChild size="sm" className="rounded-full px-5">
             <Link to="/contact">Book appointment</Link>
           </Button>
@@ -94,22 +84,12 @@ export function SiteHeader() {
               </Link>
             ))}
             <div className="mt-2 flex flex-col gap-2 border-t border-border pt-3">
-              {user && (
-                <>
-                  <Button asChild variant="outline" size="sm">
-                    <Link to="/profile" onClick={() => setOpen(false)}>Profile</Link>
-                  </Button>
-                  <Button asChild variant="outline" size="sm">
-                    <Link to={portalPath} onClick={() => setOpen(false)}>Open portal</Link>
-                  </Button>
-                  <Button variant="outline" size="sm" onClick={() => { setOpen(false); signOut(); }}>Sign out</Button>
-                </>
-              )}
-              {!user && (
-                <Button asChild variant="outline" size="sm">
-                  <Link to="/auth" onClick={() => setOpen(false)}>Sign in</Link>
-                </Button>
-              )}
+              <Button asChild variant="outline" size="sm" className="gap-1.5">
+                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
+                  <MessageCircle className="h-4 w-4" />
+                  WhatsApp
+                </a>
+              </Button>
               <Button asChild size="sm" className="rounded-full">
                 <Link to="/contact" onClick={() => setOpen(false)}>Book appointment</Link>
               </Button>

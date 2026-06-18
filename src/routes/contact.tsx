@@ -115,9 +115,9 @@ function ContactPage() {
           <div className="text-xs text-muted-foreground">WhatsApp</div>
           <div className="mt-1 font-medium">+91 94333 08880</div>
         </a>
-        <a href="mailto:wecare@neurodevelopment.in" className="rounded-2xl border border-border bg-card p-4 text-sm hover:bg-muted">
+        <a href="mailto:instituteofneurodevelopment@gmail.com" className="rounded-2xl border border-border bg-card p-4 text-sm hover:bg-muted">
           <div className="text-xs text-muted-foreground">Email</div>
-          <div className="mt-1 font-medium break-all">wecare@neurodevelopment.in</div>
+          <div className="mt-1 font-medium break-all">instituteofneurodevelopment@gmail.com</div>
         </a>
       </section>
 

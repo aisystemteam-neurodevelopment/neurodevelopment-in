@@ -43,8 +43,8 @@ export function SiteFooter() {
             </li>
             <li className="flex items-start gap-2">
               <Mail className="mt-0.5 h-3.5 w-3.5 shrink-0" />
-              <a href="mailto:wecare@neurodevelopment.in" className="hover:text-foreground break-all">
-                wecare@neurodevelopment.in
+              <a href="mailto:instituteofneurodevelopment@gmail.com" className="hover:text-foreground break-all">
+                instituteofneurodevelopment@gmail.com
               </a>
             </li>
             <li className="flex items-start gap-2">

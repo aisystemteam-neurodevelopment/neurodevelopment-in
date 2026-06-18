@@ -54,7 +54,7 @@ function PrivacyPage() {
           <h2 className="mt-8 font-display text-2xl">Your choices</h2>
           <p className="text-muted-foreground">
             You can ask us to update or delete your information at any time by emailing
-            <a href="mailto:wecare@neurodevelopment.in" className="ml-1 underline">wecare@neurodevelopment.in</a>.
+            <a href="mailto:instituteofneurodevelopment@gmail.com" className="ml-1 underline">instituteofneurodevelopment@gmail.com</a>.
           </p>
 
           <h2 className="mt-8 font-display text-2xl">Cookies</h2>

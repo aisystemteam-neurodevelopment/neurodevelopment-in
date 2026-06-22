@@ -90,7 +90,7 @@ function ChatPage() {
           </p>
         </div>
 
-        <div className="mt-8 flex h-[60vh] flex-col rounded-3xl border border-border bg-card">
+        <div data-no-center className="mt-8 flex h-[60vh] flex-col rounded-3xl border border-border bg-card">
           <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto p-5">
             {messages.map((m, i) => (
               <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>

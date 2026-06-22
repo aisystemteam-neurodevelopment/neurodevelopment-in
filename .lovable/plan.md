@@ -1,39 +1,53 @@
-
 ## Goal
 
-Rebuild the prior Institute of NeuroDevelopment (IND) site + portal from `wrangler.zip` inside this project. Same stack (TanStack Start v1, React 19, Tailwind v4, Supabase), so this is a code + schema port rather than a re-architecture. The Breakthrough Flightpath docs are content/source material — not migrated as code in this pass.
+Convert the public marketing site from left-aligned to center-aligned content across all viewport sizes (mobile and desktop), while keeping functional layouts readable.
 
-## What's in the source archive
+## Scope
 
-- **Stack**: TanStack Start (matches current project), `@lovable.dev/vite-tanstack-config`, `@supabase/supabase-js`, `@tanstack/react-query`, jspdf, recharts, etc.
-- **Routes** (flat file convention): public site (`index`, `about`, `approach`, `services`, `programs`, `treatments.$slug`, `faq`, `contact`, `chat`, `privacy`, `terms`, `refund`, `auth`, `profile`), family portal (`family` layout + `index/appointments/modules/products/progress`), staff portal (`staff` + `index/manage`), admin app (`app.index/admin/leads`), and API routes (`api/public/booking`, `chat`, `lead-magnet`).
-- **Components**: site shell (`SiteHeader/Footer/Layout`, `PortalShell`, `RoleGuard`), marketing widgets (`InvisibleLossCalculator`, `LeadMagnetForm`, `TestimonialStories`), programs (`PaymentModal`, `PlanQuiz`), full shadcn `ui/` set.
-- **Lib**: `auth-context`, `payments.functions.ts`, `razorpay.ts`, `programsPdf`/`receiptPdf`, `data/treatments.ts`.
-- **Integrations**: Supabase `client.ts`, `client.server.ts`, `auth-middleware.ts`, `auth-attacher.ts`, `types.ts`; `lovable/index.ts`.
-- **Schema** (7 migrations under `superbase/` — typo, will be placed at `supabase/migrations/`):
-  - Enums: `app_role` (parent_prospect, parent_enrolled, coordinator, clinical_advisor, sales, content_manager, admin, employee), `lead_stage`, `escalation_type`, `escalation_status`
-  - Tables: `profiles`, `user_roles`, `leads`, `lead_messages`, `departments`, `payment_orders`, escalations, etc., with RLS + `has_role`/`is_staff`/`is_department_*` security-definer functions and the standard GRANT blocks.
+All public marketing routes and shared section components:
 
-## Plan
+- `src/routes/index.tsx` — hero, value props, 4-phase flightpath, invisible loss, proof/credibility, CTA
+- `src/routes/about.tsx` — founder hero, pillars, authority signals, organizational sections
+- `src/routes/approach.tsx`
+- `src/routes/services.tsx`
+- `src/routes/programs.tsx`
+- `src/routes/treatments.$slug.tsx`
+- `src/routes/faq.tsx`
+- `src/routes/contact.tsx`
+- `src/routes/chat.tsx`
+- Shared section components: `InvisibleLossCalculator.tsx`, `LeadMagnetForm.tsx`, `TestimonialStories.tsx`
 
-1. **Enable Lovable Cloud** on this project (provisions a fresh Supabase). The archive's old project ref (`yumdtvljeretiowzuegb`) and keys are discarded — Cloud injects new `VITE_SUPABASE_*` / `SUPABASE_*` env.
-2. **Copy source files** from the archive into the current project, preserving paths:
-   - `src/routes/**` — overwrite this project's placeholder `index.tsx`/`__root.tsx`; rename the malformed `src/routes/api  public/` (double space) to `src/routes/api/public/`.
-   - `src/components/{site,programs,ui}/**`, `src/hooks/use-mobile.tsx`, `src/lib/**`, `src/data/treatments.ts`.
-   - `src/integrations/lovable/index.ts` (other `integrations/supabase/*` files are generated/managed by Cloud — do **not** overwrite those; reconcile any drift after Cloud is enabled).
-   - `src/styles.css` (Tailwind v4 theme tokens) — overwrite.
-3. **Install missing dependencies** via `bun add`: jspdf, jspdf-autotable, recharts, embla-carousel-react, input-otp, react-day-picker, react-resizable-panels, date-fns, cmdk, react-hook-form, @hookform/resolvers, sonner, vaul, tw-animate-css, and any Radix packages not already present. (Skip ones already in current `package.json`.)
-4. **Apply database schema**: run the 7 migrations in order against the new Cloud project (kept verbatim except moved from `superbase/` → `supabase/migrations/`). They already include GRANTs and RLS per Lovable conventions.
-5. **Wire start.ts**: ensure `attachSupabaseAuth` is appended to `functionMiddleware` (required by `requireSupabaseAuth` used in `payments.functions.ts` and likely loaders).
-6. **Razorpay payment integration**: `payments.functions.ts` + `razorpay.ts` reference Razorpay keys. After build is green, surface that `RAZORPAY_KEY_ID` / `RAZORPAY_KEY_SECRET` (and webhook secret) need to be added as secrets — request via `add_secret` only after user confirms they want payments live now.
-7. **Verify**: let the harness build; fix any import/path drift, especially around the renamed `api/public` folder and the Cloud-managed `integrations/supabase/*` types vs. what the ported code imports.
+## Changes
 
-## Out of scope this pass
+1. **Section text containers**
+   - Add `text-center` to every section heading/paragraph wrapper (`max-w-2xl`, `max-w-3xl`, etc.).
+   - Change `max-w-xl`/`max-w-2xl` wrappers from `text-left` default to `text-center` and keep them centered with `mx-auto`.
 
-- The Breakthrough Flightpath PDFs/docs/markdown are **not** ingested into the app (no KB ingestion, no embeddings, no AI assistant). They remain reference material. We can do that as a follow-up if you want a parent-facing chat over the docs.
-- No styling redesign — ports the existing visual system as-is.
+2. **CTAs and buttons**
+   - Wrap CTA button groups in `flex flex-wrap justify-center gap-3`.
+   - Convert left-aligned `Link` CTAs to center layout.
 
-## Confirm before I switch to build mode
+3. **Grid cards**
+   - Keep card internal content left-aligned for readability (lists, paragraphs).
+   - Center the section header above each grid, and center any single cards or featured items.
 
-- OK to provision a **new** Cloud backend (the old project's data does not transfer)?
-- Defer Razorpay secrets until after the rebuild compiles (recommended), or set them up in the same pass?
+4. **Hero sections**
+   - Convert hero text blocks to `text-center`.
+   - Center hero images/illustrations with `mx-auto` and `justify-items-center`/`place-items-center` where appropriate.
+
+5. **Shared components**
+   - Update `InvisibleLossCalculator`, `LeadMagnetForm`, and `TestimonialStories` to center their titles, descriptions, and CTAs.
+
+6. **Tables/accordions**
+   - Leave table cell text left-aligned for legibility.
+   - Center FAQ section headers; keep accordion triggers left-aligned for readability.
+
+## Verification
+
+- Run `bun run build` to confirm no TypeScript or Tailwind class errors.
+- Use Playwright to capture screenshots of `/`, `/about`, `/services`, `/programs`, `/faq` on desktop and mobile viewports and confirm visual center alignment.
+
+## Out of scope
+
+- Portal/authenticated routes (`family.*`, `staff.*`, `app.*`) — these are dashboard interfaces, not marketing content, and left-alignment aids data scanning.
+- Header/footer navigation structure and social icon alignment.

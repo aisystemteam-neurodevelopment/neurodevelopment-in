@@ -158,3 +158,51 @@
     letter-spacing: -0.02em;
   }
 }
+
+/* Global center alignment for marketing pages.
+   SiteLayout's <main> opts in via the .site-centered class.
+   Forms, tables, accordions and chat retain their natural alignment via opt-out. */
+.site-centered {
+  text-align: center;
+}
+.site-centered h1,
+.site-centered h2,
+.site-centered h3,
+.site-centered h4,
+.site-centered h5,
+.site-centered p,
+.site-centered blockquote {
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Center inline-flex pill/badge wrappers and CTA button groups */
+.site-centered .flex.flex-wrap.items-center:not(.justify-between):not(.justify-end):not(.justify-start) {
+  justify-content: center;
+}
+.site-centered .flex.items-center.gap-2:not(.justify-between):not(.justify-end):not(.justify-start),
+.site-centered .flex.items-center.gap-3:not(.justify-between):not(.justify-end):not(.justify-start) {
+  justify-content: center;
+}
+/* Opt-outs: keep natural left alignment where it aids legibility */
+.site-centered form,
+.site-centered form *,
+.site-centered table,
+.site-centered table *,
+.site-centered [role="region"][data-state],
+.site-centered [data-radix-collection-item],
+.site-centered .chat-message,
+.site-centered [data-no-center],
+.site-centered [data-no-center] * {
+  text-align: left;
+}
+.site-centered form h1,
+.site-centered form h2,
+.site-centered form h3,
+.site-centered form p,
+.site-centered [data-no-center] h1,
+.site-centered [data-no-center] h2,
+.site-centered [data-no-center] h3,
+.site-centered [data-no-center] p {
+  margin-left: 0;
+  margin-right: 0;
+}

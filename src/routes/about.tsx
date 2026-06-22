@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { Compass, Layers, HeartHandshake, LineChart, Sparkles, ArrowRight } from "lucide-react";
-import drDas from "@/assets/dr-das.asset.json";
+import drDas from "@/assets/dr-das.png.asset.json";
 
 export const Route = createFileRoute("/about")({
   head: () => ({

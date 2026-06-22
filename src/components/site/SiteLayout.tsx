@@ -6,7 +6,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
-      <main className="flex-1 text-center [&_form]:text-left [&_table]:text-left [&_input]:text-left [&_textarea]:text-left">{children}</main>
+      <main className="site-centered flex-1">{children}</main>
       <SiteFooter />
     </div>
   );

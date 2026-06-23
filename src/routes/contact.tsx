@@ -236,6 +236,34 @@ function ContactPage() {
           </form>
         )}
       </section>
+
+      <section className="mx-auto max-w-5xl px-5 pb-20">
+        <div className="mb-4 text-center">
+          <h2 className="font-display text-3xl">Visit us</h2>
+          <p className="mt-2 text-sm text-muted-foreground">
+            26, Raja Nabakrishna Street, opposite Sobhabazar Rajbari, Kolkata 700005
+          </p>
+        </div>
+        <div className="overflow-hidden rounded-3xl border border-border">
+          <iframe
+            title="Institute of NeuroDevelopment — Google Maps location"
+            src="https://www.google.com/maps?q=Institute+of+NeuroDevelopment,+Kolkata&ll=22.5964906,88.366761&z=19&output=embed"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="h-[360px] w-full"
+          />
+        </div>
+        <div className="mt-3 text-center">
+          <a
+            href="https://www.google.com/maps/place/Institute+of+NeuroDevelopment/@22.5964906,88.366761,19z/data=!4m6!3m5!1s0x3a02770058f0c535:0x278c6b12916e5dd2!8m2!3d22.5964906!4d88.366761!16s%2Fg%2F11xgw0sfc1"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-primary underline"
+          >
+            Open in Google Maps
+          </a>
+        </div>
+      </section>
     </SiteLayout>
   );
 }

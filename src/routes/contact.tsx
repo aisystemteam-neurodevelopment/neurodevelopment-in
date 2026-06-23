@@ -59,13 +59,20 @@ function buildWhatsAppLink(d: z.infer<typeof schema>) {
 function ContactPage() {
   const [busy, setBusy] = useState(false);
   const [confirmed, setConfirmed] = useState<{ name: string; whatsapp: string } | null>(null);
+  const [concernValue, setConcernValue] = useState<string>("");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     const fd = new FormData(form);
     const raw = Object.fromEntries(fd) as Record<string, string>;
-    const parsed = schema.safeParse({ ...raw, mode: raw.mode || "either" });
+    const finalConcern =
+      raw.concern === "other" ? (raw.concernOther || "Other") : (raw.concern || "");
+    const parsed = schema.safeParse({
+      ...raw,
+      concern: finalConcern,
+      mode: raw.mode || "either",
+    });
     if (!parsed.success) {
       toast.error(parsed.error.issues[0]?.message ?? "Please check the form");
       return;
@@ -84,6 +91,7 @@ function ContactPage() {
       toast.success("Booking received. Our team will reach out shortly.");
       setConfirmed({ name: parsed.data.name, whatsapp: buildWhatsAppLink(parsed.data) });
       form.reset();
+      setConcernValue("");
     } catch {
       toast.error("Network issue. Please call or WhatsApp +91 94333 08880.");
     } finally {

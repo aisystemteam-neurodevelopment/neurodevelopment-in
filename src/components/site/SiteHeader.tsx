@@ -29,8 +29,8 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
-        <Link to="/" className="flex items-center gap-2">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5">
+        <Link to="/" className="flex shrink-0 items-center gap-2">
           <img
             src={indLogo.url}
             alt="Institute of NeuroDevelopment"
@@ -41,7 +41,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-7 md:flex">
+        <nav className="hidden items-center gap-6 md:flex lg:gap-7">
           {nav.map((n) => (
             <Link
               key={n.to}
@@ -55,7 +55,8 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden shrink-0 items-center gap-2 md:flex">
+          <div className="hidden items-center gap-1.5 lg:flex">
           <a
             href={FACEBOOK_URL}
             target="_blank"
@@ -83,6 +84,7 @@ export function SiteHeader() {
           >
             <YouTubeIcon className="h-4 w-4" />
           </a>
+          </div>
           <Button asChild variant="outline" size="sm" className="rounded-full gap-1.5">
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
               <MessageCircle className="h-4 w-4" />

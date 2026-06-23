@@ -67,7 +67,7 @@ const dependency: Faq[] = [
   },
   {
     q: "What happens when the program ends?",
-    a: "By the end, you own the framework. You know your child's drivers, you've run the system for a year, and you can adapt it as your child grows. Some families choose a second cycle for new goals — but that's a choice, not a dependency.",
+    a: "By the end, you own the framework. You know your child's drivers, you've run the system for a year, and you can adapt it as your child grows. Some families choose a second cycle for new goals — but that's a choice, not a dependency. And you can always connect with us or contact us — lifetime.",
   },
   {
     q: "Isn't this just shifting the work onto parents?",
@@ -86,7 +86,7 @@ const practical: Faq[] = [
   },
   {
     q: "Will my child be diagnosed online?",
-    a: "No. Diagnosis requires in-person evaluation. Online, we focus on understanding your child and guiding the next right step.",
+    a: "Yes — we offer online diagnosis. Our team evaluates your child through structured online sessions, understands the full picture, and guides the next right step. In-person follow-up is offered when it adds clinical value, but it isn't required to get started.",
   },
   {
     q: "How much does it cost?",
@@ -94,7 +94,7 @@ const practical: Faq[] = [
   },
   {
     q: "Can you guarantee results?",
-    a: "No — and we never will. Anyone guaranteeing specific outcomes in child development is not being honest. We promise a clear system, weekly structure, and our full effort.",
+    a: "Yes — we guarantee specific outcomes, provided you regularly carry out the activities we teach you. The system works when it is run consistently at home. Show up with the weekly structure, log the activities, and the outcomes follow. Effort on your side + our framework = measurable progress.",
   },
 ];
 

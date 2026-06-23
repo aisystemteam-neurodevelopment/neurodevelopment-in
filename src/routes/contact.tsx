@@ -171,20 +171,44 @@ function ContactPage() {
               </div>
               <div className="space-y-2 sm:col-span-2">
                 <Label htmlFor="concern">Primary concern</Label>
-                <Input
-                  id="concern"
-                  name="concern"
-                  placeholder="e.g. Speech delay, hyperactivity, school refusal…"
-                  maxLength={120}
-                />
+                <Select name="concern" value={concernValue} onValueChange={setConcernValue}>
+                  <SelectTrigger id="concern"><SelectValue placeholder="Select primary concern" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Speech & language delay">Speech & language delay</SelectItem>
+                    <SelectItem value="Autism / ASD">Autism / ASD</SelectItem>
+                    <SelectItem value="ADHD / Hyperactivity">ADHD / Hyperactivity</SelectItem>
+                    <SelectItem value="Learning difficulty">Learning difficulty</SelectItem>
+                    <SelectItem value="Behavioural issues">Behavioural issues</SelectItem>
+                    <SelectItem value="Developmental delay">Developmental delay</SelectItem>
+                    <SelectItem value="School refusal / anxiety">School refusal / anxiety</SelectItem>
+                    <SelectItem value="other">Other</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="preferredDate">Preferred date</Label>
-                <Input id="preferredDate" name="preferredDate" type="date" />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="preferredTime">Preferred time</Label>
-                <Input id="preferredTime" name="preferredTime" type="time" />
+              {concernValue === "other" && (
+                <div className="space-y-2 sm:col-span-2">
+                  <Label htmlFor="concernOther">Please describe the concern</Label>
+                  <Input
+                    id="concernOther"
+                    name="concernOther"
+                    placeholder="Tell us briefly…"
+                    maxLength={120}
+                  />
+                </div>
+              )}
+              <div className="space-y-2 sm:col-span-2">
+                <Label htmlFor="timeFrame">How long has this been a concern?</Label>
+                <Select name="timeFrame" defaultValue="">
+                  <SelectTrigger id="timeFrame"><SelectValue placeholder="Select a time frame" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Less than 1 month">Less than 1 month</SelectItem>
+                    <SelectItem value="1–3 months">1–3 months</SelectItem>
+                    <SelectItem value="3–6 months">3–6 months</SelectItem>
+                    <SelectItem value="6–12 months">6–12 months</SelectItem>
+                    <SelectItem value="More than 1 year">More than 1 year</SelectItem>
+                    <SelectItem value="Since birth / always">Since birth / always</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               <div className="space-y-2 sm:col-span-2">
                 <Label htmlFor="mode">Consultation mode</Label>

@@ -32,8 +32,8 @@ const schema = z.object({
   phone: z.string().trim().min(5, "Phone is required to confirm the booking").max(40),
   childAge: z.string().trim().max(40).optional(),
   concern: z.string().trim().max(120).optional(),
-  preferredDate: z.string().trim().max(40).optional(),
-  preferredTime: z.string().trim().max(40).optional(),
+  concernOther: z.string().trim().max(120).optional(),
+  timeFrame: z.string().trim().max(60).optional(),
   mode: z.enum(["online", "in-person", "either"]),
   message: z.string().trim().max(2000).optional(),
 });
@@ -48,8 +48,8 @@ function buildWhatsAppLink(d: z.infer<typeof schema>) {
     `Phone: ${d.phone}`,
     d.childAge ? `Child age: ${d.childAge}` : "",
     d.concern ? `Concern: ${d.concern}` : "",
-    d.preferredDate ? `Preferred date: ${d.preferredDate}` : "",
-    d.preferredTime ? `Preferred time: ${d.preferredTime}` : "",
+    d.concernOther ? `Other concern: ${d.concernOther}` : "",
+    d.timeFrame ? `Time frame: ${d.timeFrame}` : "",
     `Mode: ${d.mode}`,
     d.message ? `Notes: ${d.message}` : "",
   ].filter(Boolean);

@@ -183,6 +183,12 @@
 .site-centered .flex.items-center.gap-3:not(.justify-between):not(.justify-end):not(.justify-start) {
   justify-content: center;
 }
+/* Center CTA button groups that don't explicitly set their own justification */
+.site-centered .flex.flex-wrap.gap-2:not(.justify-between):not(.justify-end):not(.justify-start),
+.site-centered .flex.flex-wrap.gap-3:not(.justify-between):not(.justify-end):not(.justify-start),
+.site-centered .flex.flex-wrap.gap-4:not(.justify-between):not(.justify-end):not(.justify-start) {
+  justify-content: center;
+}
 /* Opt-outs: keep natural left alignment where it aids legibility */
 .site-centered form,
 .site-centered form *,

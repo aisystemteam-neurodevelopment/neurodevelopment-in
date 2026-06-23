@@ -32,8 +32,8 @@ const schema = z.object({
   phone: z.string().trim().min(5, "Phone is required to confirm the booking").max(40),
   childAge: z.string().trim().max(40).optional(),
   concern: z.string().trim().max(120).optional(),
-  preferredDate: z.string().trim().max(40).optional(),
-  preferredTime: z.string().trim().max(40).optional(),
+  concernOther: z.string().trim().max(120).optional(),
+  timeFrame: z.string().trim().max(60).optional(),
   mode: z.enum(["online", "in-person", "either"]),
   message: z.string().trim().max(2000).optional(),
 });
@@ -48,8 +48,8 @@ function buildWhatsAppLink(d: z.infer<typeof schema>) {
     `Phone: ${d.phone}`,
     d.childAge ? `Child age: ${d.childAge}` : "",
     d.concern ? `Concern: ${d.concern}` : "",
-    d.preferredDate ? `Preferred date: ${d.preferredDate}` : "",
-    d.preferredTime ? `Preferred time: ${d.preferredTime}` : "",
+    d.concernOther ? `Other concern: ${d.concernOther}` : "",
+    d.timeFrame ? `Time frame: ${d.timeFrame}` : "",
     `Mode: ${d.mode}`,
     d.message ? `Notes: ${d.message}` : "",
   ].filter(Boolean);
@@ -59,13 +59,20 @@ function buildWhatsAppLink(d: z.infer<typeof schema>) {
 function ContactPage() {
   const [busy, setBusy] = useState(false);
   const [confirmed, setConfirmed] = useState<{ name: string; whatsapp: string } | null>(null);
+  const [concernValue, setConcernValue] = useState<string>("");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     const fd = new FormData(form);
     const raw = Object.fromEntries(fd) as Record<string, string>;
-    const parsed = schema.safeParse({ ...raw, mode: raw.mode || "either" });
+    const finalConcern =
+      raw.concern === "other" ? (raw.concernOther || "Other") : (raw.concern || "");
+    const parsed = schema.safeParse({
+      ...raw,
+      concern: finalConcern,
+      mode: raw.mode || "either",
+    });
     if (!parsed.success) {
       toast.error(parsed.error.issues[0]?.message ?? "Please check the form");
       return;
@@ -84,6 +91,7 @@ function ContactPage() {
       toast.success("Booking received. Our team will reach out shortly.");
       setConfirmed({ name: parsed.data.name, whatsapp: buildWhatsAppLink(parsed.data) });
       form.reset();
+      setConcernValue("");
     } catch {
       toast.error("Network issue. Please call or WhatsApp +91 94333 08880.");
     } finally {
@@ -163,20 +171,44 @@ function ContactPage() {
               </div>
               <div className="space-y-2 sm:col-span-2">
                 <Label htmlFor="concern">Primary concern</Label>
-                <Input
-                  id="concern"
-                  name="concern"
-                  placeholder="e.g. Speech delay, hyperactivity, school refusal…"
-                  maxLength={120}
-                />
+                <Select name="concern" value={concernValue} onValueChange={setConcernValue}>
+                  <SelectTrigger id="concern"><SelectValue placeholder="Select primary concern" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Speech & language delay">Speech & language delay</SelectItem>
+                    <SelectItem value="Autism / ASD">Autism / ASD</SelectItem>
+                    <SelectItem value="ADHD / Hyperactivity">ADHD / Hyperactivity</SelectItem>
+                    <SelectItem value="Learning difficulty">Learning difficulty</SelectItem>
+                    <SelectItem value="Behavioural issues">Behavioural issues</SelectItem>
+                    <SelectItem value="Developmental delay">Developmental delay</SelectItem>
+                    <SelectItem value="School refusal / anxiety">School refusal / anxiety</SelectItem>
+                    <SelectItem value="other">Other</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="preferredDate">Preferred date</Label>
-                <Input id="preferredDate" name="preferredDate" type="date" />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="preferredTime">Preferred time</Label>
-                <Input id="preferredTime" name="preferredTime" type="time" />
+              {concernValue === "other" && (
+                <div className="space-y-2 sm:col-span-2">
+                  <Label htmlFor="concernOther">Please describe the concern</Label>
+                  <Input
+                    id="concernOther"
+                    name="concernOther"
+                    placeholder="Tell us briefly…"
+                    maxLength={120}
+                  />
+                </div>
+              )}
+              <div className="space-y-2 sm:col-span-2">
+                <Label htmlFor="timeFrame">How long has this been a concern?</Label>
+                <Select name="timeFrame" defaultValue="">
+                  <SelectTrigger id="timeFrame"><SelectValue placeholder="Select a time frame" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Less than 1 month">Less than 1 month</SelectItem>
+                    <SelectItem value="1–3 months">1–3 months</SelectItem>
+                    <SelectItem value="3–6 months">3–6 months</SelectItem>
+                    <SelectItem value="6–12 months">6–12 months</SelectItem>
+                    <SelectItem value="More than 1 year">More than 1 year</SelectItem>
+                    <SelectItem value="Since birth / always">Since birth / always</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               <div className="space-y-2 sm:col-span-2">
                 <Label htmlFor="mode">Consultation mode</Label>
@@ -203,6 +235,34 @@ function ContactPage() {
             </p>
           </form>
         )}
+      </section>
+
+      <section className="mx-auto max-w-5xl px-5 pb-20">
+        <div className="mb-4 text-center">
+          <h2 className="font-display text-3xl">Visit us</h2>
+          <p className="mt-2 text-sm text-muted-foreground">
+            26, Raja Nabakrishna Street, opposite Sobhabazar Rajbari, Kolkata 700005
+          </p>
+        </div>
+        <div className="overflow-hidden rounded-3xl border border-border">
+          <iframe
+            title="Institute of NeuroDevelopment — Google Maps location"
+            src="https://www.google.com/maps?q=Institute+of+NeuroDevelopment,+Kolkata&ll=22.5964906,88.366761&z=19&output=embed"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="h-[360px] w-full"
+          />
+        </div>
+        <div className="mt-3 text-center">
+          <a
+            href="https://www.google.com/maps/place/Institute+of+NeuroDevelopment/@22.5964906,88.366761,19z/data=!4m6!3m5!1s0x3a02770058f0c535:0x278c6b12916e5dd2!8m2!3d22.5964906!4d88.366761!16s%2Fg%2F11xgw0sfc1"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-primary underline"
+          >
+            Open in Google Maps
+          </a>
+        </div>
       </section>
     </SiteLayout>
   );

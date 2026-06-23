@@ -8,8 +8,8 @@ const schema = z.object({
   phone: z.string().trim().min(5).max(40),
   childAge: z.string().trim().max(40).optional().default(""),
   concern: z.string().trim().max(120).optional().default(""),
-  preferredDate: z.string().trim().max(40).optional().default(""),
-  preferredTime: z.string().trim().max(40).optional().default(""),
+  concernOther: z.string().trim().max(120).optional().default(""),
+  timeFrame: z.string().trim().max(60).optional().default(""),
   mode: z.enum(["online", "in-person", "either"]).optional().default("either"),
   message: z.string().trim().max(2000).optional().default(""),
 });
@@ -54,7 +54,7 @@ export const Route = createFileRoute("/api/public/booking")({
         const summary = [
           parsed.concern && `Concern: ${parsed.concern}`,
           parsed.childAge && `Child age: ${parsed.childAge}`,
-          parsed.preferredDate && `Preferred: ${parsed.preferredDate} ${parsed.preferredTime}`.trim(),
+          parsed.timeFrame && `Time frame: ${parsed.timeFrame}`,
           `Mode: ${parsed.mode}`,
           parsed.message && `Message: ${parsed.message}`,
         ]
@@ -86,8 +86,8 @@ export const Route = createFileRoute("/api/public/booking")({
           parsed.phone,
           parsed.childAge,
           parsed.concern,
-          parsed.preferredDate,
-          parsed.preferredTime,
+          parsed.timeFrame,
+          parsed.concernOther,
           parsed.mode,
           parsed.message,
           "website-booking",

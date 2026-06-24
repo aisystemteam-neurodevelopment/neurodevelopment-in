@@ -3,6 +3,7 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { Compass, Layers, HeartHandshake, LineChart, Sparkles, ArrowRight } from "lucide-react";
 import drDas from "@/assets/dr-das.png.asset.json";
+import { LinkedInIcon, LINKEDIN_URL } from "@/components/site/SocialIcons";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -78,6 +79,16 @@ function AboutPage() {
             that system. Not a service provider. Not another clinician on a long list. The
             category architect behind a parent-led model now used by thousands of families.
           </p>
+          <a
+            href={LINKEDIN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View Dr. Diptanshu Das's LinkedIn profile"
+            className="mt-5 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
+          >
+            <LinkedInIcon className="h-4 w-4 text-[#0A66C2]" />
+            Dr. Das on LinkedIn
+          </a>
         </div>
         <div className="relative mx-auto w-full max-w-sm">
           <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-[radial-gradient(60%_60%_at_50%_50%,var(--warm)_0%,transparent_70%)]" />

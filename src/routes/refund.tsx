@@ -31,7 +31,7 @@ function RefundPage() {
 
           <h2 className="mt-8 font-display text-2xl">Program enrolment</h2>
           <p className="text-muted-foreground">
-            Program fees are evaluated case-by-case based on the child&apos;s plan. Any
+            Program fees are evaluated case-by-case based on the child's plan. Any
             refund or partial credit is decided by the clinical team in writing, in line
             with the agreement signed at enrolment.
           </p>

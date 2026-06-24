@@ -56,7 +56,7 @@ function HomePage() {
             <p className="mt-5 max-w-xl text-lg text-muted-foreground">
               IND is not a therapy centre. It is a structured developmental architecture that
               moves families from confusion and fragmented intervention to clarity, daily
-              execution, and measurable progress &mdash; with the parent as the growth engine.
+              execution, and measurable progress — with the parent as the growth engine.
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <Button asChild size="lg" className="rounded-full px-6">
@@ -84,8 +84,8 @@ function HomePage() {
             <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
               <div className="text-xs uppercase tracking-wide text-muted-foreground">From the architect</div>
               <p className="mt-3 font-display text-2xl leading-snug">
-                &ldquo;Diagnoses describe patterns. Drivers determine outcomes. We engineer
-                developmental progress &mdash; we don&apos;t sell therapy.&rdquo;
+                "Diagnoses describe patterns. Drivers determine outcomes. We engineer
+                developmental progress — we don't sell therapy."
               </p>
               <div className="mt-4 flex items-center gap-3">
                 <div className="grid h-10 w-10 place-items-center rounded-full bg-sage text-sage-foreground font-display">D</div>
@@ -117,7 +117,7 @@ function HomePage() {
         <div className="max-w-2xl">
           <h2 className="font-display text-4xl">What changes when development becomes a system</h2>
           <p className="mt-3 text-muted-foreground">
-            Most families are stuck not because they aren&apos;t trying hard enough, but because
+            Most families are stuck not because they aren't trying hard enough, but because
             no one has handed them a structured pathway. That is what IND replaces.
           </p>
         </div>
@@ -131,7 +131,7 @@ function HomePage() {
             {
               icon: ListChecks,
               title: "Structure replaces drift",
-              body: "A phase-based pathway with one dominant bottleneck at a time &mdash; not a 'try everything' loop.",
+              body: "A phase-based pathway with one dominant bottleneck at a time — not a 'try everything' loop.",
             },
             {
               icon: HeartHandshake,
@@ -187,13 +187,13 @@ function HomePage() {
             </h2>
             <p className="mt-4 text-muted-foreground">
               When speech, OT, special ed, behaviour, and home advice each pull in their own
-              direction, the child still moves &mdash; just not in a coordinated direction.
+              direction, the child still moves — just not in a coordinated direction.
               Weeks pass. Sessions add up. The calendar fills. And the most valuable resource
-              in neurodevelopment &mdash; <span className="text-foreground">time inside the developmental window</span> &mdash;
+              in neurodevelopment — <span className="text-foreground">time inside the developmental window</span> —
               quietly drains away.
             </p>
             <p className="mt-3 text-muted-foreground">
-              We call this the Invisible Loss. It&apos;s not a failure of effort or love. It&apos;s
+              We call this the Invisible Loss. It's not a failure of effort or love. It's
               what happens when there is no single system owning the whole child.
             </p>
           </div>
@@ -208,7 +208,7 @@ function HomePage() {
               {
                 icon: TrendingDown,
                 t: "Activity mistaken for progress",
-                d: "Hours logged, sessions attended, reports filed &mdash; without a measurable developmental trajectory.",
+                d: "Hours logged, sessions attended, reports filed — without a measurable developmental trajectory.",
               },
               {
                 icon: Hourglass,
@@ -245,7 +245,7 @@ function HomePage() {
           <div className="mt-8 grid gap-4 md:grid-cols-4">
             {[
               { n: "Phase", d: "One of the four sequential phases anchors the work. No skipping ahead." },
-              { n: "Driver", d: "The dominant bottleneck for this child, this week &mdash; not a generic plan." },
+              { n: "Driver", d: "The dominant bottleneck for this child, this week — not a generic plan." },
               { n: "Parent action", d: "A small, doable practice woven into the existing daily routine." },
               { n: "Signal", d: "A specific, observable change we measure and review week on week." },
             ].map((s) => (
@@ -279,7 +279,7 @@ function HomePage() {
         <div className="max-w-2xl">
           <h2 className="font-display text-4xl">Where families are stuck</h2>
           <p className="mt-3 text-muted-foreground">
-            These are the patterns we hear every week. None of them are personal failures &mdash;
+            These are the patterns we hear every week. None of them are personal failures —
             they are signals that the current system is fragmented.
           </p>
         </div>
@@ -293,7 +293,7 @@ function HomePage() {
             { q: "We're scared of what happens if we wait.", a: "Developmental loss is cumulative. Early structured action is the highest-leverage move." },
           ].map((c) => (
             <div key={c.q} className="rounded-3xl border border-border bg-card p-6">
-              <div className="font-display text-lg">&ldquo;{c.q}&rdquo;</div>
+              <div className="font-display text-lg">"{c.q}"</div>
               <p className="mt-2 text-sm text-muted-foreground">{c.a}</p>
             </div>
           ))}
@@ -314,7 +314,7 @@ function HomePage() {
           </span>
           <h2 className="mt-4 font-display text-4xl">Numbers we can stand behind</h2>
           <p className="mt-3 text-muted-foreground">
-            We don&apos;t use vanity metrics or guarantees. These are the verifiable signals of
+            We don't use vanity metrics or guarantees. These are the verifiable signals of
             scale, continuity, and parent engagement behind the IND system.
           </p>
         </div>
@@ -337,12 +337,12 @@ function HomePage() {
         <p className="mt-3 text-xs text-muted-foreground">
           Figures reflect cumulative work since 2005 and active engagement under the Institute
           of NeuroDevelopment. We do not publish outcome percentages, because development is
-          not a guarantee &mdash; it is a tracked trajectory.
+          not a guarantee — it is a tracked trajectory.
         </p>
 
         {/* Success story template */}
         <div className="mt-14">
-          <h3 className="font-display text-2xl">Success story &mdash; how we tell them</h3>
+          <h3 className="font-display text-2xl">Success story — how we tell them</h3>
           <p className="mt-2 max-w-2xl text-muted-foreground">
             Every family story we publish follows the same structure, so the change is
             traceable, not anecdotal. This is the template, with one illustrative example.
@@ -357,11 +357,11 @@ function HomePage() {
               <dl className="mt-4 space-y-4 text-sm">
                 {[
                   { k: "Child profile", v: "Age, primary concern, diagnoses if any. No identifying details." },
-                  { k: "Starting point", v: "What was happening before IND &mdash; therapies tried, parent state, daily reality." },
+                  { k: "Starting point", v: "What was happening before IND — therapies tried, parent state, daily reality." },
                   { k: "Phase entered", v: "Which of the 4 phases the family started in, and why." },
-                  { k: "Driver targeted", v: "The dominant bottleneck addressed first &mdash; child, parent, or environment." },
+                  { k: "Driver targeted", v: "The dominant bottleneck addressed first — child, parent, or environment." },
                   { k: "Parent action", v: "The specific weekly practice the parent led at home." },
-                  { k: "Signals observed", v: "Concrete, observable changes &mdash; not feelings, not promises." },
+                  { k: "Signals observed", v: "Concrete, observable changes — not feelings, not promises." },
                   { k: "Where they are now", v: "Current phase, next driver, what comes after the Flightpath." },
                 ].map((row) => (
                   <div key={row.k} className="grid grid-cols-3 gap-3">
@@ -381,7 +381,7 @@ function HomePage() {
                 {[
                   { k: "Child profile", v: "Boy, age 4. Speech delay, frequent meltdowns, low eye contact." },
                   { k: "Starting point", v: "18 months of speech and OT. Parents exhausted, no shared plan, progress unclear." },
-                  { k: "Phase entered", v: "Phase 1 &mdash; Connection, Engagement &amp; Regulation." },
+                  { k: "Phase entered", v: "Phase 1 — Connection, Engagement &amp; Regulation." },
                   { k: "Driver targeted", v: "Parent driver: emotional control under stress. Child driver: co-regulation." },
                   { k: "Parent action", v: "Two structured 10-minute regulation windows daily, woven into existing routine." },
                   { k: "Signals observed", v: "Meltdowns shorter and less frequent. Sustained eye contact during play returned within weeks." },
@@ -403,10 +403,10 @@ function HomePage() {
 
         {/* Cohort highlights */}
         <div className="mt-14">
-          <h3 className="font-display text-2xl">Cohort highlights &mdash; how we report</h3>
+          <h3 className="font-display text-2xl">Cohort highlights — how we report</h3>
           <p className="mt-2 max-w-2xl text-muted-foreground">
             Beyond individual stories, we track movement at the cohort level. Each highlight
-            states what we measured, the cohort it covers, and the time window &mdash; never a
+            states what we measured, the cohort it covers, and the time window — never a
             generic claim.
           </p>
 
@@ -445,7 +445,7 @@ function HomePage() {
           </div>
           <p className="mt-3 text-xs text-muted-foreground">
             Specific cohort numbers are published only when the underlying data is stable and
-            reviewable. We&apos;d rather say less than overstate.
+            reviewable. We'd rather say less than overstate.
           </p>
         </div>
       </section>
@@ -455,7 +455,7 @@ function HomePage() {
 
         <h2 className="font-display text-4xl">Ready for a structured pathway?</h2>
         <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-          Tell us about your child. We&apos;ll have a short, honest conversation to see whether
+          Tell us about your child. We'll have a short, honest conversation to see whether
           our system is the right fit for your family right now.
         </p>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">

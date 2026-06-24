@@ -33,7 +33,7 @@ export const Route = createFileRoute("/treatments/$slug")({
       <section className="mx-auto max-w-2xl px-5 py-24 text-center">
         <h1 className="font-display text-4xl">Treatment not found</h1>
         <p className="mt-3 text-muted-foreground">
-          That page doesn&apos;t exist. Browse what we help with.
+          That page doesn't exist. Browse what we help with.
         </p>
         <div className="mt-6">
           <Button asChild className="rounded-full">

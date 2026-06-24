@@ -26,7 +26,7 @@ function TermsPage() {
           <p className="text-muted-foreground">
             Content on this website is educational. It is not a substitute for medical
             evaluation, diagnosis or therapy. Always consult a qualified clinician for
-            decisions about your child&apos;s care.
+            decisions about your child's care.
           </p>
 
           <h2 className="mt-8 font-display text-2xl">Honest expectations</h2>

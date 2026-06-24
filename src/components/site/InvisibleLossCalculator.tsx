@@ -33,7 +33,7 @@ export function InvisibleLossCalculator() {
             </h2>
             <p className="mt-2 max-w-2xl text-muted-foreground">
               Enter your current weekly therapy load. Compare it to a single, structured
-              Flightpath pathway. The bill is rarely the full story &mdash; but it&apos;s a start.
+              Flightpath pathway. The bill is rarely the full story — but it's a start.
             </p>
           </div>
         </div>
@@ -96,7 +96,7 @@ export function InvisibleLossCalculator() {
               </div>
               <div className="mt-1 font-display text-3xl">₹{fmt(weekly)}<span className="text-base text-muted-foreground">/week</span></div>
               <div className="mt-1 text-sm text-muted-foreground">
-                ≈ ₹{fmt(monthly)}/month &middot; over {months} months
+                ≈ ₹{fmt(monthly)}/month · over {months} months
               </div>
               <div className="mt-3 font-display text-4xl text-foreground">₹{fmt(total)}</div>
               <p className="mt-2 text-xs text-muted-foreground">

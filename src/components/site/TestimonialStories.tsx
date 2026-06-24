@@ -75,14 +75,14 @@ export function TestimonialStories() {
     <section className="mx-auto max-w-6xl px-5 py-20">
       <div className="max-w-2xl">
         <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground">
-          Parent stories &middot; measurable outcomes
+          Parent stories · measurable outcomes
         </span>
         <h2 className="mt-4 font-display text-4xl">
           Three families. Three starting points. One structured pathway.
         </h2>
         <p className="mt-3 text-muted-foreground">
           We publish stories the way we run the system: starting point, phase entered,
-          driver worked, signals observed. No miracles, no anonymous quotes &mdash; only
+          driver worked, signals observed. No miracles, no anonymous quotes — only
           what we measured.
         </p>
       </div>
@@ -149,7 +149,7 @@ export function TestimonialStories() {
       <p className="mt-6 text-xs text-muted-foreground">
         Names and locations changed where requested. All stories published with full parent
         consent. We do not publish outcome percentages, because development is a tracked
-        trajectory &mdash; not a guarantee.
+        trajectory — not a guarantee.
       </p>
     </section>
   );

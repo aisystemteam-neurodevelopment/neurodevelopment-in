@@ -32,15 +32,15 @@ export function LeadMagnetForm() {
       <div className="mx-auto grid max-w-6xl gap-10 px-5 md:grid-cols-2 md:items-center">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground">
-            <FileText className="h-3 w-3" /> Free guide &middot; before you book anything
+            <FileText className="h-3 w-3" /> Free guide · before you book anything
           </span>
           <h2 className="mt-4 font-display text-4xl">
             5 signs your child is stuck in fragmented intervention
           </h2>
           <p className="mt-3 max-w-xl text-muted-foreground">
             A short, honest PDF written by Dr. Diptanshu Das. Read it before you book
-            another session, evaluation, or programme &mdash; including ours. If even two of
-            the signs match your week, get in touch and we&apos;ll point you to the right
+            another session, evaluation, or programme — including ours. If even two of
+            the signs match your week, get in touch and we'll point you to the right
             next step.
           </p>
           <ul className="mt-5 space-y-2 text-sm text-muted-foreground">
@@ -73,7 +73,7 @@ export function LeadMagnetForm() {
                 <Download className="h-4 w-4" /> Download the PDF now
               </a>
               <p className="mt-4 text-xs text-muted-foreground">
-                We&apos;ll also send the masterclass invite when the next cohort opens.
+                We'll also send the masterclass invite when the next cohort opens.
                 Unsubscribe any time.
               </p>
             </div>

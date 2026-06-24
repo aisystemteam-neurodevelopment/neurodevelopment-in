@@ -96,11 +96,11 @@ function AboutPage() {
             Master positioning
           </div>
           <p className="mt-3 font-display text-2xl leading-snug md:text-3xl">
-            &ldquo;Diagnoses describe patterns. Drivers determine outcomes. We don&apos;t sell
-            therapy &mdash; we engineer developmental progress, with the parent as the engine.&rdquo;
+            "Diagnoses describe patterns. Drivers determine outcomes. We don't sell
+            therapy — we engineer developmental progress, with the parent as the engine."
           </p>
           <div className="mt-5 text-sm text-muted-foreground">
-            Dr. Diptanshu Das &mdash; Founder &amp; System Architect, IND
+            Dr. Diptanshu Das — Founder &amp; System Architect, IND
           </div>
         </div>
       </section>
@@ -130,11 +130,11 @@ function AboutPage() {
               The five pillars
             </div>
             <h2 className="mt-2 font-display text-4xl">
-              Clarity &middot; Structure &middot; Ownership &middot; Progress &middot; Independence
+              Clarity · Structure · Ownership · Progress · Independence
             </h2>
             <p className="mt-3 text-muted-foreground">
-              Every part of the IND system &mdash; the Flightpath, the weekly parent action, the
-              measured signal &mdash; is built to advance one of these five outcomes.
+              Every part of the IND system — the Flightpath, the weekly parent action, the
+              measured signal — is built to advance one of these five outcomes.
             </p>
           </div>
           <div className="mt-10 grid gap-4 md:grid-cols-3 lg:grid-cols-5">
@@ -156,7 +156,7 @@ function AboutPage() {
           For two decades, Dr. Das saw the same painful pattern repeat: hard-working parents,
           fragmented therapies, slow progress, quiet despair. The problem was not the parents.
           It was not even the individual therapies. It was the absence of an{" "}
-          <em>integrating architecture</em> &mdash; a structured pathway that put the right
+          <em>integrating architecture</em> — a structured pathway that put the right
           driver first, in the right sequence, with the parent at the centre.
         </p>
         <p className="mt-4 text-lg text-muted-foreground">
@@ -170,8 +170,8 @@ function AboutPage() {
         <div className="mx-auto max-w-5xl px-5">
           <h2 className="font-display text-3xl">The shift the system creates</h2>
           <p className="mt-3 max-w-2xl text-muted-foreground">
-            Every IND family moves through the same arc: confusion &rarr; insight &rarr; trust
-            &rarr; ownership &rarr; mastery &rarr; leadership of their child&apos;s development.
+            Every IND family moves through the same arc: confusion → insight → trust
+            → ownership → mastery → leadership of their child's development.
           </p>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             {[
@@ -184,7 +184,7 @@ function AboutPage() {
             ].map((r) => (
               <div key={r.from} className="rounded-2xl border border-border bg-background p-4 text-sm">
                 <div className="text-muted-foreground line-through">{r.from}</div>
-                <div className="mt-1 font-medium">&rarr; {r.to}</div>
+                <div className="mt-1 font-medium">→ {r.to}</div>
               </div>
             ))}
           </div>
@@ -197,7 +197,7 @@ function AboutPage() {
           <div>
             <h2 className="font-display text-3xl">About the Institute</h2>
             <p className="mt-4 text-muted-foreground">
-              The Institute of NeuroDevelopment is the organisation through which Dr. Das&apos;s
+              The Institute of NeuroDevelopment is the organisation through which Dr. Das's
               system is delivered. Systems-driven. Parent-led. Structured. Measurable.
               Long-term. Ethical. Execution-focused.
             </p>
@@ -209,13 +209,13 @@ function AboutPage() {
           <div className="rounded-3xl border border-border bg-card p-6">
             <h3 className="font-display text-xl">By the numbers</h3>
             <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-              <li>&middot; Working with children since 2005</li>
-              <li>&middot; Institute of NeuroDevelopment founded in 2020</li>
-              <li>&middot; 10,000+ families served</li>
-              <li>&middot; Parents reached in 10+ countries</li>
-              <li>&middot; 200+ active Breakthrough Flightpath families</li>
-              <li>&middot; 170+ parent-education webinars delivered</li>
-              <li>&middot; Weekly live parent webinars since 2023</li>
+              <li>· Working with children since 2005</li>
+              <li>· Institute of NeuroDevelopment founded in 2020</li>
+              <li>· 10,000+ families served</li>
+              <li>· Parents reached in 10+ countries</li>
+              <li>· 200+ active Breakthrough Flightpath families</li>
+              <li>· 170+ parent-education webinars delivered</li>
+              <li>· Weekly live parent webinars since 2023</li>
             </ul>
           </div>
         </div>

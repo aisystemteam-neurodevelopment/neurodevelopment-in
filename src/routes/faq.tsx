@@ -123,7 +123,7 @@ function FaqPage() {
         <h1 className="mt-2 font-display text-5xl">Straight answers, no hype</h1>
         <p className="mt-4 text-lg text-muted-foreground">
           Most families come to us tired of slow progress, contradictory advice, and the feeling
-          that therapy will never end. Here&apos;s how the IND system addresses each of those, honestly.
+          that therapy will never end. Here's how the IND system addresses each of those, honestly.
         </p>
       </section>
 
@@ -156,7 +156,7 @@ function FaqPage() {
         <div className="rounded-2xl border bg-card p-8">
           <h3 className="font-display text-2xl">Still unsure where you fit?</h3>
           <p className="mt-2 text-muted-foreground">
-            Tell us about your child. We&apos;ll point you to the right starting phase — no pressure, no script.
+            Tell us about your child. We'll point you to the right starting phase — no pressure, no script.
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <Link

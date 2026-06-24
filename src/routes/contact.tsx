@@ -135,7 +135,7 @@ function ContactPage() {
             <CheckCircle2 className="mx-auto h-12 w-12 text-primary" />
             <h2 className="mt-4 font-display text-3xl">Thank you, {confirmed.name}.</h2>
             <p className="mx-auto mt-3 max-w-md text-muted-foreground">
-              We&apos;ve received your request. Our team will call or message you within one
+              We've received your request. Our team will call or message you within one
               working day to confirm a time.
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
@@ -166,7 +166,7 @@ function ContactPage() {
                 <Input id="email" name="email" type="email" required maxLength={200} />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="childAge">Child&apos;s age</Label>
+                <Label htmlFor="childAge">Child's age</Label>
                 <Input id="childAge" name="childAge" placeholder="e.g. 4 years" maxLength={40} />
               </div>
               <div className="space-y-2 sm:col-span-2">

@@ -66,7 +66,7 @@ function ApproachPage() {
             Three models that decide how we work
           </h2>
           <p className="mt-3 text-muted-foreground">
-            The system runs on three operating models: how we count what&apos;s being lost, how
+            The system runs on three operating models: how we count what's being lost, how
             we order the work, and how we choose what to work on first. Together they replace
             guesswork with a defensible logic.
           </p>
@@ -81,7 +81,7 @@ function ApproachPage() {
             </div>
             <h3 className="mt-2 font-display text-2xl">The Invisible Loss</h3>
             <p className="mt-2 text-muted-foreground">
-              Developmental delay carries a cost that doesn&apos;t show up on any invoice: the
+              Developmental delay carries a cost that doesn't show up on any invoice: the
               quiet drain on the developmental window itself. Until that future cost is named,
               urgency stays weak and effort stays scattered.
             </p>
@@ -89,9 +89,9 @@ function ApproachPage() {
           <div className="md:col-span-3 grid gap-3 sm:grid-cols-2">
             {[
               { t: "Time is the asset", d: "Months inside the developmental window are non-recoverable. Activity does not buy time back." },
-              { t: "Fragmentation compounds", d: "Three plans, no spine &mdash; the loss is not in any single session, it&apos;s in the gaps between them." },
+              { t: "Fragmentation compounds", d: "Three plans, no spine — the loss is not in any single session, it's in the gaps between them." },
               { t: "Cost is cumulative", d: "Small drifts add up across years. The bill arrives later, in capability not gained." },
-              { t: "Naming the loss", d: "We make the cost visible so families can act on it &mdash; not from fear, from clarity." },
+              { t: "Naming the loss", d: "We make the cost visible so families can act on it — not from fear, from clarity." },
             ].map((c) => (
               <div key={c.t} className="rounded-2xl border border-border bg-card p-4">
                 <div className="font-display text-base">{c.t}</div>
@@ -110,13 +110,13 @@ function ApproachPage() {
             </div>
             <h3 className="mt-2 font-display text-2xl">Sequence is law</h3>
             <p className="mt-2 text-muted-foreground">
-              Development is not a menu &mdash; it is an order. Skipping the foundation in
+              Development is not a menu — it is an order. Skipping the foundation in
               search of visible skills is the most common reason progress stalls. We move only
               when the prerequisite is in place.
             </p>
             <div className="mt-4 rounded-2xl border border-border bg-secondary/40 p-4 text-sm">
-              <span className="font-medium">The sequence:</span> Regulation &rarr; Connection
-              &rarr; Communication &rarr; Independence.
+              <span className="font-medium">The sequence:</span> Regulation → Connection
+              → Communication → Independence.
             </div>
           </div>
           <div className="md:col-span-3 space-y-3">
@@ -147,12 +147,12 @@ function ApproachPage() {
               <div className="font-display text-sm uppercase tracking-widest">Model 03</div>
             </div>
             <h3 className="mt-2 font-display text-2xl">
-              Dominant bottleneck &rarr; driver &rarr; outcomes
+              Dominant bottleneck → driver → outcomes
             </h3>
             <p className="mt-2 text-muted-foreground">
               We do not work on every weakness at once. We find the single dominant constraint
-              for this child, this week &mdash; the bottleneck whose removal unlocks the most
-              development &mdash; and route a specific driver against it. That is what produces
+              for this child, this week — the bottleneck whose removal unlocks the most
+              development — and route a specific driver against it. That is what produces
               measurable outcomes.
             </p>
           </div>
@@ -195,7 +195,7 @@ function ApproachPage() {
               </p>
               <p className="mt-1">
                 <span className="font-medium">Driver:</span> parent driver of co-regulation
-                consistency &mdash; a structured 10-minute regulation window before meals.
+                consistency — a structured 10-minute regulation window before meals.
               </p>
               <p className="mt-1">
                 <span className="font-medium">Outcome signal:</span> meal-time meltdowns measured
@@ -210,8 +210,8 @@ function ApproachPage() {
       <section className="mx-auto max-w-6xl px-5 py-14">
         <h2 className="font-display text-3xl">The three driver systems</h2>
         <p className="mt-3 max-w-2xl text-muted-foreground">
-          Every child&apos;s trajectory is shaped by three interlocking systems. We work all
-          three &mdash; not the label.
+          Every child's trajectory is shaped by three interlocking systems. We work all
+          three — not the label.
         </p>
         <div className="mt-8 grid gap-4 md:grid-cols-3">
           {[
@@ -248,7 +248,7 @@ function ApproachPage() {
             {[
               { n: "Phase 1", t: "Connection, Engagement & Regulation", d: "Build the foundation: attunement, calm, joint attention, regulated days." },
               { n: "Phase 2", t: "Play, Adaptive Learning & Problem-Solving", d: "Curiosity, exploration, daily-living capacity, flexible thinking." },
-              { n: "Phase 3", t: "Thinking-Based Speech & Expression", d: "Functional, intent-driven communication &mdash; not rote scripts." },
+              { n: "Phase 3", t: "Thinking-Based Speech & Expression", d: "Functional, intent-driven communication — not rote scripts." },
               { n: "Phase 4", t: "Social-Emotional Mastery & Executive Function", d: "Independence, social fluency, life-ready executive skills." },
             ].map((p) => (
               <div key={p.n} className="rounded-2xl border border-background/20 bg-background p-5">
@@ -275,7 +275,7 @@ function ApproachPage() {
             { t: "Identify the dominant bottleneck", d: "We diagnose the constraint, not the symptom. The right driver first." },
             { t: "Strengthen the missing driver", d: "Targeted, parent-led action across home, environment, and routines." },
             { t: "Monitor progress, not activity", d: "Observable markers and monthly check-ins replace 'we're doing a lot'." },
-            { t: "Move only on readiness", d: "We advance phases when the child is genuinely ready &mdash; never on a calendar." },
+            { t: "Move only on readiness", d: "We advance phases when the child is genuinely ready — never on a calendar." },
             { t: "Parent ownership over expert dependence", d: "We train you to lead. Independence is the endpoint, for child and family." },
             { t: "Honest commitments", d: "We never diagnose online and never guarantee outcomes. We commit to clarity, structure, and full effort." },
           ].map((c) => (
@@ -308,7 +308,7 @@ function ApproachPage() {
       <section className="mx-auto max-w-3xl px-5 py-20 text-center">
         <h2 className="font-display text-3xl">See if the system fits your family</h2>
         <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-          A short, structured conversation will tell us &mdash; and you &mdash; whether this is
+          A short, structured conversation will tell us — and you — whether this is
           the right next step right now.
         </p>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">

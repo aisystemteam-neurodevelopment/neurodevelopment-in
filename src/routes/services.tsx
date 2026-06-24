@@ -53,8 +53,8 @@ function ServicesPage() {
         <h1 className="font-display text-5xl">What we help families with</h1>
         <p className="mt-4 text-lg text-muted-foreground">
           The labels differ. The underlying drivers are the same. We work on the small set of
-          capacities that actually decide whether a child&apos;s development stabilises,
-          accelerates &mdash; or quietly diverges.
+          capacities that actually decide whether a child's development stabilises,
+          accelerates — or quietly diverges.
         </p>
       </section>
 
@@ -82,7 +82,7 @@ function ServicesPage() {
         <div className="mx-auto max-w-5xl px-5">
           <h2 className="font-display text-3xl">Outcomes families typically work toward</h2>
           <p className="mt-3 max-w-2xl text-muted-foreground">
-            We never guarantee outcomes &mdash; honest practitioners cannot. These are the
+            We never guarantee outcomes — honest practitioners cannot. These are the
             directions of progress families pursue inside the Breakthrough Flightpath.
           </p>
           <div className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -98,7 +98,7 @@ function ServicesPage() {
       <section className="mx-auto max-w-3xl px-5 py-16 text-center">
         <h2 className="font-display text-3xl">Not sure where your child fits?</h2>
         <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-          That&apos;s usually the case. Tell us a little &mdash; our assistant or our team will
+          That's usually the case. Tell us a little — our assistant or our team will
           help you figure out the next step.
         </p>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">

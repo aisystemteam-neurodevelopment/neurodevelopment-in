@@ -27,7 +27,7 @@ function PrivacyPage() {
           <p className="text-muted-foreground">
             When you contact us, book an appointment or use our assistant, we collect the
             information you choose to share — typically your name, email, phone number,
-            your child&apos;s age and a short description of your concern. We do not
+            your child's age and a short description of your concern. We do not
             collect financial information on this website.
           </p>
 
@@ -45,7 +45,7 @@ function PrivacyPage() {
             behalf under standard data-protection terms.
           </p>
 
-          <h2 className="mt-8 font-display text-2xl">Children&apos;s data</h2>
+          <h2 className="mt-8 font-display text-2xl">Children's data</h2>
           <p className="text-muted-foreground">
             Information about a child is shared by a parent or guardian. We treat it as
             sensitive health-related data and store it with strict access controls.

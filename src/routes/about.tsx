@@ -3,6 +3,7 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { Compass, Layers, HeartHandshake, LineChart, Sparkles, ArrowRight } from "lucide-react";
 import drDas from "@/assets/dr-das.png.asset.json";
+import { LinkedInIcon, LINKEDIN_URL } from "@/components/site/SocialIcons";
 
 export const Route = createFileRoute("/about")({
   head: () => ({

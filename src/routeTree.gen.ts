@@ -35,6 +35,7 @@ import { Route as FamilyModulesRouteImport } from './routes/family.modules'
 import { Route as FamilyAppointmentsRouteImport } from './routes/family.appointments'
 import { Route as AppLeadsRouteImport } from './routes/app.leads'
 import { Route as AppAdminRouteImport } from './routes/app.admin'
+import { Route as ApiPublicQuizLeadRouteImport } from './routes/api/public/quiz-lead'
 import { Route as ApiPublicLeadMagnetRouteImport } from './routes/api/public/lead-magnet'
 import { Route as ApiPublicChatRouteImport } from './routes/api/public/chat'
 import { Route as ApiPublicBookingRouteImport } from './routes/api/public/booking'
@@ -169,6 +170,11 @@ const AppAdminRoute = AppAdminRouteImport.update({
   path: '/app/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicQuizLeadRoute = ApiPublicQuizLeadRouteImport.update({
+  id: '/api/public/quiz-lead',
+  path: '/api/public/quiz-lead',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicLeadMagnetRoute = ApiPublicLeadMagnetRouteImport.update({
   id: '/api/public/lead-magnet',
   path: '/api/public/lead-magnet',
@@ -215,6 +221,7 @@ export interface FileRoutesByFullPath {
   '/api/public/booking': typeof ApiPublicBookingRoute
   '/api/public/chat': typeof ApiPublicChatRoute
   '/api/public/lead-magnet': typeof ApiPublicLeadMagnetRoute
+  '/api/public/quiz-lead': typeof ApiPublicQuizLeadRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -244,6 +251,7 @@ export interface FileRoutesByTo {
   '/api/public/booking': typeof ApiPublicBookingRoute
   '/api/public/chat': typeof ApiPublicChatRoute
   '/api/public/lead-magnet': typeof ApiPublicLeadMagnetRoute
+  '/api/public/quiz-lead': typeof ApiPublicQuizLeadRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -276,6 +284,7 @@ export interface FileRoutesById {
   '/api/public/booking': typeof ApiPublicBookingRoute
   '/api/public/chat': typeof ApiPublicChatRoute
   '/api/public/lead-magnet': typeof ApiPublicLeadMagnetRoute
+  '/api/public/quiz-lead': typeof ApiPublicQuizLeadRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -309,6 +318,7 @@ export interface FileRouteTypes {
     | '/api/public/booking'
     | '/api/public/chat'
     | '/api/public/lead-magnet'
+    | '/api/public/quiz-lead'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -338,6 +348,7 @@ export interface FileRouteTypes {
     | '/api/public/booking'
     | '/api/public/chat'
     | '/api/public/lead-magnet'
+    | '/api/public/quiz-lead'
   id:
     | '__root__'
     | '/'
@@ -369,6 +380,7 @@ export interface FileRouteTypes {
     | '/api/public/booking'
     | '/api/public/chat'
     | '/api/public/lead-magnet'
+    | '/api/public/quiz-lead'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -394,6 +406,7 @@ export interface RootRouteChildren {
   ApiPublicBookingRoute: typeof ApiPublicBookingRoute
   ApiPublicChatRoute: typeof ApiPublicChatRoute
   ApiPublicLeadMagnetRoute: typeof ApiPublicLeadMagnetRoute
+  ApiPublicQuizLeadRoute: typeof ApiPublicQuizLeadRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -580,6 +593,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppAdminRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/quiz-lead': {
+      id: '/api/public/quiz-lead'
+      path: '/api/public/quiz-lead'
+      fullPath: '/api/public/quiz-lead'
+      preLoaderRoute: typeof ApiPublicQuizLeadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/lead-magnet': {
       id: '/api/public/lead-magnet'
       path: '/api/public/lead-magnet'
@@ -658,6 +678,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicBookingRoute: ApiPublicBookingRoute,
   ApiPublicChatRoute: ApiPublicChatRoute,
   ApiPublicLeadMagnetRoute: ApiPublicLeadMagnetRoute,
+  ApiPublicQuizLeadRoute: ApiPublicQuizLeadRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

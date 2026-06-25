@@ -13,6 +13,7 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as StaffRouteImport } from './routes/staff'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as RefundRouteImport } from './routes/refund'
+import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -58,6 +59,11 @@ const ServicesRoute = ServicesRouteImport.update({
 const RefundRoute = RefundRouteImport.update({
   id: '/refund',
   path: '/refund',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuizRoute = QuizRouteImport.update({
+  id: '/quiz',
+  path: '/quiz',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProgramsRoute = ProgramsRouteImport.update({
@@ -203,6 +209,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/profile': typeof ProfileRoute
   '/programs': typeof ProgramsRoute
+  '/quiz': typeof QuizRoute
   '/refund': typeof RefundRoute
   '/services': typeof ServicesRoute
   '/staff': typeof StaffRouteWithChildren
@@ -234,6 +241,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/profile': typeof ProfileRoute
   '/programs': typeof ProgramsRoute
+  '/quiz': typeof QuizRoute
   '/refund': typeof RefundRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
@@ -266,6 +274,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/profile': typeof ProfileRoute
   '/programs': typeof ProgramsRoute
+  '/quiz': typeof QuizRoute
   '/refund': typeof RefundRoute
   '/services': typeof ServicesRoute
   '/staff': typeof StaffRouteWithChildren
@@ -300,6 +309,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/profile'
     | '/programs'
+    | '/quiz'
     | '/refund'
     | '/services'
     | '/staff'
@@ -331,6 +341,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/profile'
     | '/programs'
+    | '/quiz'
     | '/refund'
     | '/services'
     | '/terms'
@@ -362,6 +373,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/profile'
     | '/programs'
+    | '/quiz'
     | '/refund'
     | '/services'
     | '/staff'
@@ -395,6 +407,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   ProfileRoute: typeof ProfileRoute
   ProgramsRoute: typeof ProgramsRoute
+  QuizRoute: typeof QuizRoute
   RefundRoute: typeof RefundRoute
   ServicesRoute: typeof ServicesRoute
   StaffRoute: typeof StaffRouteWithChildren
@@ -437,6 +450,13 @@ declare module '@tanstack/react-router' {
       path: '/refund'
       fullPath: '/refund'
       preLoaderRoute: typeof RefundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quiz': {
+      id: '/quiz'
+      path: '/quiz'
+      fullPath: '/quiz'
+      preLoaderRoute: typeof QuizRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/programs': {
@@ -667,6 +687,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   ProfileRoute: ProfileRoute,
   ProgramsRoute: ProgramsRoute,
+  QuizRoute: QuizRoute,
   RefundRoute: RefundRoute,
   ServicesRoute: ServicesRoute,
   StaffRoute: StaffRouteWithChildren,

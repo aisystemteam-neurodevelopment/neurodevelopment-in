@@ -10,6 +10,7 @@ const schema = z.object({
   preferredTime: z.string().trim().max(60).optional().default(""),
   answers: z.record(z.string(), z.string()).optional().default({}),
   recommendation: z.string().trim().max(200).optional().default(""),
+  track: z.enum(["assessment", "therapy", "programme", "consult"]).optional(),
 });
 
 export const Route = createFileRoute("/api/public/quiz-lead")({
@@ -36,8 +37,16 @@ export const Route = createFileRoute("/api/public/quiz-lead")({
           .filter(Boolean)
           .join(" | ");
 
+        const sourceByTrack: Record<string, string> = {
+          assessment: "qualifier_quiz_assessment",
+          therapy: "qualifier_quiz_therapy",
+          programme: "qualifier_quiz_programme",
+          consult: "qualifier_quiz_care_team",
+        };
+        const source = parsed.track ? sourceByTrack[parsed.track] : "qualifier_quiz";
+
         const { error } = await supabaseAdmin.from("leads").insert({
-          source: "qualifier_quiz",
+          source,
           contact_name: parsed.name,
           contact_email: parsed.email,
           contact_phone: parsed.phone,

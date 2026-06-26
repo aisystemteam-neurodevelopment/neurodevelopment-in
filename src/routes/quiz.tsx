@@ -178,13 +178,14 @@ function QuizPage() {
           service: rec.service,
           answers: answerMap,
           recommendation: rec.title,
+          track: recommendation,
         }),
       });
       if (!res.ok) {
         toast.error("Could not submit right now. Please call or WhatsApp +91 94333 08880.");
         return;
       }
-      toast.success("Thank you. Our team will reach out shortly.");
+      toast.success("Thank you. Our care team will reach out shortly.");
       setDone(true);
     } catch {
       toast.error("Network issue. Please try again.");
@@ -219,10 +220,10 @@ function QuizPage() {
         {done ? (
           <div className="rounded-3xl border border-border bg-card p-8 text-center">
             <CheckCircle2 className="mx-auto h-12 w-12 text-primary" />
-            <h2 className="mt-4 font-display text-3xl">You're all set.</h2>
+            <h2 className="mt-4 font-display text-3xl">Your Clarity Call is on the way.</h2>
             <p className="mx-auto mt-3 max-w-md text-muted-foreground">
-              Our care team will call or message you at your preferred time. In the meantime, you
-              can also reach us on WhatsApp at +91 94333 08880.
+              A member of our care team will call or message you at your preferred time to walk
+              you through the next step. You can also reach us on WhatsApp at +91 94333 08880.
             </p>
           </div>
         ) : isQuiz ? (
@@ -338,7 +339,11 @@ function QuizPage() {
                 <ArrowLeft className="mr-1 h-4 w-4" /> Back
               </Button>
               <Button type="submit" size="lg" className="rounded-full px-6" disabled={busy}>
-                {busy ? "Sending…" : "See my recommendation"}
+                {busy
+                  ? "Sending…"
+                  : recommendation === "consult"
+                  ? "Book my Clarity Call"
+                  : "Request my Clarity Call"}
               </Button>
             </div>
             <p className="text-center text-xs text-muted-foreground">

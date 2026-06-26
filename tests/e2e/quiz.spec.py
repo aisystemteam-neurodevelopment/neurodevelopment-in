@@ -75,7 +75,10 @@ async def run_track(context, track: str) -> dict:
         )
 
     await page.route("**/api/public/quiz-lead", handle_post)
-    await page.goto(f"{BASE_URL}/quiz", wait_until="domcontentloaded")
+    await page.goto(f"{BASE_URL}/quiz", wait_until="networkidle")
+    # Wait for React hydration so click handlers are bound.
+    await page.wait_for_selector('div.grid > button[type="button"]')
+    await page.wait_for_timeout(300)
 
     # Click one option per question. Options are rendered as <button type="button">
     # inside the question card (div.grid), in declaration order.

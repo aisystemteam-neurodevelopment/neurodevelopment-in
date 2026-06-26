@@ -81,7 +81,8 @@ async def run_track(context, track: str) -> dict:
     # inside the question card (div.grid), in declaration order.
     for step_idx, opt_idx in enumerate(TRACK_ANSWERS[track]):
         await page.wait_for_function(
-            "n => document.body.innerText.includes(`Question ${n} of 5`)",
+            "n => /QUESTION\\s+(\\d+)\\s+OF\\s+5/.test(document.body.innerText) && "
+            "document.body.innerText.match(/QUESTION\\s+(\\d+)\\s+OF\\s+5/)[1] === String(n)",
             arg=step_idx + 1,
         )
         buttons = page.locator('div.grid > button[type="button"]')

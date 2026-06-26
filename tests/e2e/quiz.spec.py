@@ -80,10 +80,10 @@ async def run_track(context, track: str) -> dict:
     # Click one option per question. Options are rendered as <button type="button">
     # inside the question card (div.grid), in declaration order.
     for step_idx, opt_idx in enumerate(TRACK_ANSWERS[track]):
+        want = step_idx + 1
         await page.wait_for_function(
-            "n => /QUESTION\\s+(\\d+)\\s+OF\\s+5/.test(document.body.innerText) && "
-            "document.body.innerText.match(/QUESTION\\s+(\\d+)\\s+OF\\s+5/)[1] === String(n)",
-            arg=step_idx + 1,
+            "() => { const m = document.body.innerText.match(/QUESTION\\s+(\\d+)\\s+OF\\s+5/);"
+            f" return !!m && m[1] === '{want}'; }}"
         )
         buttons = page.locator('div.grid > button[type="button"]')
         await buttons.nth(opt_idx).click()

@@ -78,12 +78,14 @@ async def run_track(context, track: str) -> dict:
     await page.goto(f"{BASE_URL}/quiz", wait_until="domcontentloaded")
 
     # Click one option per question. Options are rendered as <button type="button">
-    # inside the question card, in declaration order.
-    for idx in TRACK_ANSWERS[track]:
-        await page.wait_for_selector('button[type="button"]:has(svg)')
-        # Use the option buttons specifically (they have an ArrowRight icon at the end).
+    # inside the question card (div.grid), in declaration order.
+    for step_idx, opt_idx in enumerate(TRACK_ANSWERS[track]):
+        await page.wait_for_function(
+            "n => document.body.innerText.includes(`Question ${n} of 5`)",
+            arg=step_idx + 1,
+        )
         buttons = page.locator('div.grid > button[type="button"]')
-        await buttons.nth(idx).click()
+        await buttons.nth(opt_idx).click()
 
     # Form step: assert recommendation title + CTA label.
     await page.wait_for_selector('form')

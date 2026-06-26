@@ -9,6 +9,7 @@
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "publish:preflight": "node scripts/publish-preflight.mjs",
+    "test:e2e:quiz": "python3 tests/e2e/quiz.spec.py",
     "lint": "eslint .",
     "format": "prettier --write ."
   },

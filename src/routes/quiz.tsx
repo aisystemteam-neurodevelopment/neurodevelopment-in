@@ -51,7 +51,7 @@ const QUESTIONS: Question[] = [
       { label: "ADHD / hyperactivity / focus", weights: { assessment: 2, programme: 3 }, tag: "ADHD" },
       { label: "Learning difficulty at school", weights: { assessment: 3, therapy: 2 }, tag: "Learning difficulty" },
       { label: "Behaviour / emotional regulation", weights: { therapy: 3, programme: 2 }, tag: "Behaviour" },
-      { label: "Not sure — I need help figuring this out", weights: { consult: 4 }, tag: "General consultation" },
+      { label: "Not sure — I need help figuring this out", weights: { consult: 4 }, tag: "General guidance" },
     ],
   },
   {
@@ -115,10 +115,10 @@ const RECOMMENDATIONS: Record<Track, { title: string; service: string; blurb: st
       "Given the duration and stage, a structured multi-week programme will give you a clear plan, weekly tracking, and the team support to actually see change.",
   },
   consult: {
-    title: "Book a Clarity Consultation with Dr Das",
-    service: "Consultation with Dr Diptanshu Das",
+    title: "Clarity Call with Our Care Team",
+    service: "Clarity Call with Our Care Team",
     blurb:
-      "Start with a one-on-one consultation. We'll listen, explain what's going on, and give you a clear next step — without rushing you into any programme.",
+      "Start with a clarity call with our care team. We'll listen to your concerns, help you understand what's going on, and guide you to the right next step — without rushing you into any programme.",
   },
 };
 

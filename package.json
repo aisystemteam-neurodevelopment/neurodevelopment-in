@@ -10,6 +10,7 @@
     "preview": "vite preview",
     "publish:preflight": "node scripts/publish-preflight.mjs",
     "test:e2e:quiz": "python3 tests/e2e/quiz.spec.py",
+    "test:e2e:about-credentials": "python3 tests/e2e/about-credentials.spec.py",
     "lint": "eslint .",
     "format": "prettier --write ."
   },

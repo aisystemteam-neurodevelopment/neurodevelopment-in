@@ -100,6 +100,33 @@ function AboutPage() {
         </div>
       </section>
 
+      {/* Credentials */}
+      <section className="mx-auto max-w-5xl px-5 pb-12">
+        <div className="rounded-3xl border border-border bg-card p-8 md:p-10">
+          <div className="text-xs uppercase tracking-widest text-muted-foreground">
+            Credentials &amp; registrations
+          </div>
+          <div className="mt-5 flex flex-wrap justify-center gap-3">
+            {[
+              "MBBS (Cal)",
+              "MHSc Clinical Child Development (Kerala University)",
+              "MD Paediatric Neurology (Rome, Italy)",
+              "PDCR",
+              "PGPN (Boston, USA)",
+              "IPPN (Western Australia)",
+              "Reg. 61474 (WBMC)",
+            ].map((credential) => (
+              <span
+                key={credential}
+                className="inline-flex items-center rounded-full border border-border bg-secondary/60 px-4 py-2 text-sm font-medium text-foreground"
+              >
+                {credential}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Master positioning callout */}
       <section className="mx-auto max-w-5xl px-5 pb-12">
         <div className="rounded-3xl border border-border bg-secondary/40 p-8 md:p-10">

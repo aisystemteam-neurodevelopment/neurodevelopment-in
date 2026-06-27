@@ -208,7 +208,51 @@
 .site-centered [data-no-center] h1,
 .site-centered [data-no-center] h2,
 .site-centered [data-no-center] h3,
-.site-centered [data-no-center] p {
+.site-centered [data-no-center] p,
+.site-centered [data-no-center] li,
+.site-centered [data-no-center] ul,
+.site-centered [data-no-center] ol {
   margin-left: 0;
   margin-right: 0;
+}
+
+/* Refund policy page — professional, left-aligned legal document styling */
+.refund-page {
+  text-align: left;
+}
+.refund-page h1,
+.refund-page h2,
+.refund-page h3,
+.refund-page h4,
+.refund-page p,
+.refund-page ul,
+.refund-page ol,
+.refund-page li {
+  text-align: left;
+  margin-left: 0;
+  margin-right: 0;
+}
+.refund-page h2 {
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+  margin-top: 2.5rem;
+}
+.refund-page h3 {
+  margin-top: 1.5rem;
+  color: var(--foreground);
+}
+.refund-page ul,
+.refund-page ol {
+  padding-left: 1.5rem;
+}
+.refund-page li {
+  margin-top: 0.375rem;
+}
+.refund-page a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.refund-page a:hover {
+  color: var(--accent);
 }

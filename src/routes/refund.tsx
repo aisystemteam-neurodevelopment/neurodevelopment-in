@@ -1,14 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { FileText, Mail, Phone, Clock, AlertCircle, ShieldCheck } from "lucide-react";
+import { FileText, Mail, Phone, Clock, AlertCircle, ShieldCheck, ExternalLink } from "lucide-react";
 
 export const Route = createFileRoute("/refund")({
   head: () => ({
     meta: [
       { title: "Refund & Cancellation Policy — IND" },
-      { name: "description", content: "How refunds and cancellations work for IND consultations and programs." },
+      { name: "description", content: "How refunds and cancellations work for IND counselling and programmes." },
       { property: "og:title", content: "Refund & Cancellation Policy — IND" },
-      { property: "og:description", content: "How refunds and cancellations work for IND consultations and programs." },
+      { property: "og:description", content: "How refunds and cancellations work for IND counselling and programmes." },
       { property: "og:type", content: "website" },
     ],
   }),
@@ -34,7 +34,7 @@ function RefundPage() {
             <p className="mt-4 text-muted-foreground">
               This Refund Policy governs payments made to the Institute of NeuroDevelopment through
               neurodevelopment.in, payment gateways, direct transfers, links, invoices, or any officially
-              authorized channel. By enrolling in any webinar, course, consultation, bootcamp, programme,
+              authorized channel. By enrolling in any webinar, course, counselling, bootcamp, programme,
               membership, or service, the participant agrees to this Refund Policy.
             </p>
           </header>
@@ -80,7 +80,7 @@ function RefundPage() {
               <li>Gateway charges</li>
               <li>Taxes or statutory levies already remitted</li>
               <li>Administrative charges</li>
-              <li>Consultation fees already utilized</li>
+              <li>Counselling fees already utilized</li>
               <li>Downloaded or accessed digital content</li>
               <li>Delivered sessions, attended classes, consumed programme days, or utilized services</li>
               <li>Bonuses, gifts, add-ons, or complimentary benefits already delivered or accessed</li>
@@ -108,7 +108,19 @@ function RefundPage() {
             <h2 className="mt-10 font-display text-2xl">2. How to Request a Refund</h2>
             <p className="text-muted-foreground">
               Unless a programme specifically requires a separate form link, refund requests must be submitted by email to{" "}
-              <a href="mailto:instituteofneurodevelopment@gmail.com" className="underline">instituteofneurodevelopment@gmail.com</a>.
+              <a href="mailto:instituteofneurodevelopment@gmail.com" className="underline">instituteofneurodevelopment@gmail.com</a>,{" "}
+              or through the official refund request form below.
+            </p>
+            <p className="mt-4">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdNNd95OTT5xgz3P701rQ-vG194QxETTxbN-VGqCAm0UxWmUw/viewform?usp=header"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+              >
+                <ExternalLink className="h-4 w-4" />
+                Open refund request form
+              </a>
             </p>
             <p className="mt-3 text-muted-foreground">The request must include:</p>
             <ul className="mt-2 list-disc pl-6 text-muted-foreground">
@@ -134,7 +146,7 @@ function RefundPage() {
               <li>Attach payment proof and transaction details</li>
               <li>Clearly explain the issue or grounds for refund</li>
               <li>Submit within the timeline stated during the offer, webinar page, or onboarding communication</li>
-              <li>Comply with any attendance, participation, or action requirements stated at the time of enrolment</li>
+              <li>Comply with any attendance, participation, or action requirements stated at the time of enrollment</li>
             </ol>
             <p className="mt-3 text-muted-foreground"><strong>Exclusions.</strong> Refund may be denied where:</p>
             <ul className="mt-2 list-disc pl-6 text-muted-foreground">
@@ -158,25 +170,28 @@ function RefundPage() {
             <p className="mt-3 text-muted-foreground"><strong>Not Allowed Before Completion.</strong> No refund request shall be entertained midway through the six-week period, before all coursework is completed, before required tasks are fulfilled, or before stipulated form submission.</p>
             <p className="mt-3 text-muted-foreground"><strong>Institute Review.</strong> The Institute reserves the right to verify completion records, participation logs, assignment submissions, attendance, and compliance before approval.</p>
 
-            <h3 className="mt-6 font-display text-lg">3.3 Breakthrough Blueprint (2-Day Bootcamp)</h3>
+            <h3 className="mt-6 font-display text-lg">3.3 Breakthrough Blueprint Recordings</h3>
+            <p className="text-muted-foreground"><strong>No Refund if Recordings Accessed.</strong> If a participant or parent has viewed, downloaded, accessed, or shared any Breakthrough Blueprint recording or replay, the refund request will not be accepted. Recordings are treated as delivered digital content from the moment they are accessed.</p>
+
+            <h3 className="mt-6 font-display text-lg">3.4 Breakthrough Blueprint (2-Day Bootcamp)</h3>
             <p className="text-muted-foreground"><strong>Conditional Refund After Day 1 Attendance.</strong> If a participant attends Day 1 of the 2-day programme and wishes to claim an eligible refund under the applicable offer terms, the claim must be made on the same Day 1, <strong>no later than 10:00 p.m. India Standard Time (IST)</strong>.</p>
             <p className="mt-3 text-muted-foreground"><strong>How to Apply.</strong> Through the stipulated official refund form link, or by email to instituteofneurodevelopment@gmail.com.</p>
             <p className="mt-3 text-muted-foreground"><strong>Required Details:</strong> Full name, registered mobile number, proof of payment, programme batch/date, reason for request.</p>
             <p className="mt-3 text-muted-foreground"><strong>Late Requests.</strong> Requests made after 10:00 p.m. IST on Day 1 may be rejected. Once Day 2 begins, refund claims may not be entertained unless required by law.</p>
 
-            <h3 className="mt-6 font-display text-lg">3.4 Breakthrough Flightpath</h3>
+            <h3 className="mt-6 font-display text-lg">3.5 Breakthrough Flightpath</h3>
             <p className="text-muted-foreground"><strong>Voluntary Exit Refund Policy.</strong> Participants who choose to discontinue may apply for an exit settlement after completion of one full month from joining, and not within the first month. Joining date means the official onboarding / programme start date communicated by the Institute. No voluntary exit refund request can be processed within the first 30 days.</p>
-            <p className="mt-3 text-muted-foreground"><strong>Refund Calculation.</strong> If approved, the balance amount may be refunded after deducting charges on a pro rata basis, including but not limited to: time enrolled, sessions attended, coaching utilized, resources unlocked, consultations taken, team support consumed, bonuses delivered, and administrative costs.</p>
+            <p className="mt-3 text-muted-foreground"><strong>Refund Calculation.</strong> If approved, the balance amount may be refunded after deducting charges on a pro rata basis, including but not limited to: time enrolled, sessions attended, coaching utilized, resources unlocked, counselling sessions taken, team support consumed, bonuses delivered, and administrative costs.</p>
             <p className="mt-3 text-muted-foreground"><strong>Application Method.</strong> Through the stipulated official form link provided by the Institute.</p>
             <p className="mt-3 text-muted-foreground"><strong>Processing.</strong> The Institute may require settlement discussions, verification, dues clearance, and account reconciliation before payout.</p>
 
             <h2 className="mt-10 font-display text-2xl">4. Bonuses, Gifts, Add-ons, Discounts, Offers</h2>
-            <p className="text-muted-foreground"><strong>4.1 Bonuses Already Delivered.</strong> If bonuses, add-on resources, consultations, templates, assessments, recordings, private groups, extra sessions, or any additional benefits have already been delivered, accessed, or availed, refund may become inapplicable, or the fair value / listed value of such benefits may be deducted from the refund.</p>
+            <p className="text-muted-foreground"><strong>4.1 Bonuses Already Delivered.</strong> If bonuses, add-on resources, counselling sessions, templates, assessments, recordings, private groups, extra sessions, or any additional benefits have already been delivered, accessed, or availed, refund may become inapplicable, or the fair value / listed value of such benefits may be deducted from the refund.</p>
             <p className="mt-3 text-muted-foreground"><strong>4.2 Promotional Offers.</strong> Where a participant joined using combo offers, scholarships, conditional discounts, fast-action bonuses, bundle pricing, installment concessions, upgrades, or limited-period offers, those benefits may be withdrawn, recalculated, or adjusted if a refund is requested.</p>
-            <p className="mt-3 text-muted-foreground"><strong>4.3 Cross-Programme Benefits.</strong> If enrolment in one programme unlocked benefits in another programme, those values may also be considered while calculating refund.</p>
+            <p className="mt-3 text-muted-foreground"><strong>4.3 Cross-Programme Benefits.</strong> If enrollment in one programme unlocked benefits in another programme, those values may also be considered while calculating refund.</p>
 
             <h2 className="mt-10 font-display text-2xl">5. Chargebacks and Payment Disputes</h2>
-            <p className="text-muted-foreground">Initiating a chargeback or payment dispute without first contacting the Institute for resolution may result in suspension of access, withholding of certificates/materials, denial of future enrolment, and submission of supporting records to payment processors.</p>
+            <p className="text-muted-foreground">Initiating a chargeback or payment dispute without first contacting the Institute for resolution may result in suspension of access, withholding of certificates/materials, denial of future enrollment, and submission of supporting records to payment processors.</p>
 
             <h2 className="mt-10 font-display text-2xl">6. Misconduct / Policy Violations</h2>
             <p className="text-muted-foreground">No refund shall be due where removal or suspension occurs due to abuse of staff or community members, disruptive conduct, harassment, unauthorized sharing of content, piracy / copying / redistribution, misrepresentation, or violation of programme rules.</p>

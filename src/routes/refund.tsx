@@ -6,9 +6,9 @@ export const Route = createFileRoute("/refund")({
   head: () => ({
     meta: [
       { title: "Refund & Cancellation Policy — IND" },
-      { name: "description", content: "How refunds and cancellations work for IND consultations and programs." },
+      { name: "description", content: "How refunds and cancellations work for IND counselling and programmes." },
       { property: "og:title", content: "Refund & Cancellation Policy — IND" },
-      { property: "og:description", content: "How refunds and cancellations work for IND consultations and programs." },
+      { property: "og:description", content: "How refunds and cancellations work for IND counselling and programmes." },
       { property: "og:type", content: "website" },
     ],
   }),

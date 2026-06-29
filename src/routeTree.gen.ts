@@ -36,6 +36,7 @@ import { Route as FamilyModulesRouteImport } from './routes/family.modules'
 import { Route as FamilyAppointmentsRouteImport } from './routes/family.appointments'
 import { Route as AppLeadsRouteImport } from './routes/app.leads'
 import { Route as AppAdminRouteImport } from './routes/app.admin'
+import { Route as ApiPublicRefundRequestRouteImport } from './routes/api/public/refund-request'
 import { Route as ApiPublicQuizLeadRouteImport } from './routes/api/public/quiz-lead'
 import { Route as ApiPublicLeadMagnetRouteImport } from './routes/api/public/lead-magnet'
 import { Route as ApiPublicChatRouteImport } from './routes/api/public/chat'
@@ -176,6 +177,11 @@ const AppAdminRoute = AppAdminRouteImport.update({
   path: '/app/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicRefundRequestRoute = ApiPublicRefundRequestRouteImport.update({
+  id: '/api/public/refund-request',
+  path: '/api/public/refund-request',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicQuizLeadRoute = ApiPublicQuizLeadRouteImport.update({
   id: '/api/public/quiz-lead',
   path: '/api/public/quiz-lead',
@@ -229,6 +235,7 @@ export interface FileRoutesByFullPath {
   '/api/public/chat': typeof ApiPublicChatRoute
   '/api/public/lead-magnet': typeof ApiPublicLeadMagnetRoute
   '/api/public/quiz-lead': typeof ApiPublicQuizLeadRoute
+  '/api/public/refund-request': typeof ApiPublicRefundRequestRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -260,6 +267,7 @@ export interface FileRoutesByTo {
   '/api/public/chat': typeof ApiPublicChatRoute
   '/api/public/lead-magnet': typeof ApiPublicLeadMagnetRoute
   '/api/public/quiz-lead': typeof ApiPublicQuizLeadRoute
+  '/api/public/refund-request': typeof ApiPublicRefundRequestRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -294,6 +302,7 @@ export interface FileRoutesById {
   '/api/public/chat': typeof ApiPublicChatRoute
   '/api/public/lead-magnet': typeof ApiPublicLeadMagnetRoute
   '/api/public/quiz-lead': typeof ApiPublicQuizLeadRoute
+  '/api/public/refund-request': typeof ApiPublicRefundRequestRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -329,6 +338,7 @@ export interface FileRouteTypes {
     | '/api/public/chat'
     | '/api/public/lead-magnet'
     | '/api/public/quiz-lead'
+    | '/api/public/refund-request'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -360,6 +370,7 @@ export interface FileRouteTypes {
     | '/api/public/chat'
     | '/api/public/lead-magnet'
     | '/api/public/quiz-lead'
+    | '/api/public/refund-request'
   id:
     | '__root__'
     | '/'
@@ -393,6 +404,7 @@ export interface FileRouteTypes {
     | '/api/public/chat'
     | '/api/public/lead-magnet'
     | '/api/public/quiz-lead'
+    | '/api/public/refund-request'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -420,6 +432,7 @@ export interface RootRouteChildren {
   ApiPublicChatRoute: typeof ApiPublicChatRoute
   ApiPublicLeadMagnetRoute: typeof ApiPublicLeadMagnetRoute
   ApiPublicQuizLeadRoute: typeof ApiPublicQuizLeadRoute
+  ApiPublicRefundRequestRoute: typeof ApiPublicRefundRequestRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -613,6 +626,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppAdminRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/refund-request': {
+      id: '/api/public/refund-request'
+      path: '/api/public/refund-request'
+      fullPath: '/api/public/refund-request'
+      preLoaderRoute: typeof ApiPublicRefundRequestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/quiz-lead': {
       id: '/api/public/quiz-lead'
       path: '/api/public/quiz-lead'
@@ -700,6 +720,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicChatRoute: ApiPublicChatRoute,
   ApiPublicLeadMagnetRoute: ApiPublicLeadMagnetRoute,
   ApiPublicQuizLeadRoute: ApiPublicQuizLeadRoute,
+  ApiPublicRefundRequestRoute: ApiPublicRefundRequestRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

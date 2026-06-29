@@ -80,7 +80,7 @@ function RefundPage() {
               <li>Gateway charges</li>
               <li>Taxes or statutory levies already remitted</li>
               <li>Administrative charges</li>
-              <li>Consultation fees already utilized</li>
+              <li>Counselling fees already utilized</li>
               <li>Downloaded or accessed digital content</li>
               <li>Delivered sessions, attended classes, consumed programme days, or utilized services</li>
               <li>Bonuses, gifts, add-ons, or complimentary benefits already delivered or accessed</li>

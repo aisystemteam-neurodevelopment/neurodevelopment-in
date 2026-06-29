@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { FileText, Mail, Phone, Clock, AlertCircle, ShieldCheck, ExternalLink } from "lucide-react";
+import { FileText, Mail, Phone, Clock, AlertCircle, ShieldCheck } from "lucide-react";
+import { RefundRequestForm } from "@/components/site/RefundRequestForm";
 
 export const Route = createFileRoute("/refund")({
   head: () => ({
@@ -111,29 +112,9 @@ function RefundPage() {
               <a href="mailto:instituteofneurodevelopment@gmail.com" className="underline">instituteofneurodevelopment@gmail.com</a>,{" "}
               or through the official refund request form below.
             </p>
-            <p className="mt-4">
-              <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSdNNd95OTT5xgz3P701rQ-vG194QxETTxbN-VGqCAm0UxWmUw/viewform?usp=header"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-              >
-                <ExternalLink className="h-4 w-4" />
-                Open refund request form
-              </a>
-            </p>
-            <p className="mt-3 text-muted-foreground">The request must include:</p>
-            <ul className="mt-2 list-disc pl-6 text-muted-foreground">
-              <li>Full name</li>
-              <li>Registered phone number</li>
-              <li>Registered email ID</li>
-              <li>Programme name</li>
-              <li>Date of payment</li>
-              <li>Amount paid</li>
-              <li>Payment screenshot / transaction ID / UTR / receipt</li>
-              <li>Reason for refund request</li>
-              <li>Any relevant issue or grievance details</li>
-            </ul>
+            <div className="mt-6">
+              <RefundRequestForm />
+            </div>
             <p className="mt-3 text-muted-foreground">Incomplete requests may be delayed or rejected.</p>
 
             <h2 className="mt-10 font-display text-2xl">3. Programme-Specific Refund Terms</h2>

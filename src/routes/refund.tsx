@@ -34,7 +34,7 @@ function RefundPage() {
             <p className="mt-4 text-muted-foreground">
               This Refund Policy governs payments made to the Institute of NeuroDevelopment through
               neurodevelopment.in, payment gateways, direct transfers, links, invoices, or any officially
-              authorized channel. By enrolling in any webinar, course, consultation, bootcamp, programme,
+              authorized channel. By enrolling in any webinar, course, counselling, bootcamp, programme,
               membership, or service, the participant agrees to this Refund Policy.
             </p>
           </header>

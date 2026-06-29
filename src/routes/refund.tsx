@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { FileText, Mail, Phone, Clock, AlertCircle, ShieldCheck } from "lucide-react";
+import { FileText, Mail, Phone, Clock, AlertCircle, ShieldCheck, ExternalLink } from "lucide-react";
 
 export const Route = createFileRoute("/refund")({
   head: () => ({

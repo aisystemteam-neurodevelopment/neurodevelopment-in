@@ -146,7 +146,7 @@ function RefundPage() {
               <li>Attach payment proof and transaction details</li>
               <li>Clearly explain the issue or grounds for refund</li>
               <li>Submit within the timeline stated during the offer, webinar page, or onboarding communication</li>
-              <li>Comply with any attendance, participation, or action requirements stated at the time of enrolment</li>
+              <li>Comply with any attendance, participation, or action requirements stated at the time of enrollment</li>
             </ol>
             <p className="mt-3 text-muted-foreground"><strong>Exclusions.</strong> Refund may be denied where:</p>
             <ul className="mt-2 list-disc pl-6 text-muted-foreground">
@@ -170,13 +170,16 @@ function RefundPage() {
             <p className="mt-3 text-muted-foreground"><strong>Not Allowed Before Completion.</strong> No refund request shall be entertained midway through the six-week period, before all coursework is completed, before required tasks are fulfilled, or before stipulated form submission.</p>
             <p className="mt-3 text-muted-foreground"><strong>Institute Review.</strong> The Institute reserves the right to verify completion records, participation logs, assignment submissions, attendance, and compliance before approval.</p>
 
-            <h3 className="mt-6 font-display text-lg">3.3 Breakthrough Blueprint (2-Day Bootcamp)</h3>
+            <h3 className="mt-6 font-display text-lg">3.3 Breakthrough Blueprint Recordings</h3>
+            <p className="text-muted-foreground"><strong>No Refund if Recordings Accessed.</strong> If a participant or parent has viewed, downloaded, accessed, or shared any Breakthrough Blueprint recording or replay, the refund request will not be accepted. Recordings are treated as delivered digital content from the moment they are accessed.</p>
+
+            <h3 className="mt-6 font-display text-lg">3.4 Breakthrough Blueprint (2-Day Bootcamp)</h3>
             <p className="text-muted-foreground"><strong>Conditional Refund After Day 1 Attendance.</strong> If a participant attends Day 1 of the 2-day programme and wishes to claim an eligible refund under the applicable offer terms, the claim must be made on the same Day 1, <strong>no later than 10:00 p.m. India Standard Time (IST)</strong>.</p>
             <p className="mt-3 text-muted-foreground"><strong>How to Apply.</strong> Through the stipulated official refund form link, or by email to instituteofneurodevelopment@gmail.com.</p>
             <p className="mt-3 text-muted-foreground"><strong>Required Details:</strong> Full name, registered mobile number, proof of payment, programme batch/date, reason for request.</p>
             <p className="mt-3 text-muted-foreground"><strong>Late Requests.</strong> Requests made after 10:00 p.m. IST on Day 1 may be rejected. Once Day 2 begins, refund claims may not be entertained unless required by law.</p>
 
-            <h3 className="mt-6 font-display text-lg">3.4 Breakthrough Flightpath</h3>
+            <h3 className="mt-6 font-display text-lg">3.5 Breakthrough Flightpath</h3>
             <p className="text-muted-foreground"><strong>Voluntary Exit Refund Policy.</strong> Participants who choose to discontinue may apply for an exit settlement after completion of one full month from joining, and not within the first month. Joining date means the official onboarding / programme start date communicated by the Institute. No voluntary exit refund request can be processed within the first 30 days.</p>
             <p className="mt-3 text-muted-foreground"><strong>Refund Calculation.</strong> If approved, the balance amount may be refunded after deducting charges on a pro rata basis, including but not limited to: time enrolled, sessions attended, coaching utilized, resources unlocked, consultations taken, team support consumed, bonuses delivered, and administrative costs.</p>
             <p className="mt-3 text-muted-foreground"><strong>Application Method.</strong> Through the stipulated official form link provided by the Institute.</p>

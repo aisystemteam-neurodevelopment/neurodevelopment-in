@@ -48,8 +48,8 @@ export const Route = createRootRoute({
       { name: "description", content: "A parent-led neurodevelopment system, designed by a paediatric neurologist, turning everyday effort into measurable progress for your child" },
       { property: "og:description", content: "A parent-led neurodevelopment system, designed by a paediatric neurologist, turning everyday effort into measurable progress for your child" },
       { name: "twitter:description", content: "A parent-led neurodevelopment system, designed by a paediatric neurologist, turning everyday effort into measurable progress for your child" },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/11851b8e-895f-42b5-87c0-0e0308362c9a" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/11851b8e-895f-42b5-87c0-0e0308362c9a" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/ba380c61-c6dc-4593-8cd3-de17968709c2" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/ba380c61-c6dc-4593-8cd3-de17968709c2" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

@@ -13,6 +13,7 @@ const schema = z.object({
   reason: z.string().trim().min(1).max(2000),
   details: z.string().trim().max(4000).optional().default(""),
   recordingsAccessed: z.boolean().optional().default(false),
+  attachmentPath: z.string().trim().max(300).nullable().optional(),
 });
 
 export const Route = createFileRoute("/api/public/refund-request")({
@@ -44,6 +45,7 @@ export const Route = createFileRoute("/api/public/refund-request")({
           contact_email: parsed.email,
           contact_phone: parsed.phone,
           summary,
+          attachment_path: parsed.attachmentPath || null,
         });
 
         if (error) {

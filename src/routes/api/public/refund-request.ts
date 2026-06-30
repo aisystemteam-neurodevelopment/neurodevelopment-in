@@ -13,7 +13,7 @@ const schema = z.object({
   reason: z.string().trim().min(1).max(2000),
   details: z.string().trim().max(4000).optional().default(""),
   recordingsAccessed: z.boolean().optional().default(false),
-  attachmentPath: z.string().trim().max(300).nullable().optional(),
+  attachmentPath: z.string().trim().min(1, "Payment screenshot is required").max(300),
 });
 
 export const Route = createFileRoute("/api/public/refund-request")({

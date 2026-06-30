@@ -258,6 +258,7 @@ export type Database = {
       leads: {
         Row: {
           anon_session_id: string | null
+          attachment_path: string | null
           child_id: string | null
           contact_email: string | null
           contact_name: string | null
@@ -274,6 +275,7 @@ export type Database = {
         }
         Insert: {
           anon_session_id?: string | null
+          attachment_path?: string | null
           child_id?: string | null
           contact_email?: string | null
           contact_name?: string | null
@@ -290,6 +292,7 @@ export type Database = {
         }
         Update: {
           anon_session_id?: string | null
+          attachment_path?: string | null
           child_id?: string | null
           contact_email?: string | null
           contact_name?: string | null

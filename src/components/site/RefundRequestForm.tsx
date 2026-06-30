@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Loader2, CheckCircle2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 type FormState = {
   name: string;
@@ -29,6 +30,7 @@ const initial: FormState = {
 
 export function RefundRequestForm() {
   const [form, setForm] = useState<FormState>(initial);
+  const [file, setFile] = useState<File | null>(null);
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -40,10 +42,21 @@ export function RefundRequestForm() {
     setStatus("submitting");
     setErrorMsg("");
     try {
+      let attachmentPath: string | null = null;
+      if (file) {
+        if (file.size > 8 * 1024 * 1024) throw new Error("Screenshot must be under 8 MB");
+        const ext = file.name.split(".").pop()?.toLowerCase() || "png";
+        const path = `${new Date().toISOString().slice(0, 10)}/${crypto.randomUUID()}.${ext}`;
+        const { error: upErr } = await supabase.storage
+          .from("refund-screenshots")
+          .upload(path, file, { contentType: file.type, upsert: false });
+        if (upErr) throw new Error("Could not upload screenshot: " + upErr.message);
+        attachmentPath = path;
+      }
       const res = await fetch("/api/public/refund-request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, attachmentPath }),
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
@@ -51,6 +64,7 @@ export function RefundRequestForm() {
       }
       setStatus("success");
       setForm(initial);
+      setFile(null);
     } catch (err) {
       setStatus("error");
       setErrorMsg(err instanceof Error ? err.message : "Submission failed");
@@ -128,6 +142,17 @@ export function RefundRequestForm() {
           <label className={label} htmlFor="rf-details">Any relevant issue or grievance details</label>
           <textarea id="rf-details" rows={3} value={form.details} onChange={(e) => update("details", e.target.value)} className={input} />
         </div>
+        <div className="sm:col-span-2">
+          <label className={label} htmlFor="rf-file">Payment screenshot / receipt (PNG, JPG, PDF — max 8 MB)</label>
+          <input
+            id="rf-file"
+            type="file"
+            accept="image/png,image/jpeg,image/webp,application/pdf"
+            onChange={(e) => setFile(e.target.files?.[0] ?? null)}
+            className="mt-1 block w-full text-sm text-muted-foreground file:mr-3 file:rounded-md file:border-0 file:bg-primary file:px-3 file:py-2 file:text-sm file:font-medium file:text-primary-foreground hover:file:bg-primary/90"
+          />
+          {file && <p className="mt-1 text-xs text-muted-foreground">Selected: {file.name} ({Math.round(file.size / 1024)} KB)</p>}
+        </div>
         <div className="sm:col-span-2 flex items-start gap-2">
           <input
             id="rf-rec"
@@ -141,10 +166,6 @@ export function RefundRequestForm() {
           </label>
         </div>
       </div>
-
-      <p className="mt-4 text-xs text-muted-foreground">
-        You can also attach screenshots / receipts by replying to the confirmation email after submission.
-      </p>
 
       {status === "error" && (
         <p className="mt-3 text-sm text-destructive">{errorMsg || "Something went wrong. Please try again."}</p>

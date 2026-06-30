@@ -43,16 +43,15 @@ export function RefundRequestForm() {
     setErrorMsg("");
     try {
       let attachmentPath: string | null = null;
-      if (file) {
-        if (file.size > 8 * 1024 * 1024) throw new Error("Screenshot must be under 8 MB");
-        const ext = file.name.split(".").pop()?.toLowerCase() || "png";
-        const path = `${new Date().toISOString().slice(0, 10)}/${crypto.randomUUID()}.${ext}`;
-        const { error: upErr } = await supabase.storage
-          .from("refund-screenshots")
-          .upload(path, file, { contentType: file.type, upsert: false });
-        if (upErr) throw new Error("Could not upload screenshot: " + upErr.message);
-        attachmentPath = path;
-      }
+      if (!file) throw new Error("Please attach your payment screenshot or receipt — it is required.");
+      if (file.size > 8 * 1024 * 1024) throw new Error("Screenshot must be under 8 MB");
+      const ext = file.name.split(".").pop()?.toLowerCase() || "png";
+      const path = `${new Date().toISOString().slice(0, 10)}/${crypto.randomUUID()}.${ext}`;
+      const { error: upErr } = await supabase.storage
+        .from("refund-screenshots")
+        .upload(path, file, { contentType: file.type, upsert: false });
+      if (upErr) throw new Error("Could not upload screenshot: " + upErr.message);
+      attachmentPath = path;
       const res = await fetch("/api/public/refund-request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -143,10 +142,11 @@ export function RefundRequestForm() {
           <textarea id="rf-details" rows={3} value={form.details} onChange={(e) => update("details", e.target.value)} className={input} />
         </div>
         <div className="sm:col-span-2">
-          <label className={label} htmlFor="rf-file">Payment screenshot / receipt (PNG, JPG, PDF — max 8 MB)</label>
+          <label className={label} htmlFor="rf-file">Payment screenshot / receipt * (PNG, JPG, PDF — max 8 MB)</label>
           <input
             id="rf-file"
             type="file"
+            required
             accept="image/png,image/jpeg,image/webp,application/pdf"
             onChange={(e) => setFile(e.target.files?.[0] ?? null)}
             className="mt-1 block w-full text-sm text-muted-foreground file:mr-3 file:rounded-md file:border-0 file:bg-primary file:px-3 file:py-2 file:text-sm file:font-medium file:text-primary-foreground hover:file:bg-primary/90"

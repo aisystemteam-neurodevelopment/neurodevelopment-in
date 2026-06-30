@@ -34,6 +34,7 @@ import { Route as FamilyProgressRouteImport } from './routes/family.progress'
 import { Route as FamilyProductsRouteImport } from './routes/family.products'
 import { Route as FamilyModulesRouteImport } from './routes/family.modules'
 import { Route as FamilyAppointmentsRouteImport } from './routes/family.appointments'
+import { Route as AppRefundsRouteImport } from './routes/app.refunds'
 import { Route as AppLeadsRouteImport } from './routes/app.leads'
 import { Route as AppAdminRouteImport } from './routes/app.admin'
 import { Route as ApiPublicRefundRequestRouteImport } from './routes/api/public/refund-request'
@@ -167,6 +168,11 @@ const FamilyAppointmentsRoute = FamilyAppointmentsRouteImport.update({
   path: '/appointments',
   getParentRoute: () => FamilyRoute,
 } as any)
+const AppRefundsRoute = AppRefundsRouteImport.update({
+  id: '/app/refunds',
+  path: '/app/refunds',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AppLeadsRoute = AppLeadsRouteImport.update({
   id: '/app/leads',
   path: '/app/leads',
@@ -222,6 +228,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/app/admin': typeof AppAdminRoute
   '/app/leads': typeof AppLeadsRoute
+  '/app/refunds': typeof AppRefundsRoute
   '/family/appointments': typeof FamilyAppointmentsRoute
   '/family/modules': typeof FamilyModulesRoute
   '/family/products': typeof FamilyProductsRoute
@@ -254,6 +261,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/app/admin': typeof AppAdminRoute
   '/app/leads': typeof AppLeadsRoute
+  '/app/refunds': typeof AppRefundsRoute
   '/family/appointments': typeof FamilyAppointmentsRoute
   '/family/modules': typeof FamilyModulesRoute
   '/family/products': typeof FamilyProductsRoute
@@ -289,6 +297,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/app/admin': typeof AppAdminRoute
   '/app/leads': typeof AppLeadsRoute
+  '/app/refunds': typeof AppRefundsRoute
   '/family/appointments': typeof FamilyAppointmentsRoute
   '/family/modules': typeof FamilyModulesRoute
   '/family/products': typeof FamilyProductsRoute
@@ -325,6 +334,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/app/admin'
     | '/app/leads'
+    | '/app/refunds'
     | '/family/appointments'
     | '/family/modules'
     | '/family/products'
@@ -357,6 +367,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/app/admin'
     | '/app/leads'
+    | '/app/refunds'
     | '/family/appointments'
     | '/family/modules'
     | '/family/products'
@@ -391,6 +402,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/app/admin'
     | '/app/leads'
+    | '/app/refunds'
     | '/family/appointments'
     | '/family/modules'
     | '/family/products'
@@ -426,6 +438,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   AppAdminRoute: typeof AppAdminRoute
   AppLeadsRoute: typeof AppLeadsRoute
+  AppRefundsRoute: typeof AppRefundsRoute
   TreatmentsSlugRoute: typeof TreatmentsSlugRoute
   AppIndexRoute: typeof AppIndexRoute
   ApiPublicBookingRoute: typeof ApiPublicBookingRoute
@@ -612,6 +625,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FamilyAppointmentsRouteImport
       parentRoute: typeof FamilyRoute
     }
+    '/app/refunds': {
+      id: '/app/refunds'
+      path: '/app/refunds'
+      fullPath: '/app/refunds'
+      preLoaderRoute: typeof AppRefundsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/app/leads': {
       id: '/app/leads'
       path: '/app/leads'
@@ -714,6 +734,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   AppAdminRoute: AppAdminRoute,
   AppLeadsRoute: AppLeadsRoute,
+  AppRefundsRoute: AppRefundsRoute,
   TreatmentsSlugRoute: TreatmentsSlugRoute,
   AppIndexRoute: AppIndexRoute,
   ApiPublicBookingRoute: ApiPublicBookingRoute,
@@ -725,3 +746,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Loader2, CheckCircle2 } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 
 type FormState = {
   name: string;
@@ -42,20 +41,16 @@ export function RefundRequestForm() {
     setStatus("submitting");
     setErrorMsg("");
     try {
-      let attachmentPath: string | null = null;
       if (!file) throw new Error("Please attach your payment screenshot or receipt — it is required.");
       if (file.size > 8 * 1024 * 1024) throw new Error("Screenshot must be under 8 MB");
-      const ext = file.name.split(".").pop()?.toLowerCase() || "png";
-      const path = `${new Date().toISOString().slice(0, 10)}/${crypto.randomUUID()}.${ext}`;
-      const { error: upErr } = await supabase.storage
-        .from("refund-screenshots")
-        .upload(path, file, { contentType: file.type, upsert: false });
-      if (upErr) throw new Error("Could not upload screenshot: " + upErr.message);
-      attachmentPath = path;
+      const fd = new FormData();
+      for (const [k, v] of Object.entries(form)) {
+        fd.append(k, typeof v === "boolean" ? String(v) : v);
+      }
+      fd.append("file", file);
       const res = await fetch("/api/public/refund-request", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, attachmentPath }),
+        body: fd,
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));

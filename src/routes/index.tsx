@@ -45,9 +45,9 @@ function HomePage() {
           className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(105deg,rgba(13,11,26,0.88)_0%,rgba(30,20,60,0.60)_45%,rgba(74,44,138,0.35)_70%,rgba(13,11,26,0.20)_100%)]"
           aria-hidden="true"
         />
-        {/* Background watermark word — solid, readable, not faded */}
+        {/* Background watermark word — solid, not faded/blended */}
         <div
-          className="pointer-events-none absolute -top-4 left-1/2 -z-[5] w-full max-w-6xl -translate-x-1/2 select-none overflow-hidden text-center font-display text-[8rem] leading-none tracking-tighter text-muted-foreground sm:text-[11rem] md:text-left md:text-[14rem] lg:text-[17rem]"
+          className="pointer-events-none absolute top-8 left-1/2 -z-[5] w-full max-w-6xl -translate-x-1/2 select-none overflow-hidden text-center font-display text-[5rem] leading-none tracking-tighter text-muted-foreground sm:text-[7rem] md:text-left md:text-[8rem] lg:text-[10rem]"
           aria-hidden="true"
         >
           PROGRESS

@@ -45,7 +45,15 @@ function HomePage() {
           className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(105deg,rgba(13,11,26,0.88)_0%,rgba(30,20,60,0.60)_45%,rgba(74,44,138,0.35)_70%,rgba(13,11,26,0.20)_100%)]"
           aria-hidden="true"
         />
+        {/* Background watermark word — solid, not faded/blended */}
+        <div
+          className="pointer-events-none absolute -top-6 left-1/2 -z-[5] -translate-x-1/2 select-none font-display text-[10rem] leading-none tracking-tighter text-muted-foreground/10 sm:text-[14rem] md:-top-10 md:left-auto md:right-0 md:translate-x-0 md:text-[18rem] lg:text-[22rem]"
+          aria-hidden="true"
+        >
+          PROGRESS
+        </div>
         <div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 md:grid-cols-2 md:py-28">
+
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground">
               <Sparkles className="h-3 w-3" /> A Parent-Led NeuroDevelopment System

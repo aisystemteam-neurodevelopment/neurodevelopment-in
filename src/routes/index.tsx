@@ -47,7 +47,7 @@ function HomePage() {
         />
         {/* Background watermark word — solid, not faded/blended */}
         <div
-          className="pointer-events-none absolute -top-6 left-1/2 -z-[5] -translate-x-1/2 select-none font-display text-[10rem] leading-none tracking-tighter text-muted-foreground/10 sm:text-[14rem] md:-top-10 md:left-auto md:right-0 md:translate-x-0 md:text-[18rem] lg:text-[22rem]"
+          className="pointer-events-none absolute -top-6 left-1/2 -z-[5] -translate-x-1/2 select-none font-display text-[10rem] leading-none tracking-tighter text-muted-foreground sm:text-[14rem] md:-top-10 md:left-auto md:right-0 md:translate-x-0 md:text-[18rem] lg:text-[22rem]"
           aria-hidden="true"
         >
           PROGRESS

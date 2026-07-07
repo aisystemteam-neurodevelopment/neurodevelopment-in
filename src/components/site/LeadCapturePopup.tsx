@@ -142,7 +142,7 @@ export function LeadCapturePopup() {
 
   const inputCls = useMemo(
     () =>
-      "w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary/40",
+      "w-full rounded-md border border-border bg-background/60 px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/40",
     [],
   );
 
@@ -150,21 +150,21 @@ export function LeadCapturePopup() {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 p-4"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 p-4 backdrop-blur-sm"
       role="dialog"
       aria-modal="true"
       aria-labelledby="lead-popup-title"
       onClick={(e) => e.stopPropagation()}
     >
       <div
-        className="w-full max-w-[440px] max-h-[92vh] overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl"
+        className="w-full max-w-[440px] max-h-[92vh] overflow-y-auto rounded-2xl border border-border/60 bg-card p-6 text-card-foreground shadow-2xl ring-1 ring-primary/20"
         onClick={(e) => e.stopPropagation()}
       >
         <h2
           id="lead-popup-title"
-          className="font-display text-2xl text-primary"
+          className="font-display text-2xl leading-tight text-foreground"
         >
-          Start your child's progress journey
+          Start your child's <span className="text-accent">progress</span> journey
         </h2>
         <p className="mt-1 text-sm text-muted-foreground">
           Share a few details and we'll show you the way forward.
@@ -241,7 +241,7 @@ export function LeadCapturePopup() {
               value={form.phone}
               onChange={(v) => set("phone", (v as string) || "")}
               onCountryChange={(c) => c && setCountryCode(c)}
-              className="lead-phone-input flex gap-2 rounded-md border border-input bg-background px-2 py-2 text-sm"
+              className="lead-phone-input flex gap-2 rounded-md border border-border bg-background/60 px-2 py-2 text-sm text-foreground focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/40"
             />
           </Field>
 
@@ -252,7 +252,7 @@ export function LeadCapturePopup() {
           <button
             type="submit"
             disabled={submitting}
-            className="mt-2 w-full rounded-md bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition hover:bg-primary/90 disabled:opacity-60"
+            className="mt-2 w-full rounded-md bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/30 transition hover:bg-primary/90 disabled:opacity-60"
           >
             {submitting ? "Please wait…" : "Show me the way forward"}
           </button>
@@ -266,6 +266,15 @@ export function LeadCapturePopup() {
           flex: 1;
           min-width: 0;
           font-size: 0.875rem;
+          color: inherit;
+        }
+        .lead-phone-input .PhoneInputCountrySelect {
+          background: transparent;
+          color: inherit;
+        }
+        .lead-phone-input .PhoneInputCountrySelect option {
+          background: var(--card);
+          color: var(--card-foreground);
         }
       `}</style>
     </div>
@@ -283,7 +292,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-xs font-medium text-foreground">
+      <span className="mb-1 block text-xs font-medium text-muted-foreground">
         {label} <span className="text-destructive">*</span>
       </span>
       {children}

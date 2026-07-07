@@ -258,51 +258,75 @@ export type Database = {
       leads: {
         Row: {
           anon_session_id: string | null
+          area: string | null
           attachment_path: string | null
+          child_age: string | null
           child_id: string | null
+          child_name: string | null
           contact_email: string | null
           contact_name: string | null
           contact_phone: string | null
+          country: string | null
           created_at: string
+          district: string | null
           id: string
           owner_id: string | null
           parent_id: string | null
+          parent_name: string | null
+          phone: string | null
           source: string
           stage: Database["public"]["Enums"]["lead_stage"]
+          state: string | null
           summary: string | null
           updated_at: string
           urgency: number
         }
         Insert: {
           anon_session_id?: string | null
+          area?: string | null
           attachment_path?: string | null
+          child_age?: string | null
           child_id?: string | null
+          child_name?: string | null
           contact_email?: string | null
           contact_name?: string | null
           contact_phone?: string | null
+          country?: string | null
           created_at?: string
+          district?: string | null
           id?: string
           owner_id?: string | null
           parent_id?: string | null
+          parent_name?: string | null
+          phone?: string | null
           source?: string
           stage?: Database["public"]["Enums"]["lead_stage"]
+          state?: string | null
           summary?: string | null
           updated_at?: string
           urgency?: number
         }
         Update: {
           anon_session_id?: string | null
+          area?: string | null
           attachment_path?: string | null
+          child_age?: string | null
           child_id?: string | null
+          child_name?: string | null
           contact_email?: string | null
           contact_name?: string | null
           contact_phone?: string | null
+          country?: string | null
           created_at?: string
+          district?: string | null
           id?: string
           owner_id?: string | null
           parent_id?: string | null
+          parent_name?: string | null
+          phone?: string | null
           source?: string
           stage?: Database["public"]["Enums"]["lead_stage"]
+          state?: string | null
           summary?: string | null
           updated_at?: string
           urgency?: number

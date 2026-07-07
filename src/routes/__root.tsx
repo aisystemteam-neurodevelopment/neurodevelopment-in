@@ -3,6 +3,7 @@ import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/r
 import appCss from "../styles.css?url";
 import { AuthProvider } from "@/lib/auth-context";
 import { Toaster } from "@/components/ui/sonner";
+import { LeadCapturePopup } from "@/components/site/LeadCapturePopup";
 
 function NotFoundComponent() {
   return (
@@ -85,6 +86,7 @@ function RootComponent() {
     <AuthProvider>
       <Outlet />
       <Toaster richColors position="top-center" />
+      <LeadCapturePopup />
     </AuthProvider>
   );
 }

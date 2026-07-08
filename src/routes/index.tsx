@@ -1,16 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Compass, HeartHandshake, ListChecks, Hourglass, TrendingDown, Layers, LineChart } from "lucide-react";
+import { ArrowRight, Compass, HeartHandshake, ListChecks, Sparkles, Phone, Hourglass, TrendingDown, Layers, LineChart } from "lucide-react";
 import { InvisibleLossCalculator } from "@/components/site/InvisibleLossCalculator";
 import { LeadMagnetForm } from "@/components/site/LeadMagnetForm";
 import { TestimonialStories } from "@/components/site/TestimonialStories";
-import heroBg from "@/assets/hero-new-bg-clean.jpg";
+import heroBg from "@/assets/hero-new-bg.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     links: [
-      { rel: "preload", as: "image", href: heroBg, fetchpriority: "high" },
+      { rel: "preload", as: "image", href: heroBg.url, fetchpriority: "high" },
     ],
     meta: [
       { title: "Institute of NeuroDevelopment — A Parent-Led NeuroDevelopment System" },
@@ -35,12 +35,82 @@ function HomePage() {
   return (
     <SiteLayout>
       {/* Hero */}
-      <section className="relative min-h-[55vh] overflow-hidden md:min-h-[65vh]">
+      <section className="relative overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroBg})` }}
+          className="pointer-events-none absolute inset-0 -z-20 bg-cover bg-center"
+          style={{ backgroundImage: `url(${heroBg.url})` }}
           aria-hidden="true"
         />
+        <div
+          className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(105deg,rgba(13,11,26,0.88)_0%,rgba(30,20,60,0.60)_45%,rgba(74,44,138,0.35)_70%,rgba(13,11,26,0.20)_100%)]"
+          aria-hidden="true"
+        />
+        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 md:grid-cols-2 md:py-28">
+
+          <div>
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground">
+              <Sparkles className="h-3 w-3" /> A Parent-Led NeuroDevelopment System
+            </span>
+            <h1 className="mt-5 font-display text-5xl leading-[1.05] md:text-6xl">
+              Stop chasing therapies. <span className="text-primary">Start engineering progress.</span>
+            </h1>
+            <p className="mt-5 max-w-xl text-lg text-muted-foreground">
+              IND is not a therapy centre. It is a structured developmental architecture that
+              moves families from confusion and fragmented intervention to clarity, daily
+              execution, and measurable progress — with the parent as the growth engine.
+            </p>
+            <div className="mt-7 flex flex-wrap items-center gap-3">
+              <Button asChild size="lg" className="rounded-full px-6">
+                <Link to="/contact">
+                  Book an appointment <ArrowRight className="ml-1 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="rounded-full px-6">
+                <Link to="/approach">See the system</Link>
+              </Button>
+              <a
+                href="tel:+919433308880"
+                className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
+              >
+                <Phone className="h-3.5 w-3.5" /> +91 94333 08880
+              </a>
+            </div>
+            <p className="mt-4 text-xs text-muted-foreground">
+              We do not diagnose online and we never guarantee outcomes. We commit to clarity,
+              structure, and our full effort.
+            </p>
+          </div>
+
+          <div className="relative">
+            <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
+              <div className="text-xs uppercase tracking-wide text-muted-foreground">From the architect</div>
+              <p className="mt-3 font-display text-2xl leading-snug">
+                "Diagnoses describe patterns. Drivers determine outcomes. We engineer
+                developmental progress — we don't sell therapy."
+              </p>
+              <div className="mt-4 flex items-center gap-3">
+                <div className="grid h-10 w-10 place-items-center rounded-full bg-sage text-sage-foreground font-display">D</div>
+                <div className="text-sm">
+                  <div className="font-medium">Dr. Diptanshu Das</div>
+                  <div className="text-muted-foreground">Founder & system architect, IND</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-4 grid grid-cols-3 gap-3 text-center">
+              {[
+                { n: "10,000+", l: "families served" },
+                { n: "10+", l: "countries reached" },
+                { n: "200+", l: "active Flightpath families" },
+              ].map((s) => (
+                <div key={s.l} className="rounded-2xl border border-border bg-background p-3">
+                  <div className="font-display text-2xl text-primary">{s.n}</div>
+                  <div className="mt-1 text-[11px] leading-tight text-muted-foreground">{s.l}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* What changes */}

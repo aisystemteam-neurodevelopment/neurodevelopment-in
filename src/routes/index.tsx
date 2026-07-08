@@ -10,7 +10,7 @@ import heroBg from "@/assets/hero-new-bg-clean.png";
 export const Route = createFileRoute("/")({
   head: () => ({
     links: [
-      { rel: "preload", as: "image", href: heroBg.url, fetchpriority: "high" },
+      { rel: "preload", as: "image", href: heroBg, fetchpriority: "high" },
     ],
     meta: [
       { title: "Institute of NeuroDevelopment — A Parent-Led NeuroDevelopment System" },

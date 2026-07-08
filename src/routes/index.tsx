@@ -5,7 +5,7 @@ import { ArrowRight, Compass, HeartHandshake, ListChecks, Hourglass, TrendingDow
 import { InvisibleLossCalculator } from "@/components/site/InvisibleLossCalculator";
 import { LeadMagnetForm } from "@/components/site/LeadMagnetForm";
 import { TestimonialStories } from "@/components/site/TestimonialStories";
-import heroBg from "@/assets/hero-new-bg-clean.png";
+import heroBg from "@/assets/hero-new-bg-clean.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({

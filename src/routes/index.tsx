@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Compass, HeartHandshake, ListChecks, Sparkles, Phone, Hourglass, TrendingDown, Layers, LineChart } from "lucide-react";
+import { ArrowRight, Compass, HeartHandshake, ListChecks, Hourglass, TrendingDown, Layers, LineChart } from "lucide-react";
 import { InvisibleLossCalculator } from "@/components/site/InvisibleLossCalculator";
 import { LeadMagnetForm } from "@/components/site/LeadMagnetForm";
 import { TestimonialStories } from "@/components/site/TestimonialStories";

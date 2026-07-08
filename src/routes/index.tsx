@@ -38,7 +38,7 @@ function HomePage() {
       <section className="relative min-h-[55vh] overflow-hidden md:min-h-[65vh]">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroBg.url})` }}
+          style={{ backgroundImage: `url(${heroBg})` }}
           aria-hidden="true"
         />
       </section>

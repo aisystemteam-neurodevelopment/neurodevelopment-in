@@ -44,16 +44,13 @@ export function LeadCapturePopup() {
     return () => clearTimeout(t);
   }, []);
 
-  // Body scroll lock + block ESC while open
+  // Body scroll lock + close on ESC while open
   useEffect(() => {
     if (!open) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        e.preventDefault();
-        e.stopPropagation();
-      }
+      if (e.key === "Escape") setOpen(false);
     };
     window.addEventListener("keydown", onKey, true);
     return () => {
@@ -154,12 +151,20 @@ export function LeadCapturePopup() {
       role="dialog"
       aria-modal="true"
       aria-labelledby="lead-popup-title"
-      onClick={(e) => e.stopPropagation()}
+      onClick={() => setOpen(false)}
     >
       <div
-        className="w-full max-w-[440px] max-h-[92vh] overflow-y-auto rounded-2xl border border-border/60 bg-card p-6 text-card-foreground shadow-2xl ring-1 ring-primary/20"
+        className="relative w-full max-w-[440px] max-h-[92vh] overflow-y-auto rounded-2xl border border-border/60 bg-card p-6 text-card-foreground shadow-2xl ring-1 ring-primary/20"
         onClick={(e) => e.stopPropagation()}
       >
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          aria-label="Close"
+          className="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition hover:bg-muted hover:text-foreground"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
         <h2
           id="lead-popup-title"
           className="font-display text-2xl leading-tight text-foreground"

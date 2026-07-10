@@ -6,11 +6,13 @@ import { InvisibleLossCalculator } from "@/components/site/InvisibleLossCalculat
 import { LeadMagnetForm } from "@/components/site/LeadMagnetForm";
 import { TestimonialStories } from "@/components/site/TestimonialStories";
 import heroBg from "@/assets/hero-mountain.png.asset.json";
+import heroBgMobile from "@/assets/hero-mountain-mobile.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     links: [
-      { rel: "preload", as: "image", href: heroBg.url, fetchpriority: "high" },
+      { rel: "preload", as: "image", href: heroBg.url, fetchpriority: "high", media: "(min-width: 768px)" },
+      { rel: "preload", as: "image", href: heroBgMobile.url, fetchpriority: "high", media: "(max-width: 767px)" },
     ],
     meta: [
       { title: "Institute of NeuroDevelopment — A Parent-Led NeuroDevelopment System" },
@@ -37,8 +39,13 @@ function HomePage() {
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div
-          className="pointer-events-none absolute inset-0 -z-20 bg-cover bg-center"
+          className="pointer-events-none absolute inset-0 -z-20 hidden bg-cover bg-center md:block"
           style={{ backgroundImage: `url(${heroBg.url})` }}
+          aria-hidden="true"
+        />
+        <div
+          className="pointer-events-none absolute inset-0 -z-20 block bg-cover bg-center md:hidden"
+          style={{ backgroundImage: `url(${heroBgMobile.url})` }}
           aria-hidden="true"
         />
         <div

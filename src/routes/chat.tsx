@@ -28,6 +28,7 @@ export const Route = createFileRoute("/chat")({
 type Msg = { role: "user" | "assistant"; content: string };
 
 const STORAGE_KEY = "ind.chat.leadId";
+const TOKEN_KEY = "ind.chat.leadToken";
 const GREETING: Msg = {
   role: "assistant",
   content:
@@ -36,6 +37,7 @@ const GREETING: Msg = {
 
 function ChatPage() {
   const [leadId, setLeadId] = useState<string | null>(null);
+  const [leadToken, setLeadToken] = useState<string | null>(null);
   const [messages, setMessages] = useState<Msg[]>([GREETING]);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
@@ -44,6 +46,7 @@ function ChatPage() {
   useEffect(() => {
     if (typeof window !== "undefined") {
       setLeadId(localStorage.getItem(STORAGE_KEY));
+      setLeadToken(localStorage.getItem(TOKEN_KEY));
     }
   }, []);
 
@@ -61,12 +64,16 @@ function ChatPage() {
       const res = await fetch("/api/public/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ leadId, message: text }),
+        body: JSON.stringify({ leadId, leadToken, message: text }),
       });
-      const data = (await res.json()) as { leadId?: string; reply?: string; error?: string };
+      const data = (await res.json()) as { leadId?: string; leadToken?: string; reply?: string; error?: string };
       if (data.leadId && data.leadId !== leadId) {
         setLeadId(data.leadId);
         localStorage.setItem(STORAGE_KEY, data.leadId);
+      }
+      if (data.leadToken && data.leadToken !== leadToken) {
+        setLeadToken(data.leadToken);
+        localStorage.setItem(TOKEN_KEY, data.leadToken);
       }
       if (data.error) {
         toast.error(data.error);

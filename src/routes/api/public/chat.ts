@@ -122,19 +122,19 @@ export const Route = createFileRoute("/api/public/chat")({
 
         if (aiRes.status === 429) {
           return Response.json(
-            { leadId, error: "Lots of conversations right now — please try again in a moment." },
+            { leadId, leadToken: signLeadId(leadId!), error: "Lots of conversations right now — please try again in a moment." },
             { status: 429 },
           );
         }
         if (aiRes.status === 402) {
           return Response.json(
-            { leadId, error: "Our AI assistant is unavailable right now. Please use the contact form." },
+            { leadId, leadToken: signLeadId(leadId!), error: "Our AI assistant is unavailable right now. Please use the contact form." },
             { status: 402 },
           );
         }
         if (!aiRes.ok) {
           console.error("AI gateway error", aiRes.status, await aiRes.text());
-          return Response.json({ leadId, error: "Assistant could not respond." }, { status: 500 });
+          return Response.json({ leadId, leadToken: signLeadId(leadId!), error: "Assistant could not respond." }, { status: 500 });
         }
 
         const json = (await aiRes.json()) as { choices?: { message?: { content?: string } }[] };

@@ -1,9 +1,31 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
 import { z } from "zod";
+import { createHmac, timingSafeEqual } from "crypto";
+
+function hmacSecret(): string {
+  return (
+    process.env.LEAD_SESSION_SECRET ||
+    process.env.SUPABASE_SERVICE_ROLE_KEY ||
+    process.env.SUPABASE_DB_URL ||
+    ""
+  );
+}
+function signLeadId(leadId: string): string {
+  return createHmac("sha256", hmacSecret()).update(leadId).digest("hex");
+}
+function verifyLeadToken(leadId: string, token: string | null | undefined): boolean {
+  if (!token) return false;
+  const expected = signLeadId(leadId);
+  const a = Buffer.from(token);
+  const b = Buffer.from(expected);
+  if (a.length !== b.length) return false;
+  return timingSafeEqual(a, b);
+}
 
 const bodySchema = z.object({
   leadId: z.string().uuid().nullable().optional(),
+  leadToken: z.string().max(200).nullable().optional(),
   message: z.string().trim().min(1).max(4000),
   contact: z
     .object({
@@ -30,7 +52,9 @@ export const Route = createFileRoute("/api/public/chat")({
 
         // Get-or-create lead
         let leadId = parsed.leadId ?? null;
-        if (!leadId) {
+        const tokenValid =
+          !!leadId && verifyLeadToken(leadId, parsed.leadToken ?? null);
+        if (!leadId || !tokenValid) {
           const { data, error } = await supabaseAdmin
             .from("leads")
             .insert({
@@ -122,7 +146,7 @@ export const Route = createFileRoute("/api/public/chat")({
           content: reply,
         });
 
-        return Response.json({ leadId, reply });
+        return Response.json({ leadId, leadToken: signLeadId(leadId!), reply });
       },
     },
   },

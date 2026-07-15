@@ -258,6 +258,32 @@ export function LeadCapturePopup() {
             </Field>
           </div>
 
+          <Field label="Primary concern" error={errors.concern}>
+            <select
+              className={inputCls}
+              value={form.concern}
+              onChange={(e) => set("concern", e.target.value)}
+            >
+              <option value="">Select primary concern</option>
+              {CONCERN_OPTIONS.map((o) => (
+                <option key={o} value={o}>
+                  {o}
+                </option>
+              ))}
+            </select>
+          </Field>
+          {form.concern === "Other" && (
+            <Field label="Please describe the concern" error={errors.concern_other}>
+              <input
+                className={inputCls}
+                value={form.concern_other}
+                onChange={(e) => set("concern_other", e.target.value)}
+                maxLength={120}
+                placeholder="Tell us briefly…"
+              />
+            </Field>
+          )}
+
           <Field label="Contact number" error={errors.phone}>
             <PhoneInput
               international

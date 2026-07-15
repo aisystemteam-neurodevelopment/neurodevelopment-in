@@ -10,33 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsRouteImport } from './routes/terms'
-import { Route as StaffRouteImport } from './routes/staff'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as RefundRouteImport } from './routes/refund'
 import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as ProgramsRouteImport } from './routes/programs'
-import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as FaqRouteImport } from './routes/faq'
-import { Route as FamilyRouteImport } from './routes/family'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ChatRouteImport } from './routes/chat'
-import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ApproachRouteImport } from './routes/approach'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as StaffIndexRouteImport } from './routes/staff.index'
-import { Route as FamilyIndexRouteImport } from './routes/family.index'
-import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as TreatmentsSlugRouteImport } from './routes/treatments.$slug'
-import { Route as StaffManageRouteImport } from './routes/staff.manage'
-import { Route as FamilyProgressRouteImport } from './routes/family.progress'
-import { Route as FamilyProductsRouteImport } from './routes/family.products'
-import { Route as FamilyModulesRouteImport } from './routes/family.modules'
-import { Route as FamilyAppointmentsRouteImport } from './routes/family.appointments'
-import { Route as AppRefundsRouteImport } from './routes/app.refunds'
-import { Route as AppLeadsRouteImport } from './routes/app.leads'
-import { Route as AppAdminRouteImport } from './routes/app.admin'
 import { Route as ApiPublicRefundRequestRouteImport } from './routes/api/public/refund-request'
 import { Route as ApiPublicQuizLeadRouteImport } from './routes/api/public/quiz-lead'
 import { Route as ApiPublicLeadMagnetRouteImport } from './routes/api/public/lead-magnet'
@@ -46,11 +31,6 @@ import { Route as ApiPublicBookingRouteImport } from './routes/api/public/bookin
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const StaffRoute = StaffRouteImport.update({
-  id: '/staff',
-  path: '/staff',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -73,11 +53,6 @@ const ProgramsRoute = ProgramsRouteImport.update({
   path: '/programs',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProfileRoute = ProfileRouteImport.update({
-  id: '/profile',
-  path: '/profile',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
@@ -88,11 +63,6 @@ const FaqRoute = FaqRouteImport.update({
   path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
-const FamilyRoute = FamilyRouteImport.update({
-  id: '/family',
-  path: '/family',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -101,11 +71,6 @@ const ContactRoute = ContactRouteImport.update({
 const ChatRoute = ChatRouteImport.update({
   id: '/chat',
   path: '/chat',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApproachRoute = ApproachRouteImport.update({
@@ -123,64 +88,9 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const StaffIndexRoute = StaffIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => StaffRoute,
-} as any)
-const FamilyIndexRoute = FamilyIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => FamilyRoute,
-} as any)
-const AppIndexRoute = AppIndexRouteImport.update({
-  id: '/app/',
-  path: '/app/',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const TreatmentsSlugRoute = TreatmentsSlugRouteImport.update({
   id: '/treatments/$slug',
   path: '/treatments/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const StaffManageRoute = StaffManageRouteImport.update({
-  id: '/manage',
-  path: '/manage',
-  getParentRoute: () => StaffRoute,
-} as any)
-const FamilyProgressRoute = FamilyProgressRouteImport.update({
-  id: '/progress',
-  path: '/progress',
-  getParentRoute: () => FamilyRoute,
-} as any)
-const FamilyProductsRoute = FamilyProductsRouteImport.update({
-  id: '/products',
-  path: '/products',
-  getParentRoute: () => FamilyRoute,
-} as any)
-const FamilyModulesRoute = FamilyModulesRouteImport.update({
-  id: '/modules',
-  path: '/modules',
-  getParentRoute: () => FamilyRoute,
-} as any)
-const FamilyAppointmentsRoute = FamilyAppointmentsRouteImport.update({
-  id: '/appointments',
-  path: '/appointments',
-  getParentRoute: () => FamilyRoute,
-} as any)
-const AppRefundsRoute = AppRefundsRouteImport.update({
-  id: '/app/refunds',
-  path: '/app/refunds',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AppLeadsRoute = AppLeadsRouteImport.update({
-  id: '/app/leads',
-  path: '/app/leads',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AppAdminRoute = AppAdminRouteImport.update({
-  id: '/app/admin',
-  path: '/app/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPublicRefundRequestRoute = ApiPublicRefundRequestRouteImport.update({
@@ -213,31 +123,16 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/approach': typeof ApproachRoute
-  '/auth': typeof AuthRoute
   '/chat': typeof ChatRoute
   '/contact': typeof ContactRoute
-  '/family': typeof FamilyRouteWithChildren
   '/faq': typeof FaqRoute
   '/privacy': typeof PrivacyRoute
-  '/profile': typeof ProfileRoute
   '/programs': typeof ProgramsRoute
   '/quiz': typeof QuizRoute
   '/refund': typeof RefundRoute
   '/services': typeof ServicesRoute
-  '/staff': typeof StaffRouteWithChildren
   '/terms': typeof TermsRoute
-  '/app/admin': typeof AppAdminRoute
-  '/app/leads': typeof AppLeadsRoute
-  '/app/refunds': typeof AppRefundsRoute
-  '/family/appointments': typeof FamilyAppointmentsRoute
-  '/family/modules': typeof FamilyModulesRoute
-  '/family/products': typeof FamilyProductsRoute
-  '/family/progress': typeof FamilyProgressRoute
-  '/staff/manage': typeof StaffManageRoute
   '/treatments/$slug': typeof TreatmentsSlugRoute
-  '/app/': typeof AppIndexRoute
-  '/family/': typeof FamilyIndexRoute
-  '/staff/': typeof StaffIndexRoute
   '/api/public/booking': typeof ApiPublicBookingRoute
   '/api/public/chat': typeof ApiPublicChatRoute
   '/api/public/lead-magnet': typeof ApiPublicLeadMagnetRoute
@@ -248,29 +143,16 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/approach': typeof ApproachRoute
-  '/auth': typeof AuthRoute
   '/chat': typeof ChatRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/privacy': typeof PrivacyRoute
-  '/profile': typeof ProfileRoute
   '/programs': typeof ProgramsRoute
   '/quiz': typeof QuizRoute
   '/refund': typeof RefundRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
-  '/app/admin': typeof AppAdminRoute
-  '/app/leads': typeof AppLeadsRoute
-  '/app/refunds': typeof AppRefundsRoute
-  '/family/appointments': typeof FamilyAppointmentsRoute
-  '/family/modules': typeof FamilyModulesRoute
-  '/family/products': typeof FamilyProductsRoute
-  '/family/progress': typeof FamilyProgressRoute
-  '/staff/manage': typeof StaffManageRoute
   '/treatments/$slug': typeof TreatmentsSlugRoute
-  '/app': typeof AppIndexRoute
-  '/family': typeof FamilyIndexRoute
-  '/staff': typeof StaffIndexRoute
   '/api/public/booking': typeof ApiPublicBookingRoute
   '/api/public/chat': typeof ApiPublicChatRoute
   '/api/public/lead-magnet': typeof ApiPublicLeadMagnetRoute
@@ -282,31 +164,16 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/approach': typeof ApproachRoute
-  '/auth': typeof AuthRoute
   '/chat': typeof ChatRoute
   '/contact': typeof ContactRoute
-  '/family': typeof FamilyRouteWithChildren
   '/faq': typeof FaqRoute
   '/privacy': typeof PrivacyRoute
-  '/profile': typeof ProfileRoute
   '/programs': typeof ProgramsRoute
   '/quiz': typeof QuizRoute
   '/refund': typeof RefundRoute
   '/services': typeof ServicesRoute
-  '/staff': typeof StaffRouteWithChildren
   '/terms': typeof TermsRoute
-  '/app/admin': typeof AppAdminRoute
-  '/app/leads': typeof AppLeadsRoute
-  '/app/refunds': typeof AppRefundsRoute
-  '/family/appointments': typeof FamilyAppointmentsRoute
-  '/family/modules': typeof FamilyModulesRoute
-  '/family/products': typeof FamilyProductsRoute
-  '/family/progress': typeof FamilyProgressRoute
-  '/staff/manage': typeof StaffManageRoute
   '/treatments/$slug': typeof TreatmentsSlugRoute
-  '/app/': typeof AppIndexRoute
-  '/family/': typeof FamilyIndexRoute
-  '/staff/': typeof StaffIndexRoute
   '/api/public/booking': typeof ApiPublicBookingRoute
   '/api/public/chat': typeof ApiPublicChatRoute
   '/api/public/lead-magnet': typeof ApiPublicLeadMagnetRoute
@@ -319,31 +186,16 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/approach'
-    | '/auth'
     | '/chat'
     | '/contact'
-    | '/family'
     | '/faq'
     | '/privacy'
-    | '/profile'
     | '/programs'
     | '/quiz'
     | '/refund'
     | '/services'
-    | '/staff'
     | '/terms'
-    | '/app/admin'
-    | '/app/leads'
-    | '/app/refunds'
-    | '/family/appointments'
-    | '/family/modules'
-    | '/family/products'
-    | '/family/progress'
-    | '/staff/manage'
     | '/treatments/$slug'
-    | '/app/'
-    | '/family/'
-    | '/staff/'
     | '/api/public/booking'
     | '/api/public/chat'
     | '/api/public/lead-magnet'
@@ -354,29 +206,16 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/approach'
-    | '/auth'
     | '/chat'
     | '/contact'
     | '/faq'
     | '/privacy'
-    | '/profile'
     | '/programs'
     | '/quiz'
     | '/refund'
     | '/services'
     | '/terms'
-    | '/app/admin'
-    | '/app/leads'
-    | '/app/refunds'
-    | '/family/appointments'
-    | '/family/modules'
-    | '/family/products'
-    | '/family/progress'
-    | '/staff/manage'
     | '/treatments/$slug'
-    | '/app'
-    | '/family'
-    | '/staff'
     | '/api/public/booking'
     | '/api/public/chat'
     | '/api/public/lead-magnet'
@@ -387,31 +226,16 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/approach'
-    | '/auth'
     | '/chat'
     | '/contact'
-    | '/family'
     | '/faq'
     | '/privacy'
-    | '/profile'
     | '/programs'
     | '/quiz'
     | '/refund'
     | '/services'
-    | '/staff'
     | '/terms'
-    | '/app/admin'
-    | '/app/leads'
-    | '/app/refunds'
-    | '/family/appointments'
-    | '/family/modules'
-    | '/family/products'
-    | '/family/progress'
-    | '/staff/manage'
     | '/treatments/$slug'
-    | '/app/'
-    | '/family/'
-    | '/staff/'
     | '/api/public/booking'
     | '/api/public/chat'
     | '/api/public/lead-magnet'
@@ -423,24 +247,16 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ApproachRoute: typeof ApproachRoute
-  AuthRoute: typeof AuthRoute
   ChatRoute: typeof ChatRoute
   ContactRoute: typeof ContactRoute
-  FamilyRoute: typeof FamilyRouteWithChildren
   FaqRoute: typeof FaqRoute
   PrivacyRoute: typeof PrivacyRoute
-  ProfileRoute: typeof ProfileRoute
   ProgramsRoute: typeof ProgramsRoute
   QuizRoute: typeof QuizRoute
   RefundRoute: typeof RefundRoute
   ServicesRoute: typeof ServicesRoute
-  StaffRoute: typeof StaffRouteWithChildren
   TermsRoute: typeof TermsRoute
-  AppAdminRoute: typeof AppAdminRoute
-  AppLeadsRoute: typeof AppLeadsRoute
-  AppRefundsRoute: typeof AppRefundsRoute
   TreatmentsSlugRoute: typeof TreatmentsSlugRoute
-  AppIndexRoute: typeof AppIndexRoute
   ApiPublicBookingRoute: typeof ApiPublicBookingRoute
   ApiPublicChatRoute: typeof ApiPublicChatRoute
   ApiPublicLeadMagnetRoute: typeof ApiPublicLeadMagnetRoute
@@ -455,13 +271,6 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/staff': {
-      id: '/staff'
-      path: '/staff'
-      fullPath: '/staff'
-      preLoaderRoute: typeof StaffRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -492,13 +301,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgramsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/profile': {
-      id: '/profile'
-      path: '/profile'
-      fullPath: '/profile'
-      preLoaderRoute: typeof ProfileRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
@@ -513,13 +315,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/family': {
-      id: '/family'
-      path: '/family'
-      fullPath: '/family'
-      preLoaderRoute: typeof FamilyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -532,13 +327,6 @@ declare module '@tanstack/react-router' {
       path: '/chat'
       fullPath: '/chat'
       preLoaderRoute: typeof ChatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/approach': {
@@ -562,88 +350,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/staff/': {
-      id: '/staff/'
-      path: '/'
-      fullPath: '/staff/'
-      preLoaderRoute: typeof StaffIndexRouteImport
-      parentRoute: typeof StaffRoute
-    }
-    '/family/': {
-      id: '/family/'
-      path: '/'
-      fullPath: '/family/'
-      preLoaderRoute: typeof FamilyIndexRouteImport
-      parentRoute: typeof FamilyRoute
-    }
-    '/app/': {
-      id: '/app/'
-      path: '/app'
-      fullPath: '/app/'
-      preLoaderRoute: typeof AppIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/treatments/$slug': {
       id: '/treatments/$slug'
       path: '/treatments/$slug'
       fullPath: '/treatments/$slug'
       preLoaderRoute: typeof TreatmentsSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/staff/manage': {
-      id: '/staff/manage'
-      path: '/manage'
-      fullPath: '/staff/manage'
-      preLoaderRoute: typeof StaffManageRouteImport
-      parentRoute: typeof StaffRoute
-    }
-    '/family/progress': {
-      id: '/family/progress'
-      path: '/progress'
-      fullPath: '/family/progress'
-      preLoaderRoute: typeof FamilyProgressRouteImport
-      parentRoute: typeof FamilyRoute
-    }
-    '/family/products': {
-      id: '/family/products'
-      path: '/products'
-      fullPath: '/family/products'
-      preLoaderRoute: typeof FamilyProductsRouteImport
-      parentRoute: typeof FamilyRoute
-    }
-    '/family/modules': {
-      id: '/family/modules'
-      path: '/modules'
-      fullPath: '/family/modules'
-      preLoaderRoute: typeof FamilyModulesRouteImport
-      parentRoute: typeof FamilyRoute
-    }
-    '/family/appointments': {
-      id: '/family/appointments'
-      path: '/appointments'
-      fullPath: '/family/appointments'
-      preLoaderRoute: typeof FamilyAppointmentsRouteImport
-      parentRoute: typeof FamilyRoute
-    }
-    '/app/refunds': {
-      id: '/app/refunds'
-      path: '/app/refunds'
-      fullPath: '/app/refunds'
-      preLoaderRoute: typeof AppRefundsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/app/leads': {
-      id: '/app/leads'
-      path: '/app/leads'
-      fullPath: '/app/leads'
-      preLoaderRoute: typeof AppLeadsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/app/admin': {
-      id: '/app/admin'
-      path: '/app/admin'
-      fullPath: '/app/admin'
-      preLoaderRoute: typeof AppAdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/refund-request': {
@@ -684,59 +395,20 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface FamilyRouteChildren {
-  FamilyAppointmentsRoute: typeof FamilyAppointmentsRoute
-  FamilyModulesRoute: typeof FamilyModulesRoute
-  FamilyProductsRoute: typeof FamilyProductsRoute
-  FamilyProgressRoute: typeof FamilyProgressRoute
-  FamilyIndexRoute: typeof FamilyIndexRoute
-}
-
-const FamilyRouteChildren: FamilyRouteChildren = {
-  FamilyAppointmentsRoute: FamilyAppointmentsRoute,
-  FamilyModulesRoute: FamilyModulesRoute,
-  FamilyProductsRoute: FamilyProductsRoute,
-  FamilyProgressRoute: FamilyProgressRoute,
-  FamilyIndexRoute: FamilyIndexRoute,
-}
-
-const FamilyRouteWithChildren =
-  FamilyRoute._addFileChildren(FamilyRouteChildren)
-
-interface StaffRouteChildren {
-  StaffManageRoute: typeof StaffManageRoute
-  StaffIndexRoute: typeof StaffIndexRoute
-}
-
-const StaffRouteChildren: StaffRouteChildren = {
-  StaffManageRoute: StaffManageRoute,
-  StaffIndexRoute: StaffIndexRoute,
-}
-
-const StaffRouteWithChildren = StaffRoute._addFileChildren(StaffRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ApproachRoute: ApproachRoute,
-  AuthRoute: AuthRoute,
   ChatRoute: ChatRoute,
   ContactRoute: ContactRoute,
-  FamilyRoute: FamilyRouteWithChildren,
   FaqRoute: FaqRoute,
   PrivacyRoute: PrivacyRoute,
-  ProfileRoute: ProfileRoute,
   ProgramsRoute: ProgramsRoute,
   QuizRoute: QuizRoute,
   RefundRoute: RefundRoute,
   ServicesRoute: ServicesRoute,
-  StaffRoute: StaffRouteWithChildren,
   TermsRoute: TermsRoute,
-  AppAdminRoute: AppAdminRoute,
-  AppLeadsRoute: AppLeadsRoute,
-  AppRefundsRoute: AppRefundsRoute,
   TreatmentsSlugRoute: TreatmentsSlugRoute,
-  AppIndexRoute: AppIndexRoute,
   ApiPublicBookingRoute: ApiPublicBookingRoute,
   ApiPublicChatRoute: ApiPublicChatRoute,
   ApiPublicLeadMagnetRoute: ApiPublicLeadMagnetRoute,
@@ -746,13 +418,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

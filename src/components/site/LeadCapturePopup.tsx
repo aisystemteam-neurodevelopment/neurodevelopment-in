@@ -15,6 +15,8 @@ type Form = {
   state: string;
   country: string;
   phone: string;
+  concern: string;
+  concern_other: string;
 };
 
 const empty: Form = {
@@ -26,7 +28,20 @@ const empty: Form = {
   state: "",
   country: "",
   phone: "",
+  concern: "",
+  concern_other: "",
 };
+
+const CONCERN_OPTIONS = [
+  "Speech & language delay",
+  "Autism / ASD",
+  "ADHD / Hyperactivity",
+  "Learning difficulty",
+  "Behavioural issues",
+  "Developmental delay",
+  "School refusal / anxiety",
+  "Other",
+];
 
 export function LeadCapturePopup() {
   const [open, setOpen] = useState(false);
@@ -98,6 +113,9 @@ export function LeadCapturePopup() {
     if (!form.district.trim()) e.district = "Required";
     if (!form.state.trim()) e.state = "Required";
     if (!form.country.trim()) e.country = "Required";
+    if (!form.concern.trim()) e.concern = "Required";
+    if (form.concern === "Other" && !form.concern_other.trim())
+      e.concern_other = "Please describe the concern";
     if (!form.phone.trim()) {
       e.phone = "Required";
     } else if (!isValidPhoneNumber(form.phone, countryCode)) {
@@ -113,6 +131,8 @@ export function LeadCapturePopup() {
     if (!validate()) return;
     setSubmitting(true);
     try {
+      const finalConcern =
+        form.concern === "Other" ? form.concern_other.trim() || "Other" : form.concern;
       const { error } = await supabase.from("leads").insert({
         source: "website_popup",
         child_name: form.child_name.trim(),
@@ -125,6 +145,7 @@ export function LeadCapturePopup() {
         phone: form.phone,
         contact_name: form.parent_name.trim(),
         contact_phone: form.phone,
+        summary: `Concern: ${finalConcern}`,
       });
       if (error) throw error;
       localStorage.setItem(STORAGE_KEY, "1");
@@ -236,6 +257,32 @@ export function LeadCapturePopup() {
               />
             </Field>
           </div>
+
+          <Field label="Primary concern" error={errors.concern}>
+            <select
+              className={inputCls}
+              value={form.concern}
+              onChange={(e) => set("concern", e.target.value)}
+            >
+              <option value="">Select primary concern</option>
+              {CONCERN_OPTIONS.map((o) => (
+                <option key={o} value={o}>
+                  {o}
+                </option>
+              ))}
+            </select>
+          </Field>
+          {form.concern === "Other" && (
+            <Field label="Please describe the concern" error={errors.concern_other}>
+              <input
+                className={inputCls}
+                value={form.concern_other}
+                onChange={(e) => set("concern_other", e.target.value)}
+                maxLength={120}
+                placeholder="Tell us briefly…"
+              />
+            </Field>
+          )}
 
           <Field label="Contact number" error={errors.phone}>
             <PhoneInput

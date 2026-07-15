@@ -10,6 +10,7 @@ type Form = {
   child_name: string;
   parent_name: string;
   child_age: string;
+  pincode: string;
   area: string;
   district: string;
   state: string;
@@ -23,6 +24,7 @@ const empty: Form = {
   child_name: "",
   parent_name: "",
   child_age: "",
+  pincode: "",
   area: "",
   district: "",
   state: "",
@@ -50,6 +52,7 @@ export function LeadCapturePopup() {
   const [errors, setErrors] = useState<Partial<Record<keyof Form, string>>>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [pinLookup, setPinLookup] = useState<"idle" | "loading" | "done" | "error">("idle");
 
   // Show after 5s if not previously captured
   useEffect(() => {
@@ -99,6 +102,70 @@ export function LeadCapturePopup() {
     };
   }, [open]);
 
+  // Auto-fetch address from pincode / zip
+  useEffect(() => {
+    const pin = form.pincode.trim();
+    if (!pin || pin.length < 3) {
+      setPinLookup("idle");
+      return;
+    }
+    let cancelled = false;
+    const controller = new AbortController();
+    const t = setTimeout(async () => {
+      setPinLookup("loading");
+      try {
+        // India: 6-digit numeric pincode
+        if (/^\d{6}$/.test(pin)) {
+          const res = await fetch(`https://api.postalpincode.in/pincode/${pin}`, {
+            signal: controller.signal,
+          });
+          const data = await res.json();
+          const office = data?.[0]?.PostOffice?.[0];
+          if (!cancelled && office) {
+            setForm((f) => ({
+              ...f,
+              area: f.area || office.Name || office.Block || "",
+              district: office.District || f.district,
+              state: office.State || f.state,
+              country: office.Country || "India",
+            }));
+            setCountryCode("IN");
+            setPinLookup("done");
+            return;
+          }
+        }
+        // Rest of world: try country code from phone, else US
+        const cc = (countryCode || "US").toLowerCase();
+        const res = await fetch(`https://api.zippopotam.us/${cc}/${encodeURIComponent(pin)}`, {
+          signal: controller.signal,
+        });
+        if (res.ok) {
+          const data = await res.json();
+          const place = data?.places?.[0];
+          if (!cancelled && place) {
+            setForm((f) => ({
+              ...f,
+              area: f.area || place["place name"] || "",
+              district: f.district || place["place name"] || "",
+              state: place["state"] || f.state,
+              country: data.country || f.country,
+            }));
+            setPinLookup("done");
+            return;
+          }
+        }
+        if (!cancelled) setPinLookup("error");
+      } catch {
+        if (!cancelled) setPinLookup("error");
+      }
+    }, 450);
+    return () => {
+      cancelled = true;
+      controller.abort();
+      clearTimeout(t);
+    };
+  }, [form.pincode, countryCode]);
+
   const set = <K extends keyof Form>(k: K, v: Form[K]) => {
     setForm((f) => ({ ...f, [k]: v }));
     setErrors((e) => ({ ...e, [k]: undefined }));
@@ -109,6 +176,7 @@ export function LeadCapturePopup() {
     if (!form.child_name.trim()) e.child_name = "Required";
     if (!form.parent_name.trim()) e.parent_name = "Required";
     if (!form.child_age.trim()) e.child_age = "Required";
+    if (!form.pincode.trim()) e.pincode = "Required";
     if (!form.area.trim()) e.area = "Required";
     if (!form.district.trim()) e.district = "Required";
     if (!form.state.trim()) e.state = "Required";
@@ -138,7 +206,7 @@ export function LeadCapturePopup() {
         child_name: form.child_name.trim(),
         parent_name: form.parent_name.trim(),
         child_age: form.child_age.trim(),
-        area: form.area.trim(),
+        area: `${form.pincode.trim()} · ${form.area.trim()}`,
         district: form.district.trim(),
         state: form.state.trim(),
         country: form.country.trim(),
@@ -220,6 +288,27 @@ export function LeadCapturePopup() {
               onChange={(e) => set("child_age", e.target.value)}
               maxLength={20}
               placeholder="e.g. 4 yrs"
+            />
+          </Field>
+
+          <Field
+            label={
+              pinLookup === "loading"
+                ? "PIN / ZIP code (looking up…)"
+                : pinLookup === "error"
+                ? "PIN / ZIP code (not found — fill manually)"
+                : "PIN / ZIP code (auto-fills address)"
+            }
+            error={errors.pincode}
+          >
+            <input
+              className={inputCls}
+              value={form.pincode}
+              onChange={(e) => set("pincode", e.target.value)}
+              maxLength={12}
+              placeholder="e.g. 560001 or 90210"
+              inputMode="text"
+              autoComplete="postal-code"
             />
           </Field>
 

@@ -2,9 +2,38 @@ import { useEffect, useMemo, useState } from "react";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import type { Country } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import { Country as CSCCountry, State as CSCState } from "country-state-city";
 import { supabase } from "@/integrations/supabase/client";
 
 const STORAGE_KEY = "ind_lead_captured";
+const PIN_CACHE_KEY = "ind_pin_cache_v1";
+
+type CachedPin = {
+  area: string;
+  district: string;
+  state: string;
+  country: string;
+  countryCode?: string;
+};
+
+function readPinCache(): Record<string, CachedPin> {
+  if (typeof window === "undefined") return {};
+  try {
+    return JSON.parse(localStorage.getItem(PIN_CACHE_KEY) || "{}");
+  } catch {
+    return {};
+  }
+}
+function writePinCache(key: string, value: CachedPin) {
+  if (typeof window === "undefined") return;
+  try {
+    const c = readPinCache();
+    c[key] = value;
+    localStorage.setItem(PIN_CACHE_KEY, JSON.stringify(c));
+  } catch {
+    /* ignore quota */
+  }
+}
 
 type Form = {
   child_name: string;
@@ -53,6 +82,20 @@ export function LeadCapturePopup() {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [pinLookup, setPinLookup] = useState<"idle" | "loading" | "done" | "error">("idle");
+  const [manualLocation, setManualLocation] = useState(false);
+  const [step, setStep] = useState<"form" | "review">("form");
+
+  const allCountries = useMemo(() => CSCCountry.getAllCountries(), []);
+  const selectedCountryIso = useMemo(() => {
+    const match = allCountries.find(
+      (c) => c.name.toLowerCase() === form.country.trim().toLowerCase(),
+    );
+    return match?.isoCode || "";
+  }, [allCountries, form.country]);
+  const statesForCountry = useMemo(
+    () => (selectedCountryIso ? CSCState.getStatesOfCountry(selectedCountryIso) : []),
+    [selectedCountryIso],
+  );
 
   // Show after 5s if not previously captured
   useEffect(() => {
@@ -109,6 +152,23 @@ export function LeadCapturePopup() {
       setPinLookup("idle");
       return;
     }
+    // Cache hit
+    const cacheKey = `${(countryCode || "").toUpperCase()}:${pin}`;
+    const cache = readPinCache();
+    const cached = cache[cacheKey] || cache[`*:${pin}`];
+    if (cached) {
+      setForm((f) => ({
+        ...f,
+        area: f.area || cached.area,
+        district: f.district || cached.district,
+        state: cached.state || f.state,
+        country: cached.country || f.country,
+      }));
+      if (cached.countryCode) setCountryCode(cached.countryCode as Country);
+      setPinLookup("done");
+      setManualLocation(false);
+      return;
+    }
     let cancelled = false;
     const controller = new AbortController();
     const t = setTimeout(async () => {
@@ -122,15 +182,24 @@ export function LeadCapturePopup() {
           const data = await res.json();
           const office = data?.[0]?.PostOffice?.[0];
           if (!cancelled && office) {
+            const payload: CachedPin = {
+              area: office.Name || office.Block || "",
+              district: office.District || "",
+              state: office.State || "",
+              country: office.Country || "India",
+              countryCode: "IN",
+            };
+            writePinCache(`IN:${pin}`, payload);
             setForm((f) => ({
               ...f,
-              area: f.area || office.Name || office.Block || "",
-              district: office.District || f.district,
-              state: office.State || f.state,
-              country: office.Country || "India",
+              area: f.area || payload.area,
+              district: payload.district || f.district,
+              state: payload.state || f.state,
+              country: payload.country,
             }));
             setCountryCode("IN");
             setPinLookup("done");
+            setManualLocation(false);
             return;
           }
         }
@@ -143,20 +212,35 @@ export function LeadCapturePopup() {
           const data = await res.json();
           const place = data?.places?.[0];
           if (!cancelled && place) {
+            const payload: CachedPin = {
+              area: place["place name"] || "",
+              district: place["place name"] || "",
+              state: place["state"] || "",
+              country: data.country || "",
+              countryCode: cc.toUpperCase(),
+            };
+            writePinCache(`${cc.toUpperCase()}:${pin}`, payload);
             setForm((f) => ({
               ...f,
-              area: f.area || place["place name"] || "",
-              district: f.district || place["place name"] || "",
-              state: place["state"] || f.state,
-              country: data.country || f.country,
+              area: f.area || payload.area,
+              district: f.district || payload.district,
+              state: payload.state || f.state,
+              country: payload.country || f.country,
             }));
             setPinLookup("done");
+            setManualLocation(false);
             return;
           }
         }
-        if (!cancelled) setPinLookup("error");
+        if (!cancelled) {
+          setPinLookup("error");
+          setManualLocation(true);
+        }
       } catch {
-        if (!cancelled) setPinLookup("error");
+        if (!cancelled) {
+          setPinLookup("error");
+          setManualLocation(true);
+        }
       }
     }, 450);
     return () => {
@@ -193,11 +277,16 @@ export function LeadCapturePopup() {
     return Object.keys(e).length === 0;
   };
 
-  async function onSubmit(ev: React.FormEvent) {
+  function goToReview(ev: React.FormEvent) {
     ev.preventDefault();
     setSubmitError(null);
     if (!validate()) return;
+    setStep("review");
+  }
+
+  async function confirmSubmit() {
     setSubmitting(true);
+    setSubmitError(null);
     try {
       const finalConcern =
         form.concern === "Other" ? form.concern_other.trim() || "Other" : form.concern;
@@ -261,10 +350,48 @@ export function LeadCapturePopup() {
           Start your child's <span className="text-accent">progress</span> journey
         </h2>
         <p className="mt-1 text-sm text-muted-foreground">
-          Share a few details and we'll show you the way forward.
+          {step === "review"
+            ? "Please review your details before we save them."
+            : "Share a few details and we'll show you the way forward."}
         </p>
 
-        <form onSubmit={onSubmit} className="mt-5 space-y-3">
+        {step === "review" ? (
+          <div className="mt-5 space-y-3">
+            <ReviewRow label="Child" value={form.child_name} />
+            <ReviewRow label="Parent" value={form.parent_name} />
+            <ReviewRow label="Age" value={form.child_age} />
+            <ReviewRow label="PIN / ZIP" value={form.pincode} />
+            <ReviewRow label="Area" value={form.area} />
+            <ReviewRow label="District" value={form.district} />
+            <ReviewRow label="State" value={form.state} />
+            <ReviewRow label="Country" value={form.country} />
+            <ReviewRow
+              label="Concern"
+              value={form.concern === "Other" ? form.concern_other || "Other" : form.concern}
+            />
+            <ReviewRow label="Phone" value={form.phone} />
+            {submitError && <p className="text-sm text-destructive">{submitError}</p>}
+            <div className="flex gap-2 pt-2">
+              <button
+                type="button"
+                onClick={() => setStep("form")}
+                disabled={submitting}
+                className="flex-1 rounded-md border border-border bg-background px-4 py-2.5 text-sm font-medium text-foreground transition hover:bg-muted disabled:opacity-60"
+              >
+                Edit
+              </button>
+              <button
+                type="button"
+                onClick={confirmSubmit}
+                disabled={submitting}
+                className="flex-1 rounded-md bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/30 transition hover:bg-primary/90 disabled:opacity-60"
+              >
+                {submitting ? "Saving…" : "Confirm & submit"}
+              </button>
+            </div>
+          </div>
+        ) : (
+        <form onSubmit={goToReview} className="mt-5 space-y-3">
           <Field label="Child's name" error={errors.child_name}>
             <input
               className={inputCls}
@@ -312,6 +439,19 @@ export function LeadCapturePopup() {
             />
           </Field>
 
+          {(pinLookup === "error" || manualLocation) && (
+            <div className="rounded-md border border-amber-500/40 bg-amber-500/10 p-2 text-xs text-amber-700 dark:text-amber-300">
+              We couldn't auto-detect your location. Please pick your country & state below.{" "}
+              <button
+                type="button"
+                className="underline"
+                onClick={() => setManualLocation(false)}
+              >
+                Try auto again
+              </button>
+            </div>
+          )}
+
           <div className="grid grid-cols-2 gap-3">
             <Field label="Area" error={errors.area}>
               <input
@@ -329,21 +469,48 @@ export function LeadCapturePopup() {
                 maxLength={120}
               />
             </Field>
-            <Field label="State" error={errors.state}>
-              <input
-                className={inputCls}
-                value={form.state}
-                onChange={(e) => set("state", e.target.value)}
-                maxLength={120}
-              />
-            </Field>
             <Field label="Country" error={errors.country}>
-              <input
+              <select
                 className={inputCls}
-                value={form.country}
-                onChange={(e) => set("country", e.target.value)}
-                maxLength={120}
-              />
+                value={selectedCountryIso}
+                onChange={(e) => {
+                  const iso = e.target.value;
+                  const c = allCountries.find((x) => x.isoCode === iso);
+                  set("country", c?.name || "");
+                  set("state", "");
+                  if (iso) setCountryCode(iso as Country);
+                }}
+              >
+                <option value="">Select country</option>
+                {allCountries.map((c) => (
+                  <option key={c.isoCode} value={c.isoCode}>
+                    {c.name}
+                  </option>
+                ))}
+              </select>
+            </Field>
+            <Field label="State" error={errors.state}>
+              {statesForCountry.length > 0 ? (
+                <select
+                  className={inputCls}
+                  value={form.state}
+                  onChange={(e) => set("state", e.target.value)}
+                >
+                  <option value="">Select state</option>
+                  {statesForCountry.map((s) => (
+                    <option key={s.isoCode} value={s.name}>
+                      {s.name}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <input
+                  className={inputCls}
+                  value={form.state}
+                  onChange={(e) => set("state", e.target.value)}
+                  maxLength={120}
+                />
+              )}
             </Field>
           </div>
 
@@ -395,9 +562,10 @@ export function LeadCapturePopup() {
             disabled={submitting}
             className="mt-2 w-full rounded-md bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/30 transition hover:bg-primary/90 disabled:opacity-60"
           >
-            {submitting ? "Please wait…" : "Show me the way forward"}
+            Review my details
           </button>
         </form>
+        )}
       </div>
       <style>{`
         .lead-phone-input .PhoneInputInput {
@@ -439,5 +607,14 @@ function Field({
       {children}
       {error && <span className="mt-1 block text-xs text-destructive">{error}</span>}
     </label>
+  );
+}
+
+function ReviewRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex items-start justify-between gap-3 border-b border-border/40 py-1.5">
+      <span className="text-xs font-medium text-muted-foreground">{label}</span>
+      <span className="text-right text-sm text-foreground break-words">{value || "—"}</span>
+    </div>
   );
 }

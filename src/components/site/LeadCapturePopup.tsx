@@ -502,7 +502,7 @@ export function LeadCapturePopup() {
                 ))}
               </select>
             </Field>
-            <Field label="State" error={errors.state}>
+            <Field label="State" error={errors.state} optional>
               {statesForCountry.length > 0 ? (
                 <select
                   className={inputCls}
@@ -607,15 +607,22 @@ function Field({
   label,
   error,
   children,
+  optional,
 }: {
   label: string;
   error?: string;
   children: React.ReactNode;
+  optional?: boolean;
 }) {
   return (
     <label className="block">
       <span className="mb-1 block text-xs font-medium text-muted-foreground">
-        {label} <span className="text-destructive">*</span>
+        {label}{" "}
+        {optional ? (
+          <span className="text-muted-foreground">(optional)</span>
+        ) : (
+          <span className="text-destructive">*</span>
+        )}
       </span>
       {children}
       {error && <span className="mt-1 block text-xs text-destructive">{error}</span>}

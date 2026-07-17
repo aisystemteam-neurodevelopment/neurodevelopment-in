@@ -245,7 +245,12 @@ export function LeadCapturePopup() {
     if (!form.child_name.trim()) e.child_name = "Required";
     if (!form.parent_name.trim()) e.parent_name = "Required";
     if (!form.child_age.trim()) e.child_age = "Required";
-    if (!form.pincode.trim()) e.pincode = "Required";
+    if (!form.pincode.trim()) {
+      e.pincode = "Required";
+    } else {
+      const pv = validatePin(form.pincode, countryCode);
+      if (!pv.ok) e.pincode = `Invalid format (${pv.hint})`;
+    }
     if (!form.area.trim()) e.area = "Required";
     if (!form.district.trim()) e.district = "Required";
     if (!form.state.trim()) e.state = "Required";
@@ -422,6 +427,16 @@ export function LeadCapturePopup() {
               inputMode="text"
               autoComplete="postal-code"
             />
+            <button
+              type="button"
+              onClick={() => {
+                clearCache();
+                setPinLookup("idle");
+              }}
+              className="mt-1 text-[11px] text-muted-foreground underline hover:text-foreground"
+            >
+              Clear address cache
+            </button>
           </Field>
 
           {(pinLookup === "error" || manualLocation) && (

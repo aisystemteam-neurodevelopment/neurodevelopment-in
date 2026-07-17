@@ -274,8 +274,9 @@ export function LeadCapturePopup() {
       if (!pv.ok && !detectCountryFromPin(form.pincode))
         e.pincode = `Invalid format (${pv.hint})`;
     }
-    if (!form.district.trim()) e.district = "Required";
-    // State is optional (some countries / regions don't use one)
+    // District is optional — auto-filled from PIN/ZIP when available,
+    // otherwise the country/state dropdowns still give us a usable location.
+    // State is optional (some countries / regions don't use one).
     if (!form.country.trim()) e.country = "Required";
     if (!form.concern.trim()) e.concern = "Required";
     if (form.concern === "Other" && !form.concern_other.trim())

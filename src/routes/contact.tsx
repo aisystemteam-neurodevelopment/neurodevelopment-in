@@ -347,8 +347,45 @@ function ContactPage() {
                 </p>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="district">District *</Label>
-                <Input id="district" name="district" required maxLength={120} placeholder="e.g. Kolkata" />
+                <Label htmlFor="pincode">
+                  PIN / ZIP code{" "}
+                  <span className="text-xs text-muted-foreground">
+                    {pinLookup === "loading"
+                      ? "(looking up…)"
+                      : pinLookup === "error"
+                      ? "(not found — fill manually)"
+                      : "(auto-fills address)"}
+                  </span>
+                </Label>
+                <Input
+                  id="pincode"
+                  value={pincode}
+                  onChange={(e) => setPincode(e.target.value)}
+                  maxLength={12}
+                  placeholder="e.g. 700005 or 90210"
+                  inputMode="text"
+                  autoComplete="postal-code"
+                />
+                <button
+                  type="button"
+                  onClick={() => {
+                    clearCache();
+                    setPinLookup("idle");
+                  }}
+                  className="text-[11px] text-muted-foreground underline hover:text-foreground"
+                >
+                  Clear address cache
+                </button>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="district">District (optional)</Label>
+                <Input
+                  id="district"
+                  value={district}
+                  onChange={(e) => setDistrict(e.target.value)}
+                  maxLength={120}
+                  placeholder="e.g. Kolkata"
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="country">Country *</Label>

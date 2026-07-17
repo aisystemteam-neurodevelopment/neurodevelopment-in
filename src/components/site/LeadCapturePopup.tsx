@@ -475,7 +475,7 @@ export function LeadCapturePopup() {
           )}
 
           <div className="grid grid-cols-2 gap-3">
-            <Field label="District" error={errors.district}>
+            <Field label="District (optional)" error={errors.district}>
               <input
                 className={inputCls}
                 value={form.district}

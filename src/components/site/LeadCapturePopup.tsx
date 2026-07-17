@@ -474,14 +474,6 @@ export function LeadCapturePopup() {
           )}
 
           <div className="grid grid-cols-2 gap-3">
-            <Field label="Area" error={errors.area}>
-              <input
-                className={inputCls}
-                value={form.area}
-                onChange={(e) => set("area", e.target.value)}
-                maxLength={120}
-              />
-            </Field>
             <Field label="District" error={errors.district}>
               <input
                 className={inputCls}

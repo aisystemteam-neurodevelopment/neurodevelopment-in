@@ -11,6 +11,8 @@
     "publish:preflight": "node scripts/publish-preflight.mjs",
     "test:e2e:quiz": "python3 tests/e2e/quiz.spec.py",
     "test:e2e:about-credentials": "python3 tests/e2e/about-credentials.spec.py",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "lint": "eslint .",
     "format": "prettier --write ."
   },

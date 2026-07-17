@@ -56,6 +56,18 @@ export function validatePin(
   return { ok: rule.regex.test(trimmed), hint: rule.hint };
 }
 
+// Try to guess a country from the raw PIN/ZIP shape. Returns the first ISO
+// code whose rule matches. Useful when the user pastes an international ZIP
+// before selecting a country in the dropdown.
+export function detectCountryFromPin(pin: string): string | null {
+  const trimmed = (pin || "").trim();
+  if (!trimmed) return null;
+  for (const [code, rule] of Object.entries(RULES)) {
+    if (rule.regex.test(trimmed)) return code;
+  }
+  return null;
+}
+
 export function cacheKey(countryCode: string | undefined, pin: string): string {
   return `${(countryCode || "").toUpperCase()}:${pin.trim()}`;
 }

@@ -4,9 +4,13 @@ import { z } from "zod";
 
 const schema = z.object({
   name: z.string().trim().min(1).max(100),
+  childName: z.string().trim().max(100).optional().default(""),
   email: z.string().trim().email().max(200),
   phone: z.string().trim().min(5).max(40),
   childAge: z.string().trim().max(40).optional().default(""),
+  district: z.string().trim().max(120).optional().default(""),
+  state: z.string().trim().max(120).optional().default(""),
+  country: z.string().trim().max(120).optional().default(""),
   concern: z.string().trim().max(120).optional().default(""),
   concernOther: z.string().trim().max(120).optional().default(""),
   timeFrame: z.string().trim().max(60).optional().default(""),
@@ -52,8 +56,11 @@ export const Route = createFileRoute("/api/public/booking")({
         }
 
         const summary = [
+          parsed.childName && `Child: ${parsed.childName}`,
           parsed.concern && `Concern: ${parsed.concern}`,
           parsed.childAge && `Child age: ${parsed.childAge}`,
+          (parsed.district || parsed.state || parsed.country) &&
+            `Location: ${[parsed.district, parsed.state, parsed.country].filter(Boolean).join(", ")}`,
           parsed.timeFrame && `Time frame: ${parsed.timeFrame}`,
           `Mode: ${parsed.mode}`,
           parsed.message && `Message: ${parsed.message}`,
@@ -69,6 +76,13 @@ export const Route = createFileRoute("/api/public/booking")({
             contact_name: parsed.name,
             contact_email: parsed.email,
             contact_phone: parsed.phone,
+            parent_name: parsed.name,
+            child_name: parsed.childName || null,
+            child_age: parsed.childAge || null,
+            district: parsed.district || null,
+            state: parsed.state || null,
+            country: parsed.country || null,
+            phone: parsed.phone,
             summary,
           })
           .select("id")
@@ -82,9 +96,13 @@ export const Route = createFileRoute("/api/public/booking")({
         await appendToSheet([
           new Date().toISOString(),
           parsed.name,
+          parsed.childName,
           parsed.email,
           parsed.phone,
           parsed.childAge,
+          parsed.district,
+          parsed.state,
+          parsed.country,
           parsed.concern,
           parsed.timeFrame,
           parsed.concernOther,

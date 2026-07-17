@@ -5,10 +5,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 import { CheckCircle2, MessageCircle } from "lucide-react";
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import type { Country } from "react-phone-number-input";
+import "react-phone-number-input/style.css";
+import { Country as CSCCountry, State as CSCState } from "country-state-city";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -27,10 +31,14 @@ export const Route = createFileRoute("/contact")({
 });
 
 const schema = z.object({
-  name: z.string().trim().min(1, "Please share your name").max(100),
+  name: z.string().trim().min(1, "Parent name is required").max(100),
+  childName: z.string().trim().min(1, "Child name is required").max(100),
   email: z.string().trim().email("Please enter a valid email").max(200),
   phone: z.string().trim().min(5, "Phone is required to confirm the booking").max(40),
-  childAge: z.string().trim().max(40).optional(),
+  childAge: z.string().trim().min(1, "Child's age is required").max(40),
+  district: z.string().trim().min(1, "District is required").max(120),
+  state: z.string().trim().max(120).optional(),
+  country: z.string().trim().min(1, "Country is required").max(120),
   concern: z.string().trim().max(120).optional(),
   concernOther: z.string().trim().max(120).optional(),
   timeFrame: z.string().trim().max(60).optional(),
@@ -43,10 +51,12 @@ const WHATSAPP_NUMBER = "919433308880"; // +91 94333 08880
 function buildWhatsAppLink(d: z.infer<typeof schema>) {
   const lines = [
     "Hi IND, I'd like to book an appointment.",
-    `Name: ${d.name}`,
+    `Parent: ${d.name}`,
+    `Child: ${d.childName}`,
     `Email: ${d.email}`,
     `Phone: ${d.phone}`,
     d.childAge ? `Child age: ${d.childAge}` : "",
+    `Location: ${[d.district, d.state, d.country].filter(Boolean).join(", ")}`,
     d.concern ? `Concern: ${d.concern}` : "",
     d.concernOther ? `Other concern: ${d.concernOther}` : "",
     d.timeFrame ? `Time frame: ${d.timeFrame}` : "",
@@ -60,6 +70,20 @@ function ContactPage() {
   const [busy, setBusy] = useState(false);
   const [confirmed, setConfirmed] = useState<{ name: string; whatsapp: string } | null>(null);
   const [concernValue, setConcernValue] = useState<string>("");
+  const [countryCode, setCountryCode] = useState<Country>("IN");
+  const [phone, setPhone] = useState<string>("");
+  const [countryIso, setCountryIso] = useState<string>("IN");
+  const [stateName, setStateName] = useState<string>("");
+
+  const allCountries = useMemo(() => CSCCountry.getAllCountries(), []);
+  const statesForCountry = useMemo(
+    () => (countryIso ? CSCState.getStatesOfCountry(countryIso) : []),
+    [countryIso],
+  );
+  const countryName = useMemo(
+    () => allCountries.find((c) => c.isoCode === countryIso)?.name || "",
+    [allCountries, countryIso],
+  );
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -68,9 +92,19 @@ function ContactPage() {
     const raw = Object.fromEntries(fd) as Record<string, string>;
     const finalConcern =
       raw.concern === "other" ? (raw.concernOther || "Other") : (raw.concern || "");
+    // Strict phone validation per selected country (enforces exact length)
+    if (!phone || !isValidPhoneNumber(phone, countryCode)) {
+      toast.error(
+        "Enter a valid phone number for the selected country code (e.g. +91 followed by 10 digits).",
+      );
+      return;
+    }
     const parsed = schema.safeParse({
       ...raw,
       concern: finalConcern,
+      phone,
+      country: countryName,
+      state: stateName,
       mode: raw.mode || "either",
     });
     if (!parsed.success) {
@@ -92,6 +126,8 @@ function ContactPage() {
       setConfirmed({ name: parsed.data.name, whatsapp: buildWhatsAppLink(parsed.data) });
       form.reset();
       setConcernValue("");
+      setPhone("");
+      setStateName("");
     } catch {
       toast.error("Network issue. Please call or WhatsApp +91 94333 08880.");
     } finally {
@@ -154,20 +190,85 @@ function ContactPage() {
           <form onSubmit={onSubmit} className="space-y-4 rounded-3xl border border-border bg-card p-6">
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-2">
-                <Label htmlFor="name">Your name *</Label>
+                <Label htmlFor="name">Parent name *</Label>
                 <Input id="name" name="name" required maxLength={100} />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="phone">Phone / WhatsApp *</Label>
-                <Input id="phone" name="phone" required maxLength={40} placeholder="+91 …" />
+                <Label htmlFor="childName">Child name *</Label>
+                <Input id="childName" name="childName" required maxLength={100} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email">Email *</Label>
                 <Input id="email" name="email" type="email" required maxLength={200} />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="childAge">Child's age</Label>
-                <Input id="childAge" name="childAge" placeholder="e.g. 4 years" maxLength={40} />
+                <Label htmlFor="childAge">Child's age *</Label>
+                <Input id="childAge" name="childAge" required placeholder="e.g. 4 years" maxLength={40} />
+              </div>
+              <div className="space-y-2 sm:col-span-2">
+                <Label htmlFor="phone">Contact number *</Label>
+                <PhoneInput
+                  international
+                  countryCallingCodeEditable={false}
+                  defaultCountry={countryCode}
+                  country={countryCode}
+                  value={phone}
+                  onChange={(v) => setPhone((v as string) || "")}
+                  onCountryChange={(c) => c && setCountryCode(c)}
+                  className="booking-phone-input flex gap-2 rounded-md border border-input bg-background px-2 py-2 text-sm focus-within:border-ring focus-within:ring-2 focus-within:ring-ring/40"
+                />
+                <p className="text-xs text-muted-foreground">
+                  Digits must match the selected country code (e.g. +91 requires exactly 10 digits).
+                </p>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="district">District *</Label>
+                <Input id="district" name="district" required maxLength={120} placeholder="e.g. Kolkata" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="country">Country *</Label>
+                <select
+                  id="country"
+                  value={countryIso}
+                  onChange={(e) => {
+                    setCountryIso(e.target.value);
+                    setStateName("");
+                    if (e.target.value) setCountryCode(e.target.value as Country);
+                  }}
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                >
+                  <option value="">Select country</option>
+                  {allCountries.map((c) => (
+                    <option key={c.isoCode} value={c.isoCode}>
+                      {c.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="space-y-2 sm:col-span-2">
+                <Label htmlFor="state">State (optional)</Label>
+                {statesForCountry.length > 0 ? (
+                  <select
+                    id="state"
+                    value={stateName}
+                    onChange={(e) => setStateName(e.target.value)}
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                  >
+                    <option value="">Select state</option>
+                    {statesForCountry.map((s) => (
+                      <option key={s.isoCode} value={s.name}>
+                        {s.name}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  <Input
+                    id="state"
+                    value={stateName}
+                    onChange={(e) => setStateName(e.target.value)}
+                    maxLength={120}
+                  />
+                )}
               </div>
               <div className="space-y-2 sm:col-span-2">
                 <Label htmlFor="concern">Primary concern</Label>
@@ -233,6 +334,25 @@ function ContactPage() {
               By submitting, you agree to be contacted by our team. See our{" "}
               <a href="/privacy" className="underline">Privacy Policy</a>.
             </p>
+            <style>{`
+              .booking-phone-input .PhoneInputInput {
+                border: none;
+                outline: none;
+                background: transparent;
+                flex: 1;
+                min-width: 0;
+                font-size: 0.875rem;
+                color: inherit;
+              }
+              .booking-phone-input .PhoneInputCountrySelect {
+                background: transparent;
+                color: inherit;
+              }
+              .booking-phone-input .PhoneInputCountrySelect option {
+                background: var(--card);
+                color: var(--card-foreground);
+              }
+            `}</style>
           </form>
         )}
       </section>

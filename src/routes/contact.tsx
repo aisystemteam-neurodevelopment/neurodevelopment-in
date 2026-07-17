@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useMemo, useState } from "react";
+import { useEffect } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 import { CheckCircle2, MessageCircle } from "lucide-react";
@@ -13,6 +14,15 @@ import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import type { Country } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { Country as CSCCountry, State as CSCState } from "country-state-city";
+import {
+  cacheKey,
+  clearCache,
+  getFromCache,
+  validatePin,
+  writeCache,
+  detectCountryFromPin,
+  type CachedPin,
+} from "@/lib/pin-lookup";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -36,7 +46,8 @@ const schema = z.object({
   email: z.string().trim().email("Please enter a valid email").max(200),
   phone: z.string().trim().min(5, "Phone is required to confirm the booking").max(40),
   childAge: z.string().trim().min(1, "Child's age is required").max(40),
-  district: z.string().trim().min(1, "District is required").max(120),
+  district: z.string().trim().max(120).optional(),
+  pincode: z.string().trim().max(20).optional(),
   state: z.string().trim().max(120).optional(),
   country: z.string().trim().min(1, "Country is required").max(120),
   concern: z.string().trim().max(120).optional(),
@@ -74,6 +85,9 @@ function ContactPage() {
   const [phone, setPhone] = useState<string>("");
   const [countryIso, setCountryIso] = useState<string>("IN");
   const [stateName, setStateName] = useState<string>("");
+  const [pincode, setPincode] = useState<string>("");
+  const [district, setDistrict] = useState<string>("");
+  const [pinLookup, setPinLookup] = useState<"idle" | "loading" | "done" | "error">("idle");
 
   const allCountries = useMemo(() => CSCCountry.getAllCountries(), []);
   const statesForCountry = useMemo(
@@ -84,6 +98,112 @@ function ContactPage() {
     () => allCountries.find((c) => c.isoCode === countryIso)?.name || "",
     [allCountries, countryIso],
   );
+
+  // Auto-fetch address from PIN / ZIP — mirrors the popup form behaviour.
+  useEffect(() => {
+    const pin = pincode.trim();
+    if (!pin || pin.length < 3) {
+      setPinLookup("idle");
+      return;
+    }
+    let effectiveCC = countryIso || "IN";
+    const check = validatePin(pin, effectiveCC);
+    if (!check.ok) {
+      const detected = detectCountryFromPin(pin);
+      if (!detected) {
+        setPinLookup("idle");
+        return;
+      }
+      effectiveCC = detected;
+    }
+    const key = cacheKey(effectiveCC, pin);
+    const cached = getFromCache(key) || getFromCache(`*:${pin}`);
+    if (cached) {
+      setDistrict((d) => d || cached.district);
+      if (cached.state) setStateName(cached.state);
+      if (cached.countryCode) {
+        setCountryIso(cached.countryCode);
+        setCountryCode(cached.countryCode as Country);
+      }
+      setPinLookup("done");
+      return;
+    }
+    let cancelled = false;
+    const controller = new AbortController();
+    const t = setTimeout(async () => {
+      setPinLookup("loading");
+      try {
+        if (effectiveCC === "IN" && /^\d{6}$/.test(pin)) {
+          const res = await fetch(`https://api.postalpincode.in/pincode/${pin}`, {
+            signal: controller.signal,
+          });
+          const data = await res.json();
+          const office = data?.[0]?.PostOffice?.[0];
+          if (!cancelled && office) {
+            const payload: CachedPin = {
+              area: office.Name || office.Block || "",
+              district: office.District || "",
+              state: office.State || "",
+              country: office.Country || "India",
+              countryCode: "IN",
+            };
+            writeCache(cacheKey("IN", pin), payload);
+            setDistrict((d) => d || payload.district);
+            if (payload.state) setStateName(payload.state);
+            setCountryIso("IN");
+            setCountryCode("IN");
+            setPinLookup("done");
+            return;
+          }
+        }
+        const candidates = Array.from(
+          new Set(
+            [effectiveCC, countryIso, detectCountryFromPin(pin), "US"]
+              .filter(Boolean)
+              .map((c) => String(c).toLowerCase()),
+          ),
+        );
+        let filled = false;
+        for (const cc of candidates) {
+          try {
+            const res = await fetch(
+              `https://api.zippopotam.us/${cc}/${encodeURIComponent(pin)}`,
+              { signal: controller.signal },
+            );
+            if (!res.ok) continue;
+            const data = await res.json();
+            const place = data?.places?.[0];
+            if (cancelled || !place) continue;
+            const payload: CachedPin = {
+              area: place["place name"] || "",
+              district: place["place name"] || "",
+              state: place["state"] || "",
+              country: data.country || "",
+              countryCode: cc.toUpperCase(),
+            };
+            writeCache(cacheKey(cc.toUpperCase(), pin), payload);
+            setDistrict((d) => d || payload.district);
+            if (payload.state) setStateName(payload.state);
+            setCountryIso(cc.toUpperCase());
+            setCountryCode(cc.toUpperCase() as Country);
+            setPinLookup("done");
+            filled = true;
+            break;
+          } catch {
+            /* try next */
+          }
+        }
+        if (!filled && !cancelled) setPinLookup("error");
+      } catch {
+        if (!cancelled) setPinLookup("error");
+      }
+    }, 450);
+    return () => {
+      cancelled = true;
+      controller.abort();
+      clearTimeout(t);
+    };
+  }, [pincode, countryIso]);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -105,6 +225,8 @@ function ContactPage() {
       phone,
       country: countryName,
       state: stateName,
+      district,
+      pincode,
       mode: raw.mode || "either",
     });
     if (!parsed.success) {
@@ -128,6 +250,9 @@ function ContactPage() {
       setConcernValue("");
       setPhone("");
       setStateName("");
+      setPincode("");
+      setDistrict("");
+      setPinLookup("idle");
     } catch {
       toast.error("Network issue. Please call or WhatsApp +91 94333 08880.");
     } finally {
@@ -222,8 +347,45 @@ function ContactPage() {
                 </p>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="district">District *</Label>
-                <Input id="district" name="district" required maxLength={120} placeholder="e.g. Kolkata" />
+                <Label htmlFor="pincode">
+                  PIN / ZIP code{" "}
+                  <span className="text-xs text-muted-foreground">
+                    {pinLookup === "loading"
+                      ? "(looking up…)"
+                      : pinLookup === "error"
+                      ? "(not found — fill manually)"
+                      : "(auto-fills address)"}
+                  </span>
+                </Label>
+                <Input
+                  id="pincode"
+                  value={pincode}
+                  onChange={(e) => setPincode(e.target.value)}
+                  maxLength={12}
+                  placeholder="e.g. 700005 or 90210"
+                  inputMode="text"
+                  autoComplete="postal-code"
+                />
+                <button
+                  type="button"
+                  onClick={() => {
+                    clearCache();
+                    setPinLookup("idle");
+                  }}
+                  className="text-[11px] text-muted-foreground underline hover:text-foreground"
+                >
+                  Clear address cache
+                </button>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="district">District (optional)</Label>
+                <Input
+                  id="district"
+                  value={district}
+                  onChange={(e) => setDistrict(e.target.value)}
+                  maxLength={120}
+                  placeholder="e.g. Kolkata"
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="country">Country *</Label>

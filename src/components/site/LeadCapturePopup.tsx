@@ -10,6 +10,7 @@ import {
   getFromCache,
   validatePin,
   writeCache,
+  detectCountryFromPin,
   type CachedPin,
 } from "@/lib/pin-lookup";
 
@@ -20,7 +21,6 @@ type Form = {
   parent_name: string;
   child_age: string;
   pincode: string;
-  area: string;
   district: string;
   state: string;
   country: string;
@@ -34,7 +34,6 @@ const empty: Form = {
   parent_name: "",
   child_age: "",
   pincode: "",
-  area: "",
   district: "",
   state: "",
   country: "",
@@ -132,19 +131,26 @@ export function LeadCapturePopup() {
       setPinLookup("idle");
       return;
     }
-    // Per-country validation before hitting external APIs
-    const check = validatePin(pin, countryCode);
+    // Per-country validation before hitting external APIs.
+    // If the pin does not match the currently-selected country's rule, try to
+    // detect the country from the pin shape (handles the "user pastes a US
+    // ZIP while country is still India" case).
+    let effectiveCC = countryCode as string;
+    const check = validatePin(pin, effectiveCC);
     if (!check.ok) {
-      setPinLookup("idle");
-      return;
+      const detected = detectCountryFromPin(pin);
+      if (!detected) {
+        setPinLookup("idle");
+        return;
+      }
+      effectiveCC = detected;
     }
     // Cache hit
-    const key = cacheKey(countryCode, pin);
+    const key = cacheKey(effectiveCC, pin);
     const cached = getFromCache(key) || getFromCache(`*:${pin}`);
     if (cached) {
       setForm((f) => ({
         ...f,
-        area: f.area || cached.area,
         district: f.district || cached.district,
         state: cached.state || f.state,
         country: cached.country || f.country,
@@ -160,7 +166,7 @@ export function LeadCapturePopup() {
       setPinLookup("loading");
       try {
         // India: 6-digit numeric pincode
-        if (/^\d{6}$/.test(pin)) {
+        if (effectiveCC === "IN" && /^\d{6}$/.test(pin)) {
           const res = await fetch(`https://api.postalpincode.in/pincode/${pin}`, {
             signal: controller.signal,
           });
@@ -177,7 +183,6 @@ export function LeadCapturePopup() {
             writeCache(cacheKey("IN", pin), payload);
             setForm((f) => ({
               ...f,
-              area: f.area || payload.area,
               district: payload.district || f.district,
               state: payload.state || f.state,
               country: payload.country,
@@ -188,15 +193,28 @@ export function LeadCapturePopup() {
             return;
           }
         }
-        // Rest of world: try country code from phone, else US
-        const cc = (countryCode || "US").toLowerCase();
-        const res = await fetch(`https://api.zippopotam.us/${cc}/${encodeURIComponent(pin)}`, {
-          signal: controller.signal,
-        });
-        if (res.ok) {
-          const data = await res.json();
-          const place = data?.places?.[0];
-          if (!cancelled && place) {
+        // Rest of world: try zippopotam. Attempt the detected/selected
+        // country first, then fall back to a small candidate list so pastes
+        // that we can identify by shape still resolve even if the country
+        // dropdown hasn't been touched.
+        const candidates = Array.from(
+          new Set(
+            [effectiveCC, countryCode, detectCountryFromPin(pin), "US"]
+              .filter(Boolean)
+              .map((c) => String(c).toLowerCase()),
+          ),
+        );
+        let filled = false;
+        for (const cc of candidates) {
+          try {
+            const res = await fetch(
+              `https://api.zippopotam.us/${cc}/${encodeURIComponent(pin)}`,
+              { signal: controller.signal },
+            );
+            if (!res.ok) continue;
+            const data = await res.json();
+            const place = data?.places?.[0];
+            if (cancelled || !place) continue;
             const payload: CachedPin = {
               area: place["place name"] || "",
               district: place["place name"] || "",
@@ -207,16 +225,20 @@ export function LeadCapturePopup() {
             writeCache(cacheKey(cc.toUpperCase(), pin), payload);
             setForm((f) => ({
               ...f,
-              area: f.area || payload.area,
               district: f.district || payload.district,
               state: payload.state || f.state,
               country: payload.country || f.country,
             }));
+            setCountryCode(cc.toUpperCase() as Country);
             setPinLookup("done");
             setManualLocation(false);
-            return;
+            filled = true;
+            break;
+          } catch {
+            // try next candidate
           }
         }
+        if (filled) return;
         if (!cancelled) {
           setPinLookup("error");
           setManualLocation(true);
@@ -249,11 +271,11 @@ export function LeadCapturePopup() {
       e.pincode = "Required";
     } else {
       const pv = validatePin(form.pincode, countryCode);
-      if (!pv.ok) e.pincode = `Invalid format (${pv.hint})`;
+      if (!pv.ok && !detectCountryFromPin(form.pincode))
+        e.pincode = `Invalid format (${pv.hint})`;
     }
-    if (!form.area.trim()) e.area = "Required";
     if (!form.district.trim()) e.district = "Required";
-    if (!form.state.trim()) e.state = "Required";
+    // State is optional (some countries / regions don't use one)
     if (!form.country.trim()) e.country = "Required";
     if (!form.concern.trim()) e.concern = "Required";
     if (form.concern === "Other" && !form.concern_other.trim())
@@ -285,7 +307,7 @@ export function LeadCapturePopup() {
         child_name: form.child_name.trim(),
         parent_name: form.parent_name.trim(),
         child_age: form.child_age.trim(),
-        area: `${form.pincode.trim()} · ${form.area.trim()}`,
+        area: form.pincode.trim(),
         district: form.district.trim(),
         state: form.state.trim(),
         country: form.country.trim(),
@@ -351,7 +373,6 @@ export function LeadCapturePopup() {
             <ReviewRow label="Parent" value={form.parent_name} />
             <ReviewRow label="Age" value={form.child_age} />
             <ReviewRow label="PIN / ZIP" value={form.pincode} />
-            <ReviewRow label="Area" value={form.area} />
             <ReviewRow label="District" value={form.district} />
             <ReviewRow label="State" value={form.state} />
             <ReviewRow label="Country" value={form.country} />

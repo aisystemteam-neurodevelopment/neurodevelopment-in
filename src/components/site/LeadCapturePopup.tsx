@@ -4,36 +4,16 @@ import type { Country } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { Country as CSCCountry, State as CSCState } from "country-state-city";
 import { supabase } from "@/integrations/supabase/client";
+import {
+  cacheKey,
+  clearCache,
+  getFromCache,
+  validatePin,
+  writeCache,
+  type CachedPin,
+} from "@/lib/pin-lookup";
 
 const STORAGE_KEY = "ind_lead_captured";
-const PIN_CACHE_KEY = "ind_pin_cache_v1";
-
-type CachedPin = {
-  area: string;
-  district: string;
-  state: string;
-  country: string;
-  countryCode?: string;
-};
-
-function readPinCache(): Record<string, CachedPin> {
-  if (typeof window === "undefined") return {};
-  try {
-    return JSON.parse(localStorage.getItem(PIN_CACHE_KEY) || "{}");
-  } catch {
-    return {};
-  }
-}
-function writePinCache(key: string, value: CachedPin) {
-  if (typeof window === "undefined") return;
-  try {
-    const c = readPinCache();
-    c[key] = value;
-    localStorage.setItem(PIN_CACHE_KEY, JSON.stringify(c));
-  } catch {
-    /* ignore quota */
-  }
-}
 
 type Form = {
   child_name: string;
@@ -152,10 +132,15 @@ export function LeadCapturePopup() {
       setPinLookup("idle");
       return;
     }
+    // Per-country validation before hitting external APIs
+    const check = validatePin(pin, countryCode);
+    if (!check.ok) {
+      setPinLookup("idle");
+      return;
+    }
     // Cache hit
-    const cacheKey = `${(countryCode || "").toUpperCase()}:${pin}`;
-    const cache = readPinCache();
-    const cached = cache[cacheKey] || cache[`*:${pin}`];
+    const key = cacheKey(countryCode, pin);
+    const cached = getFromCache(key) || getFromCache(`*:${pin}`);
     if (cached) {
       setForm((f) => ({
         ...f,
@@ -189,7 +174,7 @@ export function LeadCapturePopup() {
               country: office.Country || "India",
               countryCode: "IN",
             };
-            writePinCache(`IN:${pin}`, payload);
+            writeCache(cacheKey("IN", pin), payload);
             setForm((f) => ({
               ...f,
               area: f.area || payload.area,
@@ -219,7 +204,7 @@ export function LeadCapturePopup() {
               country: data.country || "",
               countryCode: cc.toUpperCase(),
             };
-            writePinCache(`${cc.toUpperCase()}:${pin}`, payload);
+            writeCache(cacheKey(cc.toUpperCase(), pin), payload);
             setForm((f) => ({
               ...f,
               area: f.area || payload.area,
@@ -260,7 +245,12 @@ export function LeadCapturePopup() {
     if (!form.child_name.trim()) e.child_name = "Required";
     if (!form.parent_name.trim()) e.parent_name = "Required";
     if (!form.child_age.trim()) e.child_age = "Required";
-    if (!form.pincode.trim()) e.pincode = "Required";
+    if (!form.pincode.trim()) {
+      e.pincode = "Required";
+    } else {
+      const pv = validatePin(form.pincode, countryCode);
+      if (!pv.ok) e.pincode = `Invalid format (${pv.hint})`;
+    }
     if (!form.area.trim()) e.area = "Required";
     if (!form.district.trim()) e.district = "Required";
     if (!form.state.trim()) e.state = "Required";
@@ -437,6 +427,16 @@ export function LeadCapturePopup() {
               inputMode="text"
               autoComplete="postal-code"
             />
+            <button
+              type="button"
+              onClick={() => {
+                clearCache();
+                setPinLookup("idle");
+              }}
+              className="mt-1 text-[11px] text-muted-foreground underline hover:text-foreground"
+            >
+              Clear address cache
+            </button>
           </Field>
 
           {(pinLookup === "error" || manualLocation) && (

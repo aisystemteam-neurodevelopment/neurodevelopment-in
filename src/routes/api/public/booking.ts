@@ -11,6 +11,7 @@ const schema = z.object({
   district: z.string().trim().max(120).optional().default(""),
   state: z.string().trim().max(120).optional().default(""),
   country: z.string().trim().max(120).optional().default(""),
+  pincode: z.string().trim().max(20).optional().default(""),
   concern: z.string().trim().max(120).optional().default(""),
   concernOther: z.string().trim().max(120).optional().default(""),
   timeFrame: z.string().trim().max(60).optional().default(""),
@@ -59,8 +60,8 @@ export const Route = createFileRoute("/api/public/booking")({
           parsed.childName && `Child: ${parsed.childName}`,
           parsed.concern && `Concern: ${parsed.concern}`,
           parsed.childAge && `Child age: ${parsed.childAge}`,
-          (parsed.district || parsed.state || parsed.country) &&
-            `Location: ${[parsed.district, parsed.state, parsed.country].filter(Boolean).join(", ")}`,
+          (parsed.district || parsed.state || parsed.country || parsed.pincode) &&
+            `Location: ${[parsed.district, parsed.state, parsed.country, parsed.pincode && `PIN ${parsed.pincode}`].filter(Boolean).join(", ")}`,
           parsed.timeFrame && `Time frame: ${parsed.timeFrame}`,
           `Mode: ${parsed.mode}`,
           parsed.message && `Message: ${parsed.message}`,
@@ -82,6 +83,7 @@ export const Route = createFileRoute("/api/public/booking")({
             district: parsed.district || null,
             state: parsed.state || null,
             country: parsed.country || null,
+            pincode: parsed.pincode || null,
             phone: parsed.phone,
             summary,
           })
@@ -103,6 +105,7 @@ export const Route = createFileRoute("/api/public/booking")({
           parsed.district,
           parsed.state,
           parsed.country,
+          parsed.pincode,
           parsed.concern,
           parsed.timeFrame,
           parsed.concernOther,

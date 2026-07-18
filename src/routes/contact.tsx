@@ -67,7 +67,7 @@ function buildWhatsAppLink(d: z.infer<typeof schema>) {
     `Email: ${d.email}`,
     `Phone: ${d.phone}`,
     d.childAge ? `Child age: ${d.childAge}` : "",
-    `Location: ${[d.district, d.state, d.country].filter(Boolean).join(", ")}`,
+    `Location: ${[d.district, d.state, d.country, d.pincode && `PIN ${d.pincode}`].filter(Boolean).join(", ")}`,
     d.concern ? `Concern: ${d.concern}` : "",
     d.concernOther ? `Other concern: ${d.concernOther}` : "",
     d.timeFrame ? `Time frame: ${d.timeFrame}` : "",

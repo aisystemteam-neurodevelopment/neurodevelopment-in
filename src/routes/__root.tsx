@@ -48,8 +48,8 @@ export const Route = createRootRoute({
       { name: "description", content: "IND is not a therapy centre. It is a structured, parent-led neurodevelopment system that replaces fragmented intervention with measurable developmental progress. Founded by Dr. Diptanshu Das." },
       { property: "og:description", content: "IND is not a therapy centre. It is a structured, parent-led neurodevelopment system that replaces fragmented intervention with measurable developmental progress. Founded by Dr. Diptanshu Das." },
       { name: "twitter:description", content: "IND is not a therapy centre. It is a structured, parent-led neurodevelopment system that replaces fragmented intervention with measurable developmental progress. Founded by Dr. Diptanshu Das." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/49e4f0e9-2f1d-4cc6-b100-02d6873125e6" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/49e4f0e9-2f1d-4cc6-b100-02d6873125e6" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/9bb9bda6-c4eb-42b7-9aa3-e9bf3d71e73b" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/9bb9bda6-c4eb-42b7-9aa3-e9bf3d71e73b" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

@@ -83,7 +83,6 @@ export const Route = createFileRoute("/api/public/booking")({
             district: parsed.district || null,
             state: parsed.state || null,
             country: parsed.country || null,
-            pincode: parsed.pincode || null,
             phone: parsed.phone,
             summary,
           })

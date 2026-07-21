@@ -15,7 +15,7 @@ const schema = z.object({
   countryCode: z
     .string()
     .trim()
-    .regex(/^[A-Za-z]{2}$/i, "countryCode must be ISO-3166-1 alpha-2")
+    .regex(/^([A-Za-z]{2})?$/i, "countryCode must be ISO-3166-1 alpha-2")
     .transform((v) => v.toUpperCase())
     .optional()
     .default(""),

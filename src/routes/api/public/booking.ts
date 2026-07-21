@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
 import { z } from "zod";
+import { validatePin } from "@/lib/pin-lookup";
 
 const schema = z.object({
   name: z.string().trim().min(1).max(100),
@@ -11,12 +12,35 @@ const schema = z.object({
   district: z.string().trim().max(120).optional().default(""),
   state: z.string().trim().max(120).optional().default(""),
   country: z.string().trim().max(120).optional().default(""),
-  pincode: z.string().trim().max(20).optional().default(""),
+  countryCode: z
+    .string()
+    .trim()
+    .regex(/^([A-Za-z]{2})?$/i, "countryCode must be ISO-3166-1 alpha-2")
+    .transform((v) => v.toUpperCase())
+    .optional()
+    .default(""),
+  pincode: z
+    .string()
+    .trim()
+    .max(12, "PIN/ZIP too long")
+    .regex(/^[A-Za-z0-9 -]*$/, "PIN/ZIP has invalid characters")
+    .optional()
+    .default(""),
   concern: z.string().trim().max(120).optional().default(""),
   concernOther: z.string().trim().max(120).optional().default(""),
   timeFrame: z.string().trim().max(60).optional().default(""),
   mode: z.enum(["online", "in-person", "either"]).optional().default("either"),
   message: z.string().trim().max(2000).optional().default(""),
+}).superRefine((val, ctx) => {
+  if (!val.pincode) return; // optional — allow empty
+  const { ok, hint } = validatePin(val.pincode, val.countryCode || undefined);
+  if (!ok) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ["pincode"],
+      message: `Invalid PIN/ZIP format (${hint})`,
+    });
+  }
 });
 
 const SHEET_ID = "1ZsiC5ZVaSm78k08bUA8Fl1YLpSB-rExRMTzllv5v6T8";
@@ -53,7 +77,12 @@ export const Route = createFileRoute("/api/public/booking")({
         try {
           parsed = schema.parse(await request.json());
         } catch (e) {
-          return Response.json({ error: "Invalid input" }, { status: 400 });
+          const issues =
+            e instanceof z.ZodError ? e.issues.map((i) => i.message) : undefined;
+          return Response.json(
+            { error: issues?.[0] || "Invalid input", issues },
+            { status: 400 },
+          );
         }
 
         const summary = [

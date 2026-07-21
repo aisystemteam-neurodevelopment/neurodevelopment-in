@@ -50,6 +50,7 @@ const schema = z.object({
   pincode: z.string().trim().max(20).optional(),
   state: z.string().trim().max(120).optional(),
   country: z.string().trim().min(1, "Country is required").max(120),
+  countryCode: z.string().trim().length(2).optional(),
   concern: z.string().trim().max(120).optional(),
   concernOther: z.string().trim().max(120).optional(),
   timeFrame: z.string().trim().max(60).optional(),
@@ -227,6 +228,7 @@ function ContactPage() {
       state: stateName,
       district,
       pincode,
+      countryCode: countryIso || undefined,
       mode: raw.mode || "either",
     });
     if (!parsed.success) {

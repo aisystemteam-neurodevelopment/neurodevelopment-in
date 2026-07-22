@@ -237,13 +237,31 @@ function ContactPage() {
     }
     setBusy(true);
     try {
+      if (pincode.trim()) {
+        const check = validatePin(pincode.trim(), countryIso || undefined);
+        if (!check.ok) {
+          toast.error(check.message || "Please enter a valid PIN / ZIP for the selected country.");
+          setBusy(false);
+          return;
+        }
+      }
       const res = await fetch("/api/public/booking", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(parsed.data),
       });
       if (!res.ok) {
-        toast.error("Could not submit right now. Please call or WhatsApp +91 94333 08880.");
+        let serverMsg = "";
+        try {
+          const body = await res.json();
+          serverMsg = body?.issues?.[0]?.message || body?.error || "";
+        } catch {
+          /* ignore */
+        }
+        toast.error(
+          serverMsg ||
+            "Could not submit right now. Please call or WhatsApp +91 94333 08880.",
+        );
         return;
       }
       toast.success("Booking received. Our team will reach out shortly.");

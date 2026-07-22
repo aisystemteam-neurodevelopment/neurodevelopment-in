@@ -240,7 +240,9 @@ function ContactPage() {
       if (pincode.trim()) {
         const check = validatePin(pincode.trim(), countryIso || undefined);
         if (!check.ok) {
-          toast.error(check.message || "Please enter a valid PIN / ZIP for the selected country.");
+          toast.error(
+            `Invalid PIN / ZIP for the selected country (expected ${check.hint}).`,
+          );
           setBusy(false);
           return;
         }

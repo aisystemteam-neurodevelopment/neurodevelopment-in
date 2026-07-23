@@ -48,8 +48,8 @@ export const Route = createRootRoute({
       { name: "description", content: "IND is not a therapy centre. It is a structured, parent-led neurodevelopment system that replaces fragmented intervention with measurable developmental progress. Founded by Dr. Diptanshu Das." },
       { property: "og:description", content: "IND is not a therapy centre. It is a structured, parent-led neurodevelopment system that replaces fragmented intervention with measurable developmental progress. Founded by Dr. Diptanshu Das." },
       { name: "twitter:description", content: "IND is not a therapy centre. It is a structured, parent-led neurodevelopment system that replaces fragmented intervention with measurable developmental progress. Founded by Dr. Diptanshu Das." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/9bb9bda6-c4eb-42b7-9aa3-e9bf3d71e73b" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/9bb9bda6-c4eb-42b7-9aa3-e9bf3d71e73b" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/e615845d-d5d6-4842-81de-7874761f4644" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/e615845d-d5d6-4842-81de-7874761f4644" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -59,6 +59,7 @@ export const Route = createRootRoute({
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap",
       },
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
     ],
     scripts: [
       {

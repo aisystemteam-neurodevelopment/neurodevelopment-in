@@ -122,7 +122,7 @@ function HomePage() {
 
       {/* What changes */}
       <section className="mx-auto max-w-6xl px-5 py-16">
-        <div className="max-w-2xl">
+        <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-display text-4xl">What changes when development becomes a system</h2>
           <p className="mt-3 text-muted-foreground">
             Most families are stuck not because they aren't trying hard enough, but because
@@ -159,7 +159,7 @@ function HomePage() {
       {/* 4 phase */}
       <section className="bg-secondary/40 py-20">
         <div className="mx-auto max-w-6xl px-5">
-          <div className="max-w-2xl">
+          <div className="mx-auto max-w-2xl text-center">
             <h2 className="font-display text-4xl">The 4-Phase Sequential Flightpath</h2>
             <p className="mt-3 text-muted-foreground">
               Sequence is law. No speech before regulation. No social skills before thinking.
@@ -284,7 +284,7 @@ function HomePage() {
       {/* The cost of drift */}
       <section className="mx-auto max-w-6xl px-5 py-20">
 
-        <div className="max-w-2xl">
+        <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-display text-4xl">Where families are stuck</h2>
           <p className="mt-3 text-muted-foreground">
             These are the patterns we hear every week. None of them are personal failures —
@@ -316,7 +316,7 @@ function HomePage() {
 
       {/* Proof & credibility */}
       <section className="mx-auto max-w-6xl px-5 py-20">
-        <div className="max-w-2xl">
+        <div className="mx-auto max-w-2xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground">
             Proof &amp; credibility
           </span>

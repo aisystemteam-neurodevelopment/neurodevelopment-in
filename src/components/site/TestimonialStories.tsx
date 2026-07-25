@@ -73,7 +73,7 @@ const stories: Story[] = [
 export function TestimonialStories() {
   return (
     <section className="mx-auto max-w-6xl px-5 py-20">
-      <div className="max-w-2xl">
+      <div className="mx-auto max-w-2xl text-center">
         <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground">
           Parent stories · measurable outcomes
         </span>

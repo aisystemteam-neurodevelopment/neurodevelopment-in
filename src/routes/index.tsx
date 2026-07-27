@@ -123,8 +123,8 @@ function HomePage() {
       {/* What changes */}
       <section className="mx-auto max-w-6xl px-5 py-16">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-display text-4xl">What changes when development becomes a system</h2>
-          <p className="mt-3 text-muted-foreground">
+          <h2 className="font-display text-3xl leading-tight tracking-tight md:text-4xl">What changes when development becomes a system</h2>
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
             Most families are stuck not because they aren't trying hard enough, but because
             no one has handed them a structured pathway. That is what IND replaces.
           </p>
@@ -160,8 +160,8 @@ function HomePage() {
       <section className="bg-secondary/40 py-20">
         <div className="mx-auto max-w-6xl px-5">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-display text-4xl">The 4-Phase Sequential Flightpath</h2>
-            <p className="mt-3 text-muted-foreground">
+            <h2 className="font-display text-3xl leading-tight tracking-tight md:text-4xl">The 4-Phase Sequential Flightpath</h2>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
               Sequence is law. No speech before regulation. No social skills before thinking.
               No advanced learning before engagement. We move only when readiness is demonstrated.
             </p>
@@ -190,7 +190,7 @@ function HomePage() {
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground">
               <Hourglass className="h-3 w-3" /> The Invisible Loss
             </span>
-            <h2 className="mt-4 font-display text-4xl">
+            <h2 className="mt-4 font-display text-3xl leading-tight tracking-tight md:text-4xl">
               Fragmented intervention has a cost. <span className="text-primary">Most families never see it on a bill.</span>
             </h2>
             <p className="mt-4 text-muted-foreground">
@@ -200,7 +200,7 @@ function HomePage() {
               in neurodevelopment — <span className="text-foreground">time inside the developmental window</span> —
               quietly drains away.
             </p>
-            <p className="mt-3 text-muted-foreground">
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
               We call this the Invisible Loss. It's not a failure of effort or love. It's
               what happens when there is no single system owning the whole child.
             </p>
@@ -285,8 +285,8 @@ function HomePage() {
       <section className="mx-auto max-w-6xl px-5 py-20">
 
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-display text-4xl">Where families are stuck</h2>
-          <p className="mt-3 text-muted-foreground">
+          <h2 className="font-display text-3xl leading-tight tracking-tight md:text-4xl">Where families are stuck</h2>
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
             These are the patterns we hear every week. None of them are personal failures —
             they are signals that the current system is fragmented.
           </p>
@@ -320,8 +320,8 @@ function HomePage() {
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground">
             Proof &amp; credibility
           </span>
-          <h2 className="mt-4 font-display text-4xl">Numbers we can stand behind</h2>
-          <p className="mt-3 text-muted-foreground">
+          <h2 className="mt-4 font-display text-3xl leading-tight tracking-tight md:text-4xl">Numbers we can stand behind</h2>
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
             We don't use vanity metrics or guarantees. These are the verifiable signals of
             scale, continuity, and parent engagement behind the IND system.
           </p>
@@ -461,7 +461,7 @@ function HomePage() {
       {/* CTA */}
       <section className="mx-auto max-w-4xl px-5 pb-20 pt-20 text-center">
 
-        <h2 className="font-display text-4xl">Ready for a structured pathway?</h2>
+        <h2 className="font-display text-3xl leading-tight tracking-tight md:text-4xl">Ready for a structured pathway?</h2>
         <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
           Tell us about your child. We'll have a short, honest conversation to see whether
           our system is the right fit for your family right now.

@@ -77,21 +77,21 @@ export function TestimonialStories() {
         <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground">
           Parent stories · measurable outcomes
         </span>
-        <h2 className="mt-4 font-display text-4xl">
+        <h2 className="mt-4 font-display text-3xl leading-tight tracking-tight md:text-4xl">
           Three families. Three starting points. One structured pathway.
         </h2>
-        <p className="mt-3 text-muted-foreground">
+        <p className="mt-4 text-base leading-relaxed text-muted-foreground">
           We publish stories the way we run the system: starting point, phase entered,
           driver worked, signals observed. No miracles, no anonymous quotes — only
           what we measured.
         </p>
       </div>
 
-      <div className="mt-10 grid gap-6 md:grid-cols-3">
+      <div className="mt-12 grid gap-6 md:grid-cols-3">
         {stories.map((s) => (
           <article
             key={s.name}
-            className="flex flex-col rounded-3xl border border-border bg-card p-6 shadow-sm"
+            className="flex flex-col rounded-3xl border border-border bg-card p-6 text-left shadow-sm md:p-7"
           >
             <div className="flex items-center gap-3">
               <div
@@ -110,24 +110,24 @@ export function TestimonialStories() {
             </div>
             <div className="mt-1 text-sm font-medium">{s.child}</div>
 
-            <div className="mt-4 space-y-3 text-sm">
+            <div className="mt-5 space-y-4 text-sm leading-relaxed">
               <div>
                 <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                   Starting point
                 </div>
-                <p className="mt-1 text-muted-foreground">{s.starting}</p>
+                <p className="mt-1.5 text-muted-foreground">{s.starting}</p>
               </div>
               <div>
                 <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                   Phase entered
                 </div>
-                <p className="mt-1 text-muted-foreground">{s.phase}</p>
+                <p className="mt-1.5 text-muted-foreground">{s.phase}</p>
               </div>
               <div>
                 <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                   Signals observed
                 </div>
-                <ul className="mt-1 space-y-1">
+                <ul className="mt-1.5 space-y-1.5">
                   {s.outcomes.map((o) => (
                     <li key={o} className="flex gap-2 text-muted-foreground">
                       <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
@@ -138,7 +138,7 @@ export function TestimonialStories() {
               </div>
             </div>
 
-            <blockquote className="mt-5 rounded-2xl bg-secondary/40 p-4 text-sm italic text-foreground">
+            <blockquote className="mt-6 rounded-2xl bg-secondary/40 p-5 text-sm italic leading-relaxed text-foreground">
               <Quote className="mb-2 h-4 w-4 text-primary" />
               {s.quote}
             </blockquote>
@@ -146,7 +146,7 @@ export function TestimonialStories() {
         ))}
       </div>
 
-      <p className="mt-6 text-xs text-muted-foreground">
+      <p className="mx-auto mt-8 max-w-3xl text-xs leading-relaxed text-muted-foreground">
         Names and locations changed where requested. All stories published with full parent
         consent. We do not publish outcome percentages, because development is a tracked
         trajectory — not a guarantee.

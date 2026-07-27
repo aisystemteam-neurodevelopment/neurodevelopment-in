@@ -19,6 +19,7 @@ const nav = [
   { to: "/approach", label: "Approach" },
   { to: "/services", label: "Services" },
   { to: "/programs", label: "Programs" },
+  { to: "/science-of-stuck", label: "Masterclass" },
   { to: "/about", label: "About" },
   { to: "/quiz", label: "Quiz" },
   { to: "/faq", label: "FAQ" },

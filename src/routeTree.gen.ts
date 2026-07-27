@@ -24,6 +24,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as TreatmentsSlugRouteImport } from './routes/treatments.$slug'
 import { Route as ApiPublicRefundRequestRouteImport } from './routes/api/public/refund-request'
 import { Route as ApiPublicQuizLeadRouteImport } from './routes/api/public/quiz-lead'
+import { Route as ApiPublicMasterclassRouteImport } from './routes/api/public/masterclass'
 import { Route as ApiPublicLeadMagnetRouteImport } from './routes/api/public/lead-magnet'
 import { Route as ApiPublicChatRouteImport } from './routes/api/public/chat'
 import { Route as ApiPublicBookingRouteImport } from './routes/api/public/booking'
@@ -103,6 +104,11 @@ const ApiPublicQuizLeadRoute = ApiPublicQuizLeadRouteImport.update({
   path: '/api/public/quiz-lead',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicMasterclassRoute = ApiPublicMasterclassRouteImport.update({
+  id: '/api/public/masterclass',
+  path: '/api/public/masterclass',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicLeadMagnetRoute = ApiPublicLeadMagnetRouteImport.update({
   id: '/api/public/lead-magnet',
   path: '/api/public/lead-magnet',
@@ -136,6 +142,7 @@ export interface FileRoutesByFullPath {
   '/api/public/booking': typeof ApiPublicBookingRoute
   '/api/public/chat': typeof ApiPublicChatRoute
   '/api/public/lead-magnet': typeof ApiPublicLeadMagnetRoute
+  '/api/public/masterclass': typeof ApiPublicMasterclassRoute
   '/api/public/quiz-lead': typeof ApiPublicQuizLeadRoute
   '/api/public/refund-request': typeof ApiPublicRefundRequestRoute
 }
@@ -156,6 +163,7 @@ export interface FileRoutesByTo {
   '/api/public/booking': typeof ApiPublicBookingRoute
   '/api/public/chat': typeof ApiPublicChatRoute
   '/api/public/lead-magnet': typeof ApiPublicLeadMagnetRoute
+  '/api/public/masterclass': typeof ApiPublicMasterclassRoute
   '/api/public/quiz-lead': typeof ApiPublicQuizLeadRoute
   '/api/public/refund-request': typeof ApiPublicRefundRequestRoute
 }
@@ -177,6 +185,7 @@ export interface FileRoutesById {
   '/api/public/booking': typeof ApiPublicBookingRoute
   '/api/public/chat': typeof ApiPublicChatRoute
   '/api/public/lead-magnet': typeof ApiPublicLeadMagnetRoute
+  '/api/public/masterclass': typeof ApiPublicMasterclassRoute
   '/api/public/quiz-lead': typeof ApiPublicQuizLeadRoute
   '/api/public/refund-request': typeof ApiPublicRefundRequestRoute
 }
@@ -199,6 +208,7 @@ export interface FileRouteTypes {
     | '/api/public/booking'
     | '/api/public/chat'
     | '/api/public/lead-magnet'
+    | '/api/public/masterclass'
     | '/api/public/quiz-lead'
     | '/api/public/refund-request'
   fileRoutesByTo: FileRoutesByTo
@@ -219,6 +229,7 @@ export interface FileRouteTypes {
     | '/api/public/booking'
     | '/api/public/chat'
     | '/api/public/lead-magnet'
+    | '/api/public/masterclass'
     | '/api/public/quiz-lead'
     | '/api/public/refund-request'
   id:
@@ -239,6 +250,7 @@ export interface FileRouteTypes {
     | '/api/public/booking'
     | '/api/public/chat'
     | '/api/public/lead-magnet'
+    | '/api/public/masterclass'
     | '/api/public/quiz-lead'
     | '/api/public/refund-request'
   fileRoutesById: FileRoutesById
@@ -260,6 +272,7 @@ export interface RootRouteChildren {
   ApiPublicBookingRoute: typeof ApiPublicBookingRoute
   ApiPublicChatRoute: typeof ApiPublicChatRoute
   ApiPublicLeadMagnetRoute: typeof ApiPublicLeadMagnetRoute
+  ApiPublicMasterclassRoute: typeof ApiPublicMasterclassRoute
   ApiPublicQuizLeadRoute: typeof ApiPublicQuizLeadRoute
   ApiPublicRefundRequestRoute: typeof ApiPublicRefundRequestRoute
 }
@@ -371,6 +384,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicQuizLeadRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/masterclass': {
+      id: '/api/public/masterclass'
+      path: '/api/public/masterclass'
+      fullPath: '/api/public/masterclass'
+      preLoaderRoute: typeof ApiPublicMasterclassRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/lead-magnet': {
       id: '/api/public/lead-magnet'
       path: '/api/public/lead-magnet'
@@ -412,6 +432,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicBookingRoute: ApiPublicBookingRoute,
   ApiPublicChatRoute: ApiPublicChatRoute,
   ApiPublicLeadMagnetRoute: ApiPublicLeadMagnetRoute,
+  ApiPublicMasterclassRoute: ApiPublicMasterclassRoute,
   ApiPublicQuizLeadRoute: ApiPublicQuizLeadRoute,
   ApiPublicRefundRequestRoute: ApiPublicRefundRequestRoute,
 }

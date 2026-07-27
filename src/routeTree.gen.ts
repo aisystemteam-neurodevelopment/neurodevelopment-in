@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as ScienceOfStuckRouteImport } from './routes/science-of-stuck'
 import { Route as RefundRouteImport } from './routes/refund'
 import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as ProgramsRouteImport } from './routes/programs'
@@ -24,6 +25,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as TreatmentsSlugRouteImport } from './routes/treatments.$slug'
 import { Route as ApiPublicRefundRequestRouteImport } from './routes/api/public/refund-request'
 import { Route as ApiPublicQuizLeadRouteImport } from './routes/api/public/quiz-lead'
+import { Route as ApiPublicMasterclassRouteImport } from './routes/api/public/masterclass'
 import { Route as ApiPublicLeadMagnetRouteImport } from './routes/api/public/lead-magnet'
 import { Route as ApiPublicChatRouteImport } from './routes/api/public/chat'
 import { Route as ApiPublicBookingRouteImport } from './routes/api/public/booking'
@@ -36,6 +38,11 @@ const TermsRoute = TermsRouteImport.update({
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ScienceOfStuckRoute = ScienceOfStuckRouteImport.update({
+  id: '/science-of-stuck',
+  path: '/science-of-stuck',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RefundRoute = RefundRouteImport.update({
@@ -103,6 +110,11 @@ const ApiPublicQuizLeadRoute = ApiPublicQuizLeadRouteImport.update({
   path: '/api/public/quiz-lead',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicMasterclassRoute = ApiPublicMasterclassRouteImport.update({
+  id: '/api/public/masterclass',
+  path: '/api/public/masterclass',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicLeadMagnetRoute = ApiPublicLeadMagnetRouteImport.update({
   id: '/api/public/lead-magnet',
   path: '/api/public/lead-magnet',
@@ -130,12 +142,14 @@ export interface FileRoutesByFullPath {
   '/programs': typeof ProgramsRoute
   '/quiz': typeof QuizRoute
   '/refund': typeof RefundRoute
+  '/science-of-stuck': typeof ScienceOfStuckRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
   '/treatments/$slug': typeof TreatmentsSlugRoute
   '/api/public/booking': typeof ApiPublicBookingRoute
   '/api/public/chat': typeof ApiPublicChatRoute
   '/api/public/lead-magnet': typeof ApiPublicLeadMagnetRoute
+  '/api/public/masterclass': typeof ApiPublicMasterclassRoute
   '/api/public/quiz-lead': typeof ApiPublicQuizLeadRoute
   '/api/public/refund-request': typeof ApiPublicRefundRequestRoute
 }
@@ -150,12 +164,14 @@ export interface FileRoutesByTo {
   '/programs': typeof ProgramsRoute
   '/quiz': typeof QuizRoute
   '/refund': typeof RefundRoute
+  '/science-of-stuck': typeof ScienceOfStuckRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
   '/treatments/$slug': typeof TreatmentsSlugRoute
   '/api/public/booking': typeof ApiPublicBookingRoute
   '/api/public/chat': typeof ApiPublicChatRoute
   '/api/public/lead-magnet': typeof ApiPublicLeadMagnetRoute
+  '/api/public/masterclass': typeof ApiPublicMasterclassRoute
   '/api/public/quiz-lead': typeof ApiPublicQuizLeadRoute
   '/api/public/refund-request': typeof ApiPublicRefundRequestRoute
 }
@@ -171,12 +187,14 @@ export interface FileRoutesById {
   '/programs': typeof ProgramsRoute
   '/quiz': typeof QuizRoute
   '/refund': typeof RefundRoute
+  '/science-of-stuck': typeof ScienceOfStuckRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
   '/treatments/$slug': typeof TreatmentsSlugRoute
   '/api/public/booking': typeof ApiPublicBookingRoute
   '/api/public/chat': typeof ApiPublicChatRoute
   '/api/public/lead-magnet': typeof ApiPublicLeadMagnetRoute
+  '/api/public/masterclass': typeof ApiPublicMasterclassRoute
   '/api/public/quiz-lead': typeof ApiPublicQuizLeadRoute
   '/api/public/refund-request': typeof ApiPublicRefundRequestRoute
 }
@@ -193,12 +211,14 @@ export interface FileRouteTypes {
     | '/programs'
     | '/quiz'
     | '/refund'
+    | '/science-of-stuck'
     | '/services'
     | '/terms'
     | '/treatments/$slug'
     | '/api/public/booking'
     | '/api/public/chat'
     | '/api/public/lead-magnet'
+    | '/api/public/masterclass'
     | '/api/public/quiz-lead'
     | '/api/public/refund-request'
   fileRoutesByTo: FileRoutesByTo
@@ -213,12 +233,14 @@ export interface FileRouteTypes {
     | '/programs'
     | '/quiz'
     | '/refund'
+    | '/science-of-stuck'
     | '/services'
     | '/terms'
     | '/treatments/$slug'
     | '/api/public/booking'
     | '/api/public/chat'
     | '/api/public/lead-magnet'
+    | '/api/public/masterclass'
     | '/api/public/quiz-lead'
     | '/api/public/refund-request'
   id:
@@ -233,12 +255,14 @@ export interface FileRouteTypes {
     | '/programs'
     | '/quiz'
     | '/refund'
+    | '/science-of-stuck'
     | '/services'
     | '/terms'
     | '/treatments/$slug'
     | '/api/public/booking'
     | '/api/public/chat'
     | '/api/public/lead-magnet'
+    | '/api/public/masterclass'
     | '/api/public/quiz-lead'
     | '/api/public/refund-request'
   fileRoutesById: FileRoutesById
@@ -254,12 +278,14 @@ export interface RootRouteChildren {
   ProgramsRoute: typeof ProgramsRoute
   QuizRoute: typeof QuizRoute
   RefundRoute: typeof RefundRoute
+  ScienceOfStuckRoute: typeof ScienceOfStuckRoute
   ServicesRoute: typeof ServicesRoute
   TermsRoute: typeof TermsRoute
   TreatmentsSlugRoute: typeof TreatmentsSlugRoute
   ApiPublicBookingRoute: typeof ApiPublicBookingRoute
   ApiPublicChatRoute: typeof ApiPublicChatRoute
   ApiPublicLeadMagnetRoute: typeof ApiPublicLeadMagnetRoute
+  ApiPublicMasterclassRoute: typeof ApiPublicMasterclassRoute
   ApiPublicQuizLeadRoute: typeof ApiPublicQuizLeadRoute
   ApiPublicRefundRequestRoute: typeof ApiPublicRefundRequestRoute
 }
@@ -278,6 +304,13 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/science-of-stuck': {
+      id: '/science-of-stuck'
+      path: '/science-of-stuck'
+      fullPath: '/science-of-stuck'
+      preLoaderRoute: typeof ScienceOfStuckRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/refund': {
@@ -371,6 +404,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicQuizLeadRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/masterclass': {
+      id: '/api/public/masterclass'
+      path: '/api/public/masterclass'
+      fullPath: '/api/public/masterclass'
+      preLoaderRoute: typeof ApiPublicMasterclassRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/lead-magnet': {
       id: '/api/public/lead-magnet'
       path: '/api/public/lead-magnet'
@@ -406,12 +446,14 @@ const rootRouteChildren: RootRouteChildren = {
   ProgramsRoute: ProgramsRoute,
   QuizRoute: QuizRoute,
   RefundRoute: RefundRoute,
+  ScienceOfStuckRoute: ScienceOfStuckRoute,
   ServicesRoute: ServicesRoute,
   TermsRoute: TermsRoute,
   TreatmentsSlugRoute: TreatmentsSlugRoute,
   ApiPublicBookingRoute: ApiPublicBookingRoute,
   ApiPublicChatRoute: ApiPublicChatRoute,
   ApiPublicLeadMagnetRoute: ApiPublicLeadMagnetRoute,
+  ApiPublicMasterclassRoute: ApiPublicMasterclassRoute,
   ApiPublicQuizLeadRoute: ApiPublicQuizLeadRoute,
   ApiPublicRefundRequestRoute: ApiPublicRefundRequestRoute,
 }

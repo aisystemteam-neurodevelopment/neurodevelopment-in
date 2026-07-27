@@ -105,33 +105,6 @@ export type Database = {
           },
         ]
       }
-      departments: {
-        Row: {
-          created_at: string
-          id: string
-          name: string
-          slug: string
-          tl_name: string | null
-          tl_user_id: string | null
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          name: string
-          slug: string
-          tl_name?: string | null
-          tl_user_id?: string | null
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          name?: string
-          slug?: string
-          tl_name?: string | null
-          tl_user_id?: string | null
-        }
-        Relationships: []
-      }
       escalations: {
         Row: {
           assigned_role: Database["public"]["Enums"]["app_role"]
@@ -523,10 +496,8 @@ export type Database = {
           avatar_url: string | null
           city: string | null
           created_at: string
-          department_id: string | null
           full_name: string | null
           id: string
-          is_tl: boolean
           phone: string | null
           updated_at: string
         }
@@ -534,10 +505,8 @@ export type Database = {
           avatar_url?: string | null
           city?: string | null
           created_at?: string
-          department_id?: string | null
           full_name?: string | null
           id: string
-          is_tl?: boolean
           phone?: string | null
           updated_at?: string
         }
@@ -545,22 +514,12 @@ export type Database = {
           avatar_url?: string | null
           city?: string | null
           created_at?: string
-          department_id?: string | null
           full_name?: string | null
           id?: string
-          is_tl?: boolean
           phone?: string | null
           updated_at?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "profiles_department_id_fkey"
-            columns: ["department_id"]
-            isOneToOne: false
-            referencedRelation: "departments"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       progress_reports: {
         Row: {
@@ -603,59 +562,6 @@ export type Database = {
           },
         ]
       }
-      tasks: {
-        Row: {
-          assigned_by: string | null
-          assignee_id: string | null
-          created_at: string
-          department_id: string
-          description: string | null
-          due_date: string | null
-          id: string
-          month_bucket: string
-          priority: Database["public"]["Enums"]["task_priority"]
-          status: Database["public"]["Enums"]["task_status"]
-          title: string
-          updated_at: string
-        }
-        Insert: {
-          assigned_by?: string | null
-          assignee_id?: string | null
-          created_at?: string
-          department_id: string
-          description?: string | null
-          due_date?: string | null
-          id?: string
-          month_bucket: string
-          priority?: Database["public"]["Enums"]["task_priority"]
-          status?: Database["public"]["Enums"]["task_status"]
-          title: string
-          updated_at?: string
-        }
-        Update: {
-          assigned_by?: string | null
-          assignee_id?: string | null
-          created_at?: string
-          department_id?: string
-          description?: string | null
-          due_date?: string | null
-          id?: string
-          month_bucket?: string
-          priority?: Database["public"]["Enums"]["task_priority"]
-          status?: Database["public"]["Enums"]["task_status"]
-          title?: string
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "tasks_department_id_fkey"
-            columns: ["department_id"]
-            isOneToOne: false
-            referencedRelation: "departments"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       user_roles: {
         Row: {
           created_at: string
@@ -687,14 +593,6 @@ export type Database = {
           _role: Database["public"]["Enums"]["app_role"]
           _user_id: string
         }
-        Returns: boolean
-      }
-      is_department_coordinator: {
-        Args: { _dept: string; _user: string }
-        Returns: boolean
-      }
-      is_department_member: {
-        Args: { _dept: string; _user: string }
         Returns: boolean
       }
       is_staff: { Args: { _user_id: string }; Returns: boolean }

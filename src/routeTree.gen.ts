@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as ScienceOfStuckRouteImport } from './routes/science-of-stuck'
 import { Route as RefundRouteImport } from './routes/refund'
 import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as ProgramsRouteImport } from './routes/programs'
@@ -37,6 +38,11 @@ const TermsRoute = TermsRouteImport.update({
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ScienceOfStuckRoute = ScienceOfStuckRouteImport.update({
+  id: '/science-of-stuck',
+  path: '/science-of-stuck',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RefundRoute = RefundRouteImport.update({
@@ -136,6 +142,7 @@ export interface FileRoutesByFullPath {
   '/programs': typeof ProgramsRoute
   '/quiz': typeof QuizRoute
   '/refund': typeof RefundRoute
+  '/science-of-stuck': typeof ScienceOfStuckRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
   '/treatments/$slug': typeof TreatmentsSlugRoute
@@ -157,6 +164,7 @@ export interface FileRoutesByTo {
   '/programs': typeof ProgramsRoute
   '/quiz': typeof QuizRoute
   '/refund': typeof RefundRoute
+  '/science-of-stuck': typeof ScienceOfStuckRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
   '/treatments/$slug': typeof TreatmentsSlugRoute
@@ -179,6 +187,7 @@ export interface FileRoutesById {
   '/programs': typeof ProgramsRoute
   '/quiz': typeof QuizRoute
   '/refund': typeof RefundRoute
+  '/science-of-stuck': typeof ScienceOfStuckRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
   '/treatments/$slug': typeof TreatmentsSlugRoute
@@ -202,6 +211,7 @@ export interface FileRouteTypes {
     | '/programs'
     | '/quiz'
     | '/refund'
+    | '/science-of-stuck'
     | '/services'
     | '/terms'
     | '/treatments/$slug'
@@ -223,6 +233,7 @@ export interface FileRouteTypes {
     | '/programs'
     | '/quiz'
     | '/refund'
+    | '/science-of-stuck'
     | '/services'
     | '/terms'
     | '/treatments/$slug'
@@ -244,6 +255,7 @@ export interface FileRouteTypes {
     | '/programs'
     | '/quiz'
     | '/refund'
+    | '/science-of-stuck'
     | '/services'
     | '/terms'
     | '/treatments/$slug'
@@ -266,6 +278,7 @@ export interface RootRouteChildren {
   ProgramsRoute: typeof ProgramsRoute
   QuizRoute: typeof QuizRoute
   RefundRoute: typeof RefundRoute
+  ScienceOfStuckRoute: typeof ScienceOfStuckRoute
   ServicesRoute: typeof ServicesRoute
   TermsRoute: typeof TermsRoute
   TreatmentsSlugRoute: typeof TreatmentsSlugRoute
@@ -291,6 +304,13 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/science-of-stuck': {
+      id: '/science-of-stuck'
+      path: '/science-of-stuck'
+      fullPath: '/science-of-stuck'
+      preLoaderRoute: typeof ScienceOfStuckRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/refund': {
@@ -426,6 +446,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProgramsRoute: ProgramsRoute,
   QuizRoute: QuizRoute,
   RefundRoute: RefundRoute,
+  ScienceOfStuckRoute: ScienceOfStuckRoute,
   ServicesRoute: ServicesRoute,
   TermsRoute: TermsRoute,
   TreatmentsSlugRoute: TreatmentsSlugRoute,

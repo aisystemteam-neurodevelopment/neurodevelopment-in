@@ -32,17 +32,19 @@ type ProgramCard = {
   badge?: string;
   cta: string;
   featured?: boolean;
+  to?: "/science-of-stuck" | "/contact";
 };
 
 const ENTRY: ProgramCard[] = [
   {
     programKey: "masterclass",
     name: "Masterclass",
-    tagline: "Start here. One session.",
-    durationLabel: "Live webinar",
-    cta: "Join the next session",
+    tagline: "Science of Stuck™ — start here. One session.",
+    durationLabel: "Live 3-hour webinar",
+    cta: "See the masterclass",
+    to: "/science-of-stuck",
     highlights: [
-      "See the parent-led system in 90 minutes",
+      "See the parent-led system in 3 hours",
       "Understand the invisible loss model",
       "Q&A with the IND team",
     ],
@@ -210,7 +212,7 @@ function ProgramsPage() {
                 </ul>
                 <div className="mt-6 pt-2">
                   <Button asChild variant={featured ? "default" : "outline"} className="w-full rounded-full">
-                    <Link to="/contact">
+                    <Link to={p.to ?? "/contact"}>
                       {p.cta} <ArrowRight className="ml-1 h-4 w-4" />
                     </Link>
                   </Button>

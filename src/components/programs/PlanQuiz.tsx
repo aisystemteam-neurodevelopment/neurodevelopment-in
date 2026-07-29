@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, RotateCcw, Sparkles } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 type Plan =
   | "masterclass"
@@ -118,7 +119,13 @@ const PLAN_META: Record<Plan, { name: string; tagline: string; href: string }> =
   },
 };
 
-export function PlanQuiz({ trigger }: { trigger: React.ReactNode }) {
+export function PlanQuiz({
+  trigger,
+  location = "programs_page",
+}: {
+  trigger: React.ReactNode;
+  location?: string;
+}) {
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState(0);
   const [scores, setScores] = useState<Record<Plan, number>>({
@@ -136,11 +143,22 @@ export function PlanQuiz({ trigger }: { trigger: React.ReactNode }) {
   };
 
   const handleAnswer = (weights: Partial<Record<Plan, number>>) => {
+    const questionId = QUESTIONS[step]?.id;
+    trackEvent("plan_quiz_answer", { location, step: step + 1, question: questionId });
     setScores((prev) => {
       const next = { ...prev };
       (Object.keys(weights) as Plan[]).forEach((k) => {
         next[k] = (next[k] ?? 0) + (weights[k] ?? 0);
       });
+      if (step + 1 >= QUESTIONS.length) {
+        const top = (Object.entries(next).sort((a, b) => b[1] - a[1])[0]?.[0] ??
+          "masterclass") as Plan;
+        trackEvent("plan_quiz_submit", {
+          location,
+          recommended_plan: top,
+          recommended_plan_name: PLAN_META[top].name,
+        });
+      }
       return next;
     });
     setStep((s) => s + 1);
@@ -156,6 +174,7 @@ export function PlanQuiz({ trigger }: { trigger: React.ReactNode }) {
       open={open}
       onOpenChange={(o) => {
         setOpen(o);
+        if (o) trackEvent("plan_quiz_start", { location });
         if (!o) reset();
       }}
     >
@@ -204,11 +223,27 @@ export function PlanQuiz({ trigger }: { trigger: React.ReactNode }) {
             <p className="mt-1 text-muted-foreground">{meta.tagline}</p>
             <div className="mt-6 flex flex-wrap gap-2">
               <Button asChild className="rounded-full">
-                <a href={meta.href}>
+                <a
+                  href={meta.href}
+                  onClick={() =>
+                    trackEvent("plan_quiz_result_click", {
+                      location,
+                      recommended_plan: winner,
+                      recommended_plan_name: meta.name,
+                    })
+                  }
+                >
                   Continue with {meta.name} <ArrowRight className="ml-1 h-4 w-4" />
                 </a>
               </Button>
-              <Button variant="outline" onClick={reset} className="rounded-full">
+              <Button
+                variant="outline"
+                onClick={() => {
+                  trackEvent("plan_quiz_retake", { location });
+                  reset();
+                }}
+                className="rounded-full"
+              >
                 <RotateCcw className="mr-1 h-4 w-4" /> Retake quiz
               </Button>
             </div>

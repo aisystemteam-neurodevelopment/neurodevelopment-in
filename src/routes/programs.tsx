@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Check, ArrowRight, Sparkles, Zap, Crown, Rocket, Download, HelpCircle } from "lucide-react";
 import { PlanQuiz } from "@/components/programs/PlanQuiz";
 import { downloadProgramsPdf } from "@/lib/programsPdf";
+import { trackEvent } from "@/lib/analytics";
 
 export const Route = createFileRoute("/programs")({
   head: () => ({
@@ -158,7 +159,10 @@ function ProgramsPage() {
               size="lg"
               variant="outline"
               className="rounded-full px-6"
-              onClick={() => downloadProgramsPdf()}
+              onClick={() => {
+                trackEvent("download_program_guide", { location: "programs_hero" });
+                downloadProgramsPdf();
+              }}
             >
               <Download className="mr-2 h-4 w-4" />
               Download program guide (PDF)
@@ -212,7 +216,17 @@ function ProgramsPage() {
                 </ul>
                 <div className="mt-6 pt-2">
                   <Button asChild variant={featured ? "default" : "outline"} className="w-full rounded-full">
-                    <Link to={p.to ?? "/contact"}>
+                    <Link
+                      to={p.to ?? "/contact"}
+                      onClick={() =>
+                        trackEvent("select_program", {
+                          program: p.programKey,
+                          program_name: p.name,
+                          location: "programs_page",
+                          section: "entry",
+                        })
+                      }
+                    >
                       {p.cta} <ArrowRight className="ml-1 h-4 w-4" />
                     </Link>
                   </Button>
@@ -274,7 +288,17 @@ function ProgramsPage() {
                   </ul>
                   <div className="mt-7 pt-2">
                     <Button asChild variant={t.featured ? "default" : "outline"} className="w-full rounded-full">
-                      <Link to="/contact">
+                      <Link
+                        to="/contact"
+                        onClick={() =>
+                          trackEvent("select_program", {
+                            program: t.programKey,
+                            program_name: t.name,
+                            location: "programs_page",
+                            section: "flightpath",
+                          })
+                        }
+                      >
                         {t.cta} <ArrowRight className="ml-1 h-4 w-4" />
                       </Link>
                     </Button>
@@ -300,7 +324,10 @@ function ProgramsPage() {
             variant="outline"
             size="sm"
             className="rounded-full"
-            onClick={() => downloadProgramsPdf()}
+            onClick={() => {
+              trackEvent("download_program_guide", { location: "programs_comparison" });
+              downloadProgramsPdf();
+            }}
           >
             <Download className="mr-2 h-4 w-4" /> Download PDF
           </Button>
@@ -353,7 +380,12 @@ function ProgramsPage() {
             }
           />
           <Button asChild size="lg" variant="outline" className="rounded-full px-8">
-            <Link to="/contact">Book an appointment</Link>
+            <Link
+              to="/contact"
+              onClick={() => trackEvent("book_appointment_click", { location: "programs_footer_cta" })}
+            >
+              Book an appointment
+            </Link>
           </Button>
         </div>
       </section>

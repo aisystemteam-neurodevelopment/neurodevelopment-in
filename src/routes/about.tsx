@@ -7,6 +7,7 @@ import { LinkedInIcon, LINKEDIN_URL } from "@/components/site/SocialIcons";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
+    links: [{ rel: "canonical", href: "https://neurodevelopment.in/about" }],
     meta: [
       { title: "Dr. Diptanshu Das — Architect of the Parent-Led NeuroDevelopment System | IND" },
       {

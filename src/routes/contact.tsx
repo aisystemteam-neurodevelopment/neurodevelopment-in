@@ -26,6 +26,7 @@ import {
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
+    links: [{ rel: "canonical", href: "https://neurodevelopment.in/contact" }],
     meta: [
       { title: "Book an Appointment — Institute of NeuroDevelopment" },
       { name: "description", content: "Book a consultation with the IND team. Online or in-person, in Kolkata." },

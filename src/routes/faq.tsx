@@ -4,6 +4,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 
 export const Route = createFileRoute("/faq")({
   head: () => ({
+    links: [{ rel: "canonical", href: "https://neurodevelopment.in/faq" }],
     meta: [
       { title: "FAQ — Institute of NeuroDevelopment" },
       {

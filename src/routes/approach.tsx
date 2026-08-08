@@ -5,6 +5,7 @@ import { Hourglass, ListOrdered, Target, ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/approach")({
   head: () => ({
+    links: [{ rel: "canonical", href: "https://neurodevelopment.in/approach" }],
     meta: [
       { title: "The Parent-Led NeuroDevelopment System — Our Approach | IND" },
       {

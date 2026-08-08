@@ -3,6 +3,7 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 
 export const Route = createFileRoute("/terms")({
   head: () => ({
+    links: [{ rel: "canonical", href: "https://neurodevelopment.in/terms" }],
     meta: [
       { title: "Terms of Use — Institute of NeuroDevelopment" },
       { name: "description", content: "Terms governing use of the IND website and services." },

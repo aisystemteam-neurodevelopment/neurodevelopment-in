@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
+    links: [{ rel: "canonical", href: "https://neurodevelopment.in/services" }],
     meta: [
       { title: "What we help with — Institute of NeuroDevelopment" },
       {

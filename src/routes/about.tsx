@@ -9,11 +9,11 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     links: [{ rel: "canonical", href: "https://neurodevelopment.in/about" }],
     meta: [
-      { title: "Dr. Diptanshu Das — Architect of the Parent-Led NeuroDevelopment System | IND" },
+      { title: "Dr. Diptanshu Das — Founder & Architect | IND" },
       {
         name: "description",
         content:
-          "Dr. Diptanshu Das is the founder of the Institute of NeuroDevelopment and the architect of a parent-led neurodevelopment system that helps families create measurable developmental progress through clarity, structure, ownership, and independence.",
+          "Dr. Diptanshu Das founded the Institute of NeuroDevelopment and designed its parent-led system, helping families create measurable developmental progress at home.",
       },
       { property: "og:title", content: "Dr. Diptanshu Das — Founder & System Architect, IND" },
       {

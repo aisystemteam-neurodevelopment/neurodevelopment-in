@@ -25,6 +25,20 @@ export const Route = createFileRoute("/faq")({
         content: "Straight answers on slow progress, fragmented advice, and therapy dependency.",
       },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [...slowProgress, ...fragmented, ...dependency, ...practical].map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }),
+      },
+    ],
   }),
   component: FaqPage,
 });

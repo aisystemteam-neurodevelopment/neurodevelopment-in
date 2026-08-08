@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ScienceOfStuckRouteImport } from './routes/science-of-stuck'
 import { Route as RefundRouteImport } from './routes/refund'
@@ -33,6 +34,11 @@ import { Route as ApiPublicBookingRouteImport } from './routes/api/public/bookin
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -144,6 +150,7 @@ export interface FileRoutesByFullPath {
   '/refund': typeof RefundRoute
   '/science-of-stuck': typeof ScienceOfStuckRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/treatments/$slug': typeof TreatmentsSlugRoute
   '/api/public/booking': typeof ApiPublicBookingRoute
@@ -166,6 +173,7 @@ export interface FileRoutesByTo {
   '/refund': typeof RefundRoute
   '/science-of-stuck': typeof ScienceOfStuckRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/treatments/$slug': typeof TreatmentsSlugRoute
   '/api/public/booking': typeof ApiPublicBookingRoute
@@ -189,6 +197,7 @@ export interface FileRoutesById {
   '/refund': typeof RefundRoute
   '/science-of-stuck': typeof ScienceOfStuckRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/treatments/$slug': typeof TreatmentsSlugRoute
   '/api/public/booking': typeof ApiPublicBookingRoute
@@ -213,6 +222,7 @@ export interface FileRouteTypes {
     | '/refund'
     | '/science-of-stuck'
     | '/services'
+    | '/sitemap.xml'
     | '/terms'
     | '/treatments/$slug'
     | '/api/public/booking'
@@ -235,6 +245,7 @@ export interface FileRouteTypes {
     | '/refund'
     | '/science-of-stuck'
     | '/services'
+    | '/sitemap.xml'
     | '/terms'
     | '/treatments/$slug'
     | '/api/public/booking'
@@ -257,6 +268,7 @@ export interface FileRouteTypes {
     | '/refund'
     | '/science-of-stuck'
     | '/services'
+    | '/sitemap.xml'
     | '/terms'
     | '/treatments/$slug'
     | '/api/public/booking'
@@ -280,6 +292,7 @@ export interface RootRouteChildren {
   RefundRoute: typeof RefundRoute
   ScienceOfStuckRoute: typeof ScienceOfStuckRoute
   ServicesRoute: typeof ServicesRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   TreatmentsSlugRoute: typeof TreatmentsSlugRoute
   ApiPublicBookingRoute: typeof ApiPublicBookingRoute
@@ -297,6 +310,13 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -448,6 +468,7 @@ const rootRouteChildren: RootRouteChildren = {
   RefundRoute: RefundRoute,
   ScienceOfStuckRoute: ScienceOfStuckRoute,
   ServicesRoute: ServicesRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   TreatmentsSlugRoute: TreatmentsSlugRoute,
   ApiPublicBookingRoute: ApiPublicBookingRoute,
@@ -460,3 +481,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

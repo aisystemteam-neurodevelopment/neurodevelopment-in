@@ -4,6 +4,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 
 export const Route = createFileRoute("/faq")({
   head: () => ({
+    links: [{ rel: "canonical", href: "https://neurodevelopment.in/faq" }],
     meta: [
       { title: "FAQ — Institute of NeuroDevelopment" },
       {
@@ -22,6 +23,20 @@ export const Route = createFileRoute("/faq")({
       {
         name: "twitter:description",
         content: "Straight answers on slow progress, fragmented advice, and therapy dependency.",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [...slowProgress, ...fragmented, ...dependency, ...practical].map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }),
       },
     ],
   }),

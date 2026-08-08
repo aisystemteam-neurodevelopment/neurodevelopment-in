@@ -45,9 +45,7 @@ export const Route = createRootRoute({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:title", content: "Institute of NeuroDevelopment — A Parent-Led NeuroDevelopment System" },
-      { name: "description", content: "IND is not a therapy centre. It is a structured, parent-led neurodevelopment system that replaces fragmented intervention with measurable developmental progress. Founded by Dr. Diptanshu Das." },
-      { property: "og:description", content: "IND is not a therapy centre. It is a structured, parent-led neurodevelopment system that replaces fragmented intervention with measurable developmental progress. Founded by Dr. Diptanshu Das." },
-      { name: "twitter:description", content: "IND is not a therapy centre. It is a structured, parent-led neurodevelopment system that replaces fragmented intervention with measurable developmental progress. Founded by Dr. Diptanshu Das." },
+      { property: "og:site_name", content: "Institute of NeuroDevelopment" },
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/e615845d-d5d6-4842-81de-7874761f4644" },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/e615845d-d5d6-4842-81de-7874761f4644" },
     ],
@@ -62,6 +60,38 @@ export const Route = createRootRoute({
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
     ],
     scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Organization",
+              "@id": "https://neurodevelopment.in/#organization",
+              name: "Institute of NeuroDevelopment",
+              url: "https://neurodevelopment.in",
+              email: "instituteofneurodevelopment@gmail.com",
+              telephone: "+91-94333-08880",
+              founder: { "@type": "Person", name: "Dr. Diptanshu Das" },
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "26, Raja Nabakrishna Street, opposite Sobhabazar Rajbari",
+                addressLocality: "Kolkata",
+                postalCode: "700005",
+                addressRegion: "West Bengal",
+                addressCountry: "IN",
+              },
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://neurodevelopment.in/#website",
+              url: "https://neurodevelopment.in",
+              name: "Institute of NeuroDevelopment",
+              publisher: { "@id": "https://neurodevelopment.in/#organization" },
+            },
+          ],
+        }),
+      },
       {
         async: true,
         src: "https://www.googletagmanager.com/gtag/js?id=G-L9QG2MGQ48",

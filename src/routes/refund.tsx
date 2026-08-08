@@ -5,6 +5,7 @@ import { RefundRequestForm } from "@/components/site/RefundRequestForm";
 
 export const Route = createFileRoute("/refund")({
   head: () => ({
+    links: [{ rel: "canonical", href: "https://neurodevelopment.in/refund" }],
     meta: [
       { title: "Refund & Cancellation Policy — IND" },
       { name: "description", content: "How refunds and cancellations work for IND counselling and programmes." },

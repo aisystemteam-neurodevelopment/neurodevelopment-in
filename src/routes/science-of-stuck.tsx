@@ -12,6 +12,7 @@ const description =
 
 export const Route = createFileRoute("/science-of-stuck")({
   head: () => ({
+    links: [{ rel: "canonical", href: "https://neurodevelopment.in/science-of-stuck" }],
     meta: [
       { title },
       { name: "description", content: description },

@@ -41,11 +41,12 @@ export function InvisibleLossCalculator() {
         <div className="mt-8 grid gap-6 md:grid-cols-2">
           <div className="space-y-5 rounded-2xl border border-border bg-background p-6">
             <div>
-              <label className="flex items-center justify-between text-sm font-medium">
+              <label htmlFor="calc-hours" className="flex items-center justify-between text-sm font-medium">
                 <span>Therapy hours per week</span>
                 <span className="font-display text-primary">{hours} hrs</span>
               </label>
               <input
+                id="calc-hours"
                 type="range"
                 min={1}
                 max={20}
@@ -55,11 +56,12 @@ export function InvisibleLossCalculator() {
               />
             </div>
             <div>
-              <label className="flex items-center justify-between text-sm font-medium">
+              <label htmlFor="calc-fee" className="flex items-center justify-between text-sm font-medium">
                 <span>Average fee per session (₹)</span>
                 <span className="font-display text-primary">₹{fmt(fee)}</span>
               </label>
               <input
+                id="calc-fee"
                 type="range"
                 min={500}
                 max={5000}
@@ -70,11 +72,12 @@ export function InvisibleLossCalculator() {
               />
             </div>
             <div>
-              <label className="flex items-center justify-between text-sm font-medium">
+              <label htmlFor="calc-months" className="flex items-center justify-between text-sm font-medium">
                 <span>Time horizon</span>
                 <span className="font-display text-primary">{months} months</span>
               </label>
               <input
+                id="calc-months"
                 type="range"
                 min={3}
                 max={36}

@@ -17,6 +17,7 @@ import { ArrowLeft, ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/quiz")({
   head: () => ({
+    links: [{ rel: "canonical", href: "https://neurodevelopment.in/quiz" }],
     meta: [
       { title: "Find Your Child's Path — 60-second Qualifier Quiz | IND" },
       {

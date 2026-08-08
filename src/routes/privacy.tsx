@@ -3,6 +3,7 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
+    links: [{ rel: "canonical", href: "https://neurodevelopment.in/privacy" }],
     meta: [
       { title: "Privacy Policy — Institute of NeuroDevelopment" },
       { name: "description", content: "How IND collects, uses and protects your information." },

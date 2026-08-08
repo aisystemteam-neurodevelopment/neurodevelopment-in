@@ -9,6 +9,7 @@ import { trackEvent } from "@/lib/analytics";
 
 export const Route = createFileRoute("/programs")({
   head: () => ({
+    links: [{ rel: "canonical", href: "https://neurodevelopment.in/programs" }],
     meta: [
       { title: "Programs & Pricing — Institute of NeuroDevelopment" },
       {

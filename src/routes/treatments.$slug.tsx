@@ -10,10 +10,11 @@ export const Route = createFileRoute("/treatments/$slug")({
     if (!t) throw notFound();
     return { treatment: t };
   },
-  head: ({ loaderData }) => {
+  head: ({ params, loaderData }) => {
     const t = loaderData?.treatment;
     const title = t ? `${t.title} — Institute of NeuroDevelopment` : "Treatment — IND";
     const desc = t?.short ?? "Concise overview of how IND helps families.";
+    const url = `https://neurodevelopment.in/treatments/${params.slug}`;
     return {
       meta: [
         { title },
@@ -21,9 +22,29 @@ export const Route = createFileRoute("/treatments/$slug")({
         { property: "og:title", content: title },
         { property: "og:description", content: desc },
         { property: "og:type", content: "article" },
+        { property: "og:url", content: url },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: title },
         { name: "twitter:description", content: desc },
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            name: t?.title ?? "Treatment",
+            description: desc,
+            url,
+            areaServed: "IN",
+            provider: {
+              "@type": "Organization",
+              name: "Institute of NeuroDevelopment",
+              url: "https://neurodevelopment.in",
+            },
+          }),
+        },
       ],
     };
   },

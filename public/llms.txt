@@ -1,0 +1,21 @@
+# Institute of NeuroDevelopment
+
+> A parent-led neurodevelopment system founded by Dr. Diptanshu Das, helping families of children with autism, ADHD, speech delay and related challenges create measurable developmental progress at home.
+
+## Pages
+
+- [Home](/): What the parent-led neurodevelopment system is and who it is for.
+- [About](/about): Dr. Diptanshu Das and the founding principles of IND.
+- [Approach](/approach): The 4-Phase Sequential Flightpath and drivers-not-labels model.
+- [Services](/services): Areas we help families with.
+- [Programs](/programs): Masterclass, pre-enrollment and Flightpath programs.
+- [Science of Stuck Masterclass](/science-of-stuck): 3-hour live masterclass for parents.
+- [FAQ](/faq): Answers on slow progress, fragmented advice and therapy dependency.
+- [Quiz](/quiz): A 60-second qualifier quiz recommending the right next step.
+- [Contact](/contact): Book an appointment, online or in Kolkata.
+
+## Optional
+
+- [Privacy Policy](/privacy): How we handle your information.
+- [Terms of Use](/terms): Terms governing use of the site.
+- [Refund Policy](/refund): Refund and cancellation terms.

@@ -8,6 +8,7 @@ import { toast } from "sonner";
 
 export const Route = createFileRoute("/chat")({
   head: () => ({
+    links: [{ rel: "canonical", href: "https://neurodevelopment.in/chat" }],
     meta: [
       { title: "Talk to IND — Our parent assistant" },
       {

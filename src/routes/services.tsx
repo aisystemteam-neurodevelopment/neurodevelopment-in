@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
+    links: [{ rel: "canonical", href: "https://neurodevelopment.in/services" }],
     meta: [
       { title: "What we help with — Institute of NeuroDevelopment" },
       {
@@ -70,7 +71,7 @@ function ServicesPage() {
               <h2 className="font-display text-xl">{a.t}</h2>
               <p className="mt-2 text-sm text-muted-foreground">{a.d}</p>
               <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
-                Learn more
+                See details for {a.t}
                 <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
               </span>
             </Link>

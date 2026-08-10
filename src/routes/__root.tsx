@@ -31,6 +31,7 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "google-site-verification", content: "eJQnNTJ8KRiMS4DPU2IgUW-4ltVlg_38zVQE2F7TQGU" },
       { title: "Institute of NeuroDevelopment — A Parent-Led NeuroDevelopment System" },
       {
         name: "description",

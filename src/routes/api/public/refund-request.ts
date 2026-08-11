@@ -88,24 +88,17 @@ export const Route = createFileRoute("/api/public/refund-request")({
           return Response.json({ error: "Could not upload screenshot" }, { status: 500 });
         }
 
-        const summary = [
-          `Programme: ${parsed.programme}`,
-          `Payment date: ${parsed.paymentDate}`,
-          `Amount: ${parsed.amount}`,
-          parsed.transactionId && `Txn/UTR: ${parsed.transactionId}`,
-          `Reason: ${parsed.reason}`,
-          parsed.details && `Details: ${parsed.details}`,
-          `Blueprint recordings accessed: ${parsed.recordingsAccessed ? "Yes" : "No"}`,
-        ]
-          .filter(Boolean)
-          .join(" | ");
-
-        const { error } = await supabaseAdmin.from("leads").insert({
-          source: "refund_request",
-          contact_name: parsed.name,
-          contact_email: parsed.email,
-          contact_phone: parsed.phone,
-          summary,
+        const { error } = await supabaseAdmin.from("refund_requests").insert({
+          name: parsed.name,
+          email: parsed.email,
+          phone: parsed.phone,
+          programme: parsed.programme,
+          payment_date: parsed.paymentDate,
+          amount: parsed.amount,
+          transaction_id: parsed.transactionId || null,
+          reason: parsed.reason,
+          details: parsed.details || null,
+          recordings_accessed: parsed.recordingsAccessed,
           attachment_path: attachmentPath,
         });
 

@@ -13,7 +13,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Dr. Diptanshu Das founded the Institute of NeuroDevelopment and designed its parent-led system, helping families create measurable developmental progress at home.",
+          "Dr. Diptanshu Das founded the Institute of NeuroDevelopment and designed its parent-led system for measurable progress at home.",
       },
       { property: "og:title", content: "Dr. Diptanshu Das — Founder & System Architect, IND" },
       {

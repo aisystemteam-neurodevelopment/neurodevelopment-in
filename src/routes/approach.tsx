@@ -7,11 +7,11 @@ export const Route = createFileRoute("/approach")({
   head: () => ({
     links: [{ rel: "canonical", href: "https://neurodevelopment.in/approach" }],
     meta: [
-      { title: "The Parent-Led NeuroDevelopment System — Our Approach | IND" },
+      { title: "Our Approach — Parent-Led NeuroDevelopment | IND" },
       {
         name: "description",
         content:
-          "The 4-Phase Sequential Flightpath. Drivers, not labels. One dominant bottleneck at a time. A structured, parent-led developmental architecture designed by Dr. Diptanshu Das.",
+          "The 4-Phase Sequential Flightpath: drivers, not labels. One bottleneck at a time, in a structured parent-led developmental architecture.",
       },
       { property: "og:title", content: "Our approach — The Parent-Led NeuroDevelopment System" },
       { property: "og:description", content: "From fragmented intervention to structured, measurable, self-sustaining developmental progress." },

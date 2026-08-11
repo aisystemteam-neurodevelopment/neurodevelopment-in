@@ -20,7 +20,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Not a therapy centre. A structured, parent-led neurodevelopment system that turns fragmented intervention into measurable progress. Founded by Dr. Diptanshu Das.",
+          "Not a therapy centre. A parent-led neurodevelopment system turning fragmented intervention into measurable progress, by Dr. Diptanshu Das.",
       },
       { property: "og:title", content: "Institute of NeuroDevelopment — Parent-Led Progress" },
       { property: "og:description", content: "A structured, parent-led neurodevelopment system that turns fragmented intervention into measurable progress." },

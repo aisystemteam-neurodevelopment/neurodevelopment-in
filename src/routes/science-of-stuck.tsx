@@ -6,9 +6,9 @@ import { Part3 } from "@/components/masterclass/Part3";
 import { Part4 } from "@/components/masterclass/Part4";
 import { Part5 } from "@/components/masterclass/Part5";
 
-const title = "Science of Stuck™ — 3-Hour Live Masterclass for Parents | IND";
+const title = "Science of Stuck™ — Live Masterclass for Parents";
 const description =
-  "কেন থেরাপি চললেও উন্নতি থেমে যায়? Science of Stuck™ — Dr. Diptanshu Das-এর ৩ ঘণ্টার live breakthrough experience, autism, ADHD ও neurodevelopmental challenge-এর বাবা-মায়েদের জন্য।";
+  "কেন থেরাপি চললেও উন্নতি থেমে যায়? Science of Stuck™ — Dr. Diptanshu Das-এর ৩ ঘণ্টার live masterclass, autism ও ADHD-র বাবা-মায়েদের জন্য।";
 
 export const Route = createFileRoute("/science-of-stuck")({
   head: () => ({

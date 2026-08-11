@@ -15,7 +15,7 @@ export const Route = createFileRoute("/programs")({
       {
         name: "description",
         content:
-          "From the IND masterclass to the full Flightpath enrollment — Block to Breakthrough, Bootcamp, and the 3-tier Flightpath (Core, Essential, Elite). Talk to our team to find the right starting point.",
+          "From the IND masterclass to the full Flightpath enrollment — Bootcamp and the 3-tier Flightpath. Talk to our team to find your starting point.",
       },
       { property: "og:title", content: "IND Programs" },
       { property: "og:description", content: "Masterclass, Pre-enrollment, and the 3-tier Flightpath enrollment." },

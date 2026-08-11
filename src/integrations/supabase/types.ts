@@ -562,6 +562,60 @@ export type Database = {
           },
         ]
       }
+      refund_requests: {
+        Row: {
+          amount: string
+          attachment_path: string | null
+          created_at: string
+          details: string | null
+          email: string
+          id: string
+          name: string
+          payment_date: string
+          phone: string
+          programme: string
+          reason: string
+          recordings_accessed: boolean
+          status: string
+          transaction_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          amount: string
+          attachment_path?: string | null
+          created_at?: string
+          details?: string | null
+          email: string
+          id?: string
+          name: string
+          payment_date: string
+          phone: string
+          programme: string
+          reason: string
+          recordings_accessed?: boolean
+          status?: string
+          transaction_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          amount?: string
+          attachment_path?: string | null
+          created_at?: string
+          details?: string | null
+          email?: string
+          id?: string
+          name?: string
+          payment_date?: string
+          phone?: string
+          programme?: string
+          reason?: string
+          recordings_accessed?: boolean
+          status?: string
+          transaction_id?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string

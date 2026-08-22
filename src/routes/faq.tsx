@@ -30,12 +30,32 @@ export const Route = createFileRoute("/faq")({
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: [...slowProgress, ...fragmented, ...dependency, ...practical].map((f) => ({
-            "@type": "Question",
-            name: f.q,
-            acceptedAnswer: { "@type": "Answer", text: f.a },
-          })),
+          "@graph": [
+            {
+              "@type": "FAQPage",
+              "@id": "https://neurodevelopment.in/faq#faq",
+              url: "https://neurodevelopment.in/faq",
+              name: "Frequently asked questions — Institute of NeuroDevelopment",
+              inLanguage: "en-IN",
+              publisher: {
+                "@type": "MedicalBusiness",
+                name: "Institute of NeuroDevelopment",
+                url: "https://neurodevelopment.in",
+              },
+              mainEntity: [...slowProgress, ...fragmented, ...dependency, ...practical].map((f) => ({
+                "@type": "Question",
+                name: f.q,
+                acceptedAnswer: { "@type": "Answer", text: f.a },
+              })),
+            },
+            {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: "https://neurodevelopment.in/" },
+                { "@type": "ListItem", position: 2, name: "FAQ", item: "https://neurodevelopment.in/faq" },
+              ],
+            },
+          ],
         }),
       },
     ],

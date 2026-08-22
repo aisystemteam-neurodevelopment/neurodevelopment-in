@@ -7,22 +7,24 @@ export const Route = createFileRoute("/kolkata")({
   head: () => ({
     links: [{ rel: "canonical", href: "https://neurodevelopment.in/kolkata" }],
     meta: [
-      { title: "Neurodevelopment & Autism Assessment in Kolkata — IND" },
+      { title: "Autism Treatment & Neurodevelopmental Clinic in Kolkata" },
       {
         name: "description",
         content:
-          "In-person neurodevelopmental assessment and parent-led intervention in Kolkata for autism, ADHD, speech delay, and learning challenges. Book at Sobhabazar, Kolkata 700005.",
+          "Neurodevelopmental clinic in Kolkata for autism, ADHD, speech delay and learning challenges. Evaluation can start online, with in-person assessment at Sobhabazar, Kolkata 700005.",
       },
-      { property: "og:title", content: "Neurodevelopment & Autism Assessment in Kolkata — IND" },
+      { property: "og:title", content: "Autism Treatment & Neurodevelopmental Clinic in Kolkata" },
       {
         property: "og:description",
-        content: "In-person assessment and parent-led intervention in Kolkata for autism, ADHD, speech delay and learning challenges.",
+        content:
+          "Assessment and parent-led intervention for autism, ADHD, speech delay and learning challenges. Start online or visit our Kolkata clinic.",
       },
       { property: "og:url", content: "https://neurodevelopment.in/kolkata" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Neurodevelopment & Autism Assessment in Kolkata — IND" },
+      { name: "twitter:title", content: "Autism Treatment & Neurodevelopmental Clinic in Kolkata" },
     ],
+
     scripts: [
       {
         type: "application/ld+json",

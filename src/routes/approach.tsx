@@ -278,7 +278,7 @@ function ApproachPage() {
             { t: "Monitor progress, not activity", d: "Observable markers and monthly check-ins replace 'we're doing a lot'." },
             { t: "Move only on readiness", d: "We advance phases when the child is genuinely ready — never on a calendar." },
             { t: "Parent ownership over expert dependence", d: "We train you to lead. Independence is the endpoint, for child and family." },
-            { t: "Honest commitments", d: "We never diagnose online and never guarantee outcomes. We commit to clarity, structure, and full effort." },
+            { t: "Honest commitments", d: "Evaluation can start online, with in-person follow-up in Kolkata when it helps. We don't sell miracle guarantees — we commit to clarity, structure, and full effort." },
           ].map((c) => (
             <div key={c.t} className="rounded-2xl border border-border bg-card p-5">
               <div className="font-display text-lg">{c.t}</div>

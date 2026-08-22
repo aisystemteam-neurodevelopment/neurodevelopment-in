@@ -109,7 +109,7 @@ const practical: Faq[] = [
   },
   {
     q: "Can you guarantee results?",
-    a: "Yes — we guarantee specific outcomes, provided you regularly carry out the activities we teach you. The system works when it is run consistently at home. Show up with the weekly structure, log the activities, and the outcomes follow. Effort on your side + our framework = measurable progress.",
+    a: "No honest practitioner can guarantee a specific developmental result, and we don't. What we do commit to is structure, weekly measurable signals, and our full effort — and families who run the activities consistently at home reliably see progress. Effort on your side + our framework = measurable movement.",
   },
 ];
 

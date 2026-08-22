@@ -97,8 +97,8 @@ function ServicesPage() {
         <div className="mx-auto max-w-5xl px-5">
           <h2 className="font-display text-3xl">Outcomes families typically work toward</h2>
           <p className="mt-3 max-w-2xl text-muted-foreground">
-            We never guarantee outcomes — honest practitioners cannot. These are the
-            directions of progress families pursue inside the Breakthrough Flightpath.
+            These are the directions of progress families pursue inside the Breakthrough
+            Flightpath — reached when the weekly activities are carried out consistently at home.
           </p>
           <div className="mt-8 grid gap-3 sm:grid-cols-2">
             {outcomes.map((o) => (

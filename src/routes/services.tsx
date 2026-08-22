@@ -77,6 +77,20 @@ function ServicesPage() {
             </Link>
           ))}
         </div>
+
+        <div className="mt-8 rounded-2xl border border-border bg-card p-5 md:p-6">
+          <div className="flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
+            <div>
+              <h3 className="font-display text-lg">In-person assessment in Kolkata</h3>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Visit our clinic at Sobhabazar, Kolkata 700005 for structured assessment and a parent-led plan.
+              </p>
+            </div>
+            <Button asChild variant="outline" className="rounded-full px-5">
+              <Link to="/kolkata">See Kolkata clinic</Link>
+            </Button>
+          </div>
+        </div>
       </section>
 
       <section className="bg-secondary/40 py-16">

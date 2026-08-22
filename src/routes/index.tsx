@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Compass, HeartHandshake, ListChecks, Sparkles, Phone, Hourglass, TrendingDown, Layers, LineChart } from "lucide-react";
+import { ArrowRight, Compass, HeartHandshake, ListChecks, Sparkles, Phone, Hourglass, TrendingDown, Layers, LineChart, MapPin } from "lucide-react";
 import { InvisibleLossCalculator } from "@/components/site/InvisibleLossCalculator";
 import { LeadMagnetForm } from "@/components/site/LeadMagnetForm";
 import { TestimonialStories } from "@/components/site/TestimonialStories";
@@ -110,6 +110,13 @@ function HomePage() {
             <p className="mt-4 text-xs text-muted-foreground">
               We do not diagnose online and we never guarantee outcomes. We commit to clarity,
               structure, and our full effort.
+            </p>
+            <p className="mt-3 text-sm text-muted-foreground">
+              <MapPin className="mr-1 inline h-3.5 w-3.5" />
+              In-person assessments in Kolkata —{" "}
+              <Link to="/kolkata" className="text-primary underline underline-offset-2 hover:text-foreground">
+                visit our clinic
+              </Link>
             </p>
           </div>
 

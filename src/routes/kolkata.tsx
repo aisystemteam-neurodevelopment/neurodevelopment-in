@@ -31,11 +31,20 @@ export const Route = createFileRoute("/kolkata")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "MedicalBusiness",
+          "@id": "https://neurodevelopment.in/kolkata#clinic",
           name: "Institute of NeuroDevelopment — Kolkata",
+          description:
+            "Neurodevelopmental clinic in Kolkata offering assessment and parent-led intervention for autism, ADHD, speech delay and learning challenges.",
           url: "https://neurodevelopment.in/kolkata",
           telephone: "+91-94333-08880",
           email: "instituteofneurodevelopment@gmail.com",
           image: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/e615845d-d5d6-4842-81de-7874761f4644",
+          sameAs: [
+            "https://www.facebook.com/NeuroDevelopment.in",
+            "https://www.instagram.com/institute_of_neurodevelopment",
+            "https://www.youtube.com/@IND_Bengali",
+          ],
+
           address: {
             "@type": "PostalAddress",
             streetAddress: "26, Raja Nabakrishna Street, opposite Sobhabazar Rajbari",

@@ -175,11 +175,12 @@ function KolkataPage() {
               <MapPin className="h-3 w-3" /> Kolkata clinic
             </span>
             <h1 className="mt-5 font-display text-4xl leading-tight md:text-5xl">
-              Neurodevelopment assessment & parent-led support in <span className="text-primary">Kolkata</span>
+              Autism treatment & neurodevelopmental clinic in <span className="text-primary">Kolkata</span>
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-              For autism, ADHD, speech delay, and learning challenges. In-person assessment at Sobhabazar, Kolkata, with a clear, parent-led plan.
+              For autism, ADHD, speech delay, and learning challenges. Evaluation can start online, with in-person assessment at Sobhabazar, Kolkata, and a clear parent-led plan.
             </p>
+
             <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
               <Button asChild size="lg" className="rounded-full px-6">
                 <Link to="/contact">

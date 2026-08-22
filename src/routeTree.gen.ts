@@ -17,6 +17,7 @@ import { Route as RefundRouteImport } from './routes/refund'
 import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as KolkataRouteImport } from './routes/kolkata'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ChatRouteImport } from './routes/chat'
@@ -69,6 +70,11 @@ const ProgramsRoute = ProgramsRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KolkataRoute = KolkataRouteImport.update({
+  id: '/kolkata',
+  path: '/kolkata',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FaqRoute = FaqRouteImport.update({
@@ -144,6 +150,7 @@ export interface FileRoutesByFullPath {
   '/chat': typeof ChatRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
+  '/kolkata': typeof KolkataRoute
   '/privacy': typeof PrivacyRoute
   '/programs': typeof ProgramsRoute
   '/quiz': typeof QuizRoute
@@ -167,6 +174,7 @@ export interface FileRoutesByTo {
   '/chat': typeof ChatRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
+  '/kolkata': typeof KolkataRoute
   '/privacy': typeof PrivacyRoute
   '/programs': typeof ProgramsRoute
   '/quiz': typeof QuizRoute
@@ -191,6 +199,7 @@ export interface FileRoutesById {
   '/chat': typeof ChatRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
+  '/kolkata': typeof KolkataRoute
   '/privacy': typeof PrivacyRoute
   '/programs': typeof ProgramsRoute
   '/quiz': typeof QuizRoute
@@ -216,6 +225,7 @@ export interface FileRouteTypes {
     | '/chat'
     | '/contact'
     | '/faq'
+    | '/kolkata'
     | '/privacy'
     | '/programs'
     | '/quiz'
@@ -239,6 +249,7 @@ export interface FileRouteTypes {
     | '/chat'
     | '/contact'
     | '/faq'
+    | '/kolkata'
     | '/privacy'
     | '/programs'
     | '/quiz'
@@ -262,6 +273,7 @@ export interface FileRouteTypes {
     | '/chat'
     | '/contact'
     | '/faq'
+    | '/kolkata'
     | '/privacy'
     | '/programs'
     | '/quiz'
@@ -286,6 +298,7 @@ export interface RootRouteChildren {
   ChatRoute: typeof ChatRoute
   ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
+  KolkataRoute: typeof KolkataRoute
   PrivacyRoute: typeof PrivacyRoute
   ProgramsRoute: typeof ProgramsRoute
   QuizRoute: typeof QuizRoute
@@ -359,6 +372,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kolkata': {
+      id: '/kolkata'
+      path: '/kolkata'
+      fullPath: '/kolkata'
+      preLoaderRoute: typeof KolkataRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faq': {
@@ -462,6 +482,7 @@ const rootRouteChildren: RootRouteChildren = {
   ChatRoute: ChatRoute,
   ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
+  KolkataRoute: KolkataRoute,
   PrivacyRoute: PrivacyRoute,
   ProgramsRoute: ProgramsRoute,
   QuizRoute: QuizRoute,

@@ -89,7 +89,7 @@ const whatToExpect = [
   "Review of prior reports, diagnoses, and current concerns",
   "Clear explanation of the developmental drivers we see",
   "A written next-step plan before you leave the clinic",
-  "No online diagnosis, no guaranteed outcomes — only honest guidance",
+  "Online evaluation is available too — the Kolkata visit adds in-person clinical detail",
 ];
 
 const fees = [

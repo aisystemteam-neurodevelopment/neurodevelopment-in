@@ -108,8 +108,8 @@ function HomePage() {
               </a>
             </div>
             <p className="mt-4 text-xs text-muted-foreground">
-              We do not diagnose online and we never guarantee outcomes. We commit to clarity,
-              structure, and our full effort.
+              We offer structured online evaluation, with in-person follow-up in Kolkata when it adds
+              clinical value. Outcomes follow when the weekly plan is carried out consistently at home.
             </p>
             <p className="mt-3 text-sm text-muted-foreground">
               <MapPin className="mr-1 inline h-3.5 w-3.5" />

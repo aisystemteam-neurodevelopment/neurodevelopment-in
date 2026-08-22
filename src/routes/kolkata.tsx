@@ -47,6 +47,52 @@ export const Route = createFileRoute("/kolkata")({
             { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "10:00", closes: "18:00" },
             { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "10:00", closes: "14:00" },
           ],
+          medicalSpecialty: [
+            { "@type": "MedicalSpecialty", name: "Neurodevelopmental paediatrics" },
+            { "@type": "MedicalSpecialty", name: "Developmental-behavioural paediatrics" },
+          ],
+          makesOffer: [
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "MedicalService",
+                name: "Autism & neurodevelopmental review",
+                description: "Structured observation and parent interview to understand communication, regulation, play, and learning patterns.",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "MedicalService",
+                name: "Speech and communication mapping",
+                description: "Assessment of receptive language, expressive speech, motor-speech patterns, and functional communication readiness.",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "MedicalService",
+                name: "ADHD & attention regulation check",
+                description: "Screen for attention, impulse control, and executive function drivers with home and school context.",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "MedicalService",
+                name: "Developmental milestone tracking",
+                description: "For children aged 18 months to 8 years with delays in daily living, social play, or school readiness.",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "MedicalService",
+                name: "School-readiness & learning screen",
+                description: "Pre-academic skills, comprehension, visual-motor integration, and behaviour in structured settings.",
+              },
+            },
+          ],
           priceRange: "₹₹",
           areaServed: { "@type": "City", name: "Kolkata" },
         }),

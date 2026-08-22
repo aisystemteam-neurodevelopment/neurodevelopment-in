@@ -29,6 +29,8 @@ export const Route = createFileRoute("/kolkata")({
         content:
           "Neurodevelopmental clinic in Kolkata for autism, ADHD, speech delay and learning challenges. Evaluation can start online, with in-person assessment at Sobhabazar, Kolkata 700005.",
       },
+    ],
+
 
 
     scripts: [

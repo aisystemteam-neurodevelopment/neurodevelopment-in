@@ -111,6 +111,13 @@ function HomePage() {
               We do not diagnose online and we never guarantee outcomes. We commit to clarity,
               structure, and our full effort.
             </p>
+            <p className="mt-3 text-sm text-muted-foreground">
+              <MapPin className="mr-1 inline h-3.5 w-3.5" />
+              In-person assessments in Kolkata —{" "}
+              <Link to="/kolkata" className="text-primary underline underline-offset-2 hover:text-foreground">
+                visit our clinic
+              </Link>
+            </p>
           </div>
 
           <div className="relative">

@@ -105,7 +105,10 @@ export const Route = createFileRoute("/kolkata")({
             },
           ],
           priceRange: "₹₹",
+          currenciesAccepted: "INR",
+          hasMap: "https://maps.google.com/?q=22.5964906,88.366761",
           areaServed: { "@type": "City", name: "Kolkata" },
+
         }),
       },
     ],

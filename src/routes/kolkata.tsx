@@ -7,33 +7,44 @@ export const Route = createFileRoute("/kolkata")({
   head: () => ({
     links: [{ rel: "canonical", href: "https://neurodevelopment.in/kolkata" }],
     meta: [
-      { title: "Neurodevelopment & Autism Assessment in Kolkata — IND" },
+      { title: "Autism Treatment & Neurodevelopmental Clinic in Kolkata" },
       {
         name: "description",
         content:
-          "In-person neurodevelopmental assessment and parent-led intervention in Kolkata for autism, ADHD, speech delay, and learning challenges. Book at Sobhabazar, Kolkata 700005.",
+          "Neurodevelopmental clinic in Kolkata for autism, ADHD, speech delay and learning challenges. Evaluation can start online, with in-person assessment at Sobhabazar, Kolkata 700005.",
       },
-      { property: "og:title", content: "Neurodevelopment & Autism Assessment in Kolkata — IND" },
+      { property: "og:title", content: "Autism Treatment & Neurodevelopmental Clinic in Kolkata" },
       {
         property: "og:description",
-        content: "In-person assessment and parent-led intervention in Kolkata for autism, ADHD, speech delay and learning challenges.",
+        content:
+          "Assessment and parent-led intervention for autism, ADHD, speech delay and learning challenges. Start online or visit our Kolkata clinic.",
       },
       { property: "og:url", content: "https://neurodevelopment.in/kolkata" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Neurodevelopment & Autism Assessment in Kolkata — IND" },
+      { name: "twitter:title", content: "Autism Treatment & Neurodevelopmental Clinic in Kolkata" },
     ],
+
     scripts: [
       {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "MedicalBusiness",
+          "@id": "https://neurodevelopment.in/kolkata#clinic",
           name: "Institute of NeuroDevelopment — Kolkata",
+          description:
+            "Neurodevelopmental clinic in Kolkata offering assessment and parent-led intervention for autism, ADHD, speech delay and learning challenges.",
           url: "https://neurodevelopment.in/kolkata",
           telephone: "+91-94333-08880",
           email: "instituteofneurodevelopment@gmail.com",
           image: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/e615845d-d5d6-4842-81de-7874761f4644",
+          sameAs: [
+            "https://www.facebook.com/NeuroDevelopment.in",
+            "https://www.instagram.com/institute_of_neurodevelopment",
+            "https://www.youtube.com/@IND_Bengali",
+          ],
+
           address: {
             "@type": "PostalAddress",
             streetAddress: "26, Raja Nabakrishna Street, opposite Sobhabazar Rajbari",
@@ -94,7 +105,10 @@ export const Route = createFileRoute("/kolkata")({
             },
           ],
           priceRange: "₹₹",
+          currenciesAccepted: "INR",
+          hasMap: "https://maps.google.com/?q=22.5964906,88.366761",
           areaServed: { "@type": "City", name: "Kolkata" },
+
         }),
       },
     ],
@@ -161,11 +175,12 @@ function KolkataPage() {
               <MapPin className="h-3 w-3" /> Kolkata clinic
             </span>
             <h1 className="mt-5 font-display text-4xl leading-tight md:text-5xl">
-              Neurodevelopment assessment & parent-led support in <span className="text-primary">Kolkata</span>
+              Autism treatment & neurodevelopmental clinic in <span className="text-primary">Kolkata</span>
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-              For autism, ADHD, speech delay, and learning challenges. In-person assessment at Sobhabazar, Kolkata, with a clear, parent-led plan.
+              For autism, ADHD, speech delay, and learning challenges. Evaluation can start online, with in-person assessment at Sobhabazar, Kolkata, and a clear parent-led plan.
             </p>
+
             <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
               <Button asChild size="lg" className="rounded-full px-6">
                 <Link to="/contact">

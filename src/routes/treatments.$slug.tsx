@@ -128,7 +128,7 @@ function TreatmentPage() {
         <h2 className="font-display text-3xl">Tell us about your child</h2>
         <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
           A short conversation is the fastest way to know if our system is the right fit.
-          We never diagnose online and we never push.
+          Evaluation can start online, and we never push.
         </p>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
           <Button asChild size="lg" className="rounded-full px-8">

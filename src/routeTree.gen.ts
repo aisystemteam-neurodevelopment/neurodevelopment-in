@@ -21,6 +21,7 @@ import { Route as KolkataRouteImport } from './routes/kolkata'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ChatRouteImport } from './routes/chat'
+import { Route as CareersAdminRouteImport } from './routes/careers-admin'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as ApproachRouteImport } from './routes/approach'
 import { Route as AboutRouteImport } from './routes/about'
@@ -94,6 +95,11 @@ const ChatRoute = ChatRouteImport.update({
   path: '/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CareersAdminRoute = CareersAdminRouteImport.update({
+  id: '/careers-admin',
+  path: '/careers-admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CareersRoute = CareersRouteImport.update({
   id: '/careers',
   path: '/careers',
@@ -160,6 +166,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/approach': typeof ApproachRoute
   '/careers': typeof CareersRoute
+  '/careers-admin': typeof CareersAdminRoute
   '/chat': typeof ChatRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
@@ -186,6 +193,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/approach': typeof ApproachRoute
   '/careers': typeof CareersRoute
+  '/careers-admin': typeof CareersAdminRoute
   '/chat': typeof ChatRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
@@ -213,6 +221,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/approach': typeof ApproachRoute
   '/careers': typeof CareersRoute
+  '/careers-admin': typeof CareersAdminRoute
   '/chat': typeof ChatRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
@@ -241,6 +250,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/approach'
     | '/careers'
+    | '/careers-admin'
     | '/chat'
     | '/contact'
     | '/faq'
@@ -267,6 +277,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/approach'
     | '/careers'
+    | '/careers-admin'
     | '/chat'
     | '/contact'
     | '/faq'
@@ -293,6 +304,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/approach'
     | '/careers'
+    | '/careers-admin'
     | '/chat'
     | '/contact'
     | '/faq'
@@ -320,6 +332,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ApproachRoute: typeof ApproachRoute
   CareersRoute: typeof CareersRoute
+  CareersAdminRoute: typeof CareersAdminRoute
   ChatRoute: typeof ChatRoute
   ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
@@ -428,6 +441,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/careers-admin': {
+      id: '/careers-admin'
+      path: '/careers-admin'
+      fullPath: '/careers-admin'
+      preLoaderRoute: typeof CareersAdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/careers': {
       id: '/careers'
       path: '/careers'
@@ -520,6 +540,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ApproachRoute: ApproachRoute,
   CareersRoute: CareersRoute,
+  CareersAdminRoute: CareersAdminRoute,
   ChatRoute: ChatRoute,
   ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,

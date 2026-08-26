@@ -152,6 +152,125 @@ export type Database = {
           },
         ]
       }
+      job_applications: {
+        Row: {
+          city: string | null
+          cover_note: string | null
+          created_at: string
+          current_role_title: string | null
+          email: string
+          experience_years: string | null
+          full_name: string
+          id: string
+          job_id: string | null
+          job_title: string
+          link_url: string | null
+          phone: string
+          resume_path: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          city?: string | null
+          cover_note?: string | null
+          created_at?: string
+          current_role_title?: string | null
+          email: string
+          experience_years?: string | null
+          full_name: string
+          id?: string
+          job_id?: string | null
+          job_title: string
+          link_url?: string | null
+          phone: string
+          resume_path: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          city?: string | null
+          cover_note?: string | null
+          created_at?: string
+          current_role_title?: string | null
+          email?: string
+          experience_years?: string | null
+          full_name?: string
+          id?: string
+          job_id?: string | null
+          job_title?: string
+          link_url?: string | null
+          phone?: string
+          resume_path?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "job_applications_job_id_fkey"
+            columns: ["job_id"]
+            isOneToOne: false
+            referencedRelation: "job_openings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      job_openings: {
+        Row: {
+          apply_by: string | null
+          created_at: string
+          department: string
+          description: string
+          employment_type: string
+          experience: string | null
+          id: string
+          location: string
+          published: boolean
+          requirements: string[]
+          responsibilities: string[]
+          salary_note: string | null
+          slug: string
+          summary: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          apply_by?: string | null
+          created_at?: string
+          department?: string
+          description?: string
+          employment_type?: string
+          experience?: string | null
+          id?: string
+          location?: string
+          published?: boolean
+          requirements?: string[]
+          responsibilities?: string[]
+          salary_note?: string | null
+          slug: string
+          summary?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          apply_by?: string | null
+          created_at?: string
+          department?: string
+          description?: string
+          employment_type?: string
+          experience?: string | null
+          id?: string
+          location?: string
+          published?: boolean
+          requirements?: string[]
+          responsibilities?: string[]
+          salary_note?: string | null
+          slug?: string
+          summary?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       knowledge_snippets: {
         Row: {
           active: boolean

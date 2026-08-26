@@ -175,7 +175,7 @@ export async function logAudit(entry: {
       entity_type: entry.entityType,
       entity_id: entry.entityId ?? null,
       entity_label: entry.entityLabel ?? null,
-      details: entry.details ?? {},
+      details: (entry.details ?? {}) as never,
     });
   } catch (err) {
     console.error("Audit log write failed", err);

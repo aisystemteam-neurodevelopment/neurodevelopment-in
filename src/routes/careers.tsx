@@ -49,8 +49,32 @@ export const Route = createFileRoute("/careers")({
 });
 
 function CareersPage() {
-  const { data: openings } = useSuspenseQuery(openingsQuery);
+  const { data: allOpenings } = useSuspenseQuery(openingsQuery);
   const [selected, setSelected] = useState<{ id?: string; title: string } | null>(null);
+  const [q, setQ] = useState("");
+  const [location, setLocation] = useState("all");
+  const [roleType, setRoleType] = useState("all");
+  const [workMode, setWorkMode] = useState("all");
+
+  const uniq = (values: (string | null | undefined)[]) =>
+    Array.from(new Set(values.filter((v): v is string => Boolean(v && v.trim())))).sort();
+
+  const locations = uniq(allOpenings.map((j) => j.location));
+  const roleTypes = uniq(allOpenings.map((j) => j.employment_type));
+  const workModes = uniq(allOpenings.map((j) => j.work_mode));
+
+  const openings = allOpenings.filter((job) => {
+    if (location !== "all" && job.location !== location) return false;
+    if (roleType !== "all" && job.employment_type !== roleType) return false;
+    if (workMode !== "all" && job.work_mode !== workMode) return false;
+    if (q.trim()) {
+      const hay = `${job.title} ${job.department} ${job.summary} ${job.description}`.toLowerCase();
+      if (!hay.includes(q.trim().toLowerCase())) return false;
+    }
+    return true;
+  });
+
+  const filtersActive = q.trim() !== "" || location !== "all" || roleType !== "all" || workMode !== "all";
 
   return (
     <SiteLayout>
@@ -65,9 +89,49 @@ function CareersPage() {
 
       <section className="mx-auto max-w-5xl px-5 pb-8">
         <h2 className="font-display text-2xl">Open positions</h2>
-        {openings.length === 0 ? (
+
+        {allOpenings.length > 0 ? (
+          <div className="mt-6 rounded-2xl border border-border bg-card/40 p-4 text-left">
+            <div className="grid gap-3 md:grid-cols-4">
+              <div>
+                <Label htmlFor="job-search" className="text-xs">Search</Label>
+                <Input
+                  id="job-search"
+                  value={q}
+                  onChange={(e) => setQ(e.target.value)}
+                  placeholder="Role or keyword"
+                  className="mt-1.5"
+                />
+              </div>
+              <FilterSelect id="filter-location" label="Location" value={location} onChange={setLocation} options={locations} allLabel="All locations" />
+              <FilterSelect id="filter-type" label="Role type" value={roleType} onChange={setRoleType} options={roleTypes} allLabel="All role types" />
+              <FilterSelect id="filter-mode" label="Work mode" value={workMode} onChange={setWorkMode} options={workModes} allLabel="All work modes" />
+            </div>
+            <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+              <p className="text-xs text-muted-foreground">
+                Showing {openings.length} of {allOpenings.length} {allOpenings.length === 1 ? "role" : "roles"}
+              </p>
+              {filtersActive ? (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="rounded-full"
+                  onClick={() => { setQ(""); setLocation("all"); setRoleType("all"); setWorkMode("all"); }}
+                >
+                  Clear filters
+                </Button>
+              ) : null}
+            </div>
+          </div>
+        ) : null}
+
+        {allOpenings.length === 0 ? (
           <p className="mt-4 text-muted-foreground">
             No openings right now. You can still send us a general application below — we keep resumes on file.
+          </p>
+        ) : openings.length === 0 ? (
+          <p className="mt-6 text-muted-foreground">
+            No roles match these filters. Clear them, or send a general application below.
           </p>
         ) : (
           <div className="mt-6 grid gap-5 md:grid-cols-2">
@@ -78,8 +142,10 @@ function CareersPage() {
                   <span className="inline-flex items-center gap-1"><Briefcase className="h-3.5 w-3.5" />{job.department}</span>
                   <span className="inline-flex items-center gap-1"><MapPin className="h-3.5 w-3.5" />{job.location}</span>
                   <span className="inline-flex items-center gap-1"><Clock className="h-3.5 w-3.5" />{job.employment_type}</span>
+                  {job.work_mode ? <span className="inline-flex items-center gap-1"><Building2 className="h-3.5 w-3.5" />{job.work_mode}</span> : null}
                   {job.experience ? <span>{job.experience} experience</span> : null}
                 </div>
+
                 {job.summary ? <p className="mt-4 text-sm text-muted-foreground">{job.summary}</p> : null}
                 {job.description ? <p className="mt-3 text-sm text-muted-foreground">{job.description}</p> : null}
 

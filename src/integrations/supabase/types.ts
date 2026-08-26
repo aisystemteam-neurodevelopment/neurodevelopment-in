@@ -64,6 +64,39 @@ export type Database = {
           },
         ]
       }
+      careers_audit_log: {
+        Row: {
+          action: string
+          actor_role: string
+          created_at: string
+          details: Json
+          entity_id: string | null
+          entity_label: string | null
+          entity_type: string
+          id: string
+        }
+        Insert: {
+          action: string
+          actor_role: string
+          created_at?: string
+          details?: Json
+          entity_id?: string | null
+          entity_label?: string | null
+          entity_type: string
+          id?: string
+        }
+        Update: {
+          action?: string
+          actor_role?: string
+          created_at?: string
+          details?: Json
+          entity_id?: string | null
+          entity_label?: string | null
+          entity_type?: string
+          id?: string
+        }
+        Relationships: []
+      }
       children: {
         Row: {
           age_years: number | null
@@ -165,8 +198,14 @@ export type Database = {
           job_id: string | null
           job_title: string
           link_url: string | null
+          parsed_at: string | null
+          parsed_experience: string | null
+          parsed_name: string | null
+          parsed_skills: string[]
+          parsed_summary: string | null
           phone: string
           resume_path: string
+          review_notes: string | null
           status: string
           updated_at: string
         }
@@ -182,8 +221,14 @@ export type Database = {
           job_id?: string | null
           job_title: string
           link_url?: string | null
+          parsed_at?: string | null
+          parsed_experience?: string | null
+          parsed_name?: string | null
+          parsed_skills?: string[]
+          parsed_summary?: string | null
           phone: string
           resume_path: string
+          review_notes?: string | null
           status?: string
           updated_at?: string
         }
@@ -199,8 +244,14 @@ export type Database = {
           job_id?: string | null
           job_title?: string
           link_url?: string | null
+          parsed_at?: string | null
+          parsed_experience?: string | null
+          parsed_name?: string | null
+          parsed_skills?: string[]
+          parsed_summary?: string | null
           phone?: string
           resume_path?: string
+          review_notes?: string | null
           status?: string
           updated_at?: string
         }
@@ -232,6 +283,7 @@ export type Database = {
           summary: string
           title: string
           updated_at: string
+          work_mode: string
         }
         Insert: {
           apply_by?: string | null
@@ -250,6 +302,7 @@ export type Database = {
           summary?: string
           title: string
           updated_at?: string
+          work_mode?: string
         }
         Update: {
           apply_by?: string | null
@@ -268,6 +321,7 @@ export type Database = {
           summary?: string
           title?: string
           updated_at?: string
+          work_mode?: string
         }
         Relationships: []
       }

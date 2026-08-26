@@ -148,6 +148,8 @@ export function slugify(title: string): string {
   );
 }
 
+export type AuditDetails = Record<string, string | number | boolean | string[] | null>;
+
 export type AuditEntry = {
   id: string;
   actor_role: string;
@@ -155,7 +157,7 @@ export type AuditEntry = {
   entity_type: string;
   entity_id: string | null;
   entity_label: string | null;
-  details: Record<string, unknown>;
+  details: AuditDetails;
   created_at: string;
 };
 
@@ -165,7 +167,7 @@ export async function logAudit(entry: {
   entityType: "job_opening" | "job_application";
   entityId?: string | null;
   entityLabel?: string | null;
-  details?: Record<string, unknown>;
+  details?: AuditDetails;
 }) {
   try {
     const db = await admin();

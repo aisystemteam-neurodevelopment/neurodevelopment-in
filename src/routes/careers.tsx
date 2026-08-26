@@ -35,7 +35,6 @@ export const Route = createFileRoute("/careers")({
     ],
     links: [{ rel: "canonical", href: "https://neurodevelopment.in/careers" }],
   }),
-  loader: ({ context }) => context.queryClient.ensureQueryData(openingsQuery),
   component: CareersPage,
   errorComponent: () => (
     <SiteLayout>

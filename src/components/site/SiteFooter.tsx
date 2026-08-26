@@ -39,6 +39,7 @@ export function SiteFooter() {
             <li><Link to="/about" className="hover:text-foreground">About Dr. Das</Link></li>
             <li><Link to="/kolkata" className="hover:text-foreground">Kolkata clinic</Link></li>
             <li><Link to="/faq" className="hover:text-foreground">FAQ</Link></li>
+            <li><Link to="/careers" className="hover:text-foreground">Careers</Link></li>
             <li><Link to="/chat" className="hover:text-foreground">Talk to our assistant</Link></li>
           </ul>
         </div>

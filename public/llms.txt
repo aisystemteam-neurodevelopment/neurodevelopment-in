@@ -13,6 +13,7 @@
 - [FAQ](/faq): Answers on slow progress, fragmented advice and therapy dependency.
 - [Quiz](/quiz): A 60-second qualifier quiz recommending the right next step.
 - [Contact](/contact): Book an appointment, online or in Kolkata.
+- [Careers](/careers): Open roles and online job application with resume upload.
 
 ## Optional
 

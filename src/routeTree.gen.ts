@@ -29,6 +29,7 @@ import { Route as ApiPublicRefundRequestRouteImport } from './routes/api/public/
 import { Route as ApiPublicQuizLeadRouteImport } from './routes/api/public/quiz-lead'
 import { Route as ApiPublicMasterclassRouteImport } from './routes/api/public/masterclass'
 import { Route as ApiPublicLeadMagnetRouteImport } from './routes/api/public/lead-magnet'
+import { Route as ApiPublicJobApplicationRouteImport } from './routes/api/public/job-application'
 import { Route as ApiPublicChatRouteImport } from './routes/api/public/chat'
 import { Route as ApiPublicBookingRouteImport } from './routes/api/public/booking'
 
@@ -132,6 +133,11 @@ const ApiPublicLeadMagnetRoute = ApiPublicLeadMagnetRouteImport.update({
   path: '/api/public/lead-magnet',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicJobApplicationRoute = ApiPublicJobApplicationRouteImport.update({
+  id: '/api/public/job-application',
+  path: '/api/public/job-application',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicChatRoute = ApiPublicChatRouteImport.update({
   id: '/api/public/chat',
   path: '/api/public/chat',
@@ -162,6 +168,7 @@ export interface FileRoutesByFullPath {
   '/treatments/$slug': typeof TreatmentsSlugRoute
   '/api/public/booking': typeof ApiPublicBookingRoute
   '/api/public/chat': typeof ApiPublicChatRoute
+  '/api/public/job-application': typeof ApiPublicJobApplicationRoute
   '/api/public/lead-magnet': typeof ApiPublicLeadMagnetRoute
   '/api/public/masterclass': typeof ApiPublicMasterclassRoute
   '/api/public/quiz-lead': typeof ApiPublicQuizLeadRoute
@@ -186,6 +193,7 @@ export interface FileRoutesByTo {
   '/treatments/$slug': typeof TreatmentsSlugRoute
   '/api/public/booking': typeof ApiPublicBookingRoute
   '/api/public/chat': typeof ApiPublicChatRoute
+  '/api/public/job-application': typeof ApiPublicJobApplicationRoute
   '/api/public/lead-magnet': typeof ApiPublicLeadMagnetRoute
   '/api/public/masterclass': typeof ApiPublicMasterclassRoute
   '/api/public/quiz-lead': typeof ApiPublicQuizLeadRoute
@@ -211,6 +219,7 @@ export interface FileRoutesById {
   '/treatments/$slug': typeof TreatmentsSlugRoute
   '/api/public/booking': typeof ApiPublicBookingRoute
   '/api/public/chat': typeof ApiPublicChatRoute
+  '/api/public/job-application': typeof ApiPublicJobApplicationRoute
   '/api/public/lead-magnet': typeof ApiPublicLeadMagnetRoute
   '/api/public/masterclass': typeof ApiPublicMasterclassRoute
   '/api/public/quiz-lead': typeof ApiPublicQuizLeadRoute
@@ -237,6 +246,7 @@ export interface FileRouteTypes {
     | '/treatments/$slug'
     | '/api/public/booking'
     | '/api/public/chat'
+    | '/api/public/job-application'
     | '/api/public/lead-magnet'
     | '/api/public/masterclass'
     | '/api/public/quiz-lead'
@@ -261,6 +271,7 @@ export interface FileRouteTypes {
     | '/treatments/$slug'
     | '/api/public/booking'
     | '/api/public/chat'
+    | '/api/public/job-application'
     | '/api/public/lead-magnet'
     | '/api/public/masterclass'
     | '/api/public/quiz-lead'
@@ -285,6 +296,7 @@ export interface FileRouteTypes {
     | '/treatments/$slug'
     | '/api/public/booking'
     | '/api/public/chat'
+    | '/api/public/job-application'
     | '/api/public/lead-magnet'
     | '/api/public/masterclass'
     | '/api/public/quiz-lead'
@@ -310,6 +322,7 @@ export interface RootRouteChildren {
   TreatmentsSlugRoute: typeof TreatmentsSlugRoute
   ApiPublicBookingRoute: typeof ApiPublicBookingRoute
   ApiPublicChatRoute: typeof ApiPublicChatRoute
+  ApiPublicJobApplicationRoute: typeof ApiPublicJobApplicationRoute
   ApiPublicLeadMagnetRoute: typeof ApiPublicLeadMagnetRoute
   ApiPublicMasterclassRoute: typeof ApiPublicMasterclassRoute
   ApiPublicQuizLeadRoute: typeof ApiPublicQuizLeadRoute
@@ -458,6 +471,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicLeadMagnetRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/job-application': {
+      id: '/api/public/job-application'
+      path: '/api/public/job-application'
+      fullPath: '/api/public/job-application'
+      preLoaderRoute: typeof ApiPublicJobApplicationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/chat': {
       id: '/api/public/chat'
       path: '/api/public/chat'
@@ -494,6 +514,7 @@ const rootRouteChildren: RootRouteChildren = {
   TreatmentsSlugRoute: TreatmentsSlugRoute,
   ApiPublicBookingRoute: ApiPublicBookingRoute,
   ApiPublicChatRoute: ApiPublicChatRoute,
+  ApiPublicJobApplicationRoute: ApiPublicJobApplicationRoute,
   ApiPublicLeadMagnetRoute: ApiPublicLeadMagnetRoute,
   ApiPublicMasterclassRoute: ApiPublicMasterclassRoute,
   ApiPublicQuizLeadRoute: ApiPublicQuizLeadRoute,

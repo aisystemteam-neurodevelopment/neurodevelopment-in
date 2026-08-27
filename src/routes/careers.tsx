@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { listOpenings } from "@/lib/careers.functions";
-import { Briefcase, MapPin, Clock, Upload } from "lucide-react";
+import { Briefcase, MapPin, Clock, Upload, Building2 } from "lucide-react";
 
 const openingsQuery = queryOptions({
   queryKey: ["job-openings"],
@@ -303,5 +303,38 @@ function ApplicationForm({
         Your details and resume are stored securely and used only for recruitment.
       </p>
     </form>
+  );
+}
+
+function FilterSelect({
+  id,
+  label,
+  value,
+  onChange,
+  options,
+  allLabel,
+}: {
+  id: string;
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  options: string[];
+  allLabel: string;
+}) {
+  return (
+    <div>
+      <Label htmlFor={id} className="text-xs">{label}</Label>
+      <select
+        id={id}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="mt-1.5 h-10 w-full rounded-md border border-border bg-background px-3 text-sm"
+      >
+        <option value="all">{allLabel}</option>
+        {options.map((o) => (
+          <option key={o} value={o}>{o}</option>
+        ))}
+      </select>
+    </div>
   );
 }

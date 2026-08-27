@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { listOpenings } from "@/lib/careers.functions";
-import { Briefcase, MapPin, Clock, Upload } from "lucide-react";
+import { Briefcase, MapPin, Clock, Upload, Building2 } from "lucide-react";
 
 const openingsQuery = queryOptions({
   queryKey: ["job-openings"],

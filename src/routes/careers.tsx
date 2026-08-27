@@ -305,3 +305,36 @@ function ApplicationForm({
     </form>
   );
 }
+
+function FilterSelect({
+  id,
+  label,
+  value,
+  onChange,
+  options,
+  allLabel,
+}: {
+  id: string;
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  options: string[];
+  allLabel: string;
+}) {
+  return (
+    <div>
+      <Label htmlFor={id} className="text-xs">{label}</Label>
+      <select
+        id={id}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="mt-1.5 h-10 w-full rounded-md border border-border bg-background px-3 text-sm"
+      >
+        <option value="all">{allLabel}</option>
+        {options.map((o) => (
+          <option key={o} value={o}>{o}</option>
+        ))}
+      </select>
+    </div>
+  );
+}

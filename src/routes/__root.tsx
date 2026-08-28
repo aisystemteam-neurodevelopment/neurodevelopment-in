@@ -129,9 +129,9 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  const router = useRouter();
+  const { queryClient } = useRouteContext({ from: "__root__" });
   return (
-    <QueryClientProvider client={router.context.queryClient}>
+    <QueryClientProvider client={queryClient}>
       <Outlet />
       <Toaster richColors position="top-center" />
       <LeadCapturePopup />

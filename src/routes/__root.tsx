@@ -1,4 +1,5 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { useRouter, Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { QueryClientProvider } from "@tanstack/react-query";
 
 import appCss from "../styles.css?url";
 import { Toaster } from "@/components/ui/sonner";

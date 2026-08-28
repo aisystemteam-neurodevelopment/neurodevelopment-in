@@ -124,11 +124,12 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
+  const router = useRouter();
   return (
-    <>
+    <QueryClientProvider client={router.context.queryClient}>
       <Outlet />
       <Toaster richColors position="top-center" />
       <LeadCapturePopup />
-    </>
+    </QueryClientProvider>
   );
 }

@@ -36,9 +36,9 @@ const fieldsSchema = z.object({
   fullName: z.string().trim().min(2).max(120),
   email: z.string().trim().email().max(200),
   phone: z.string().trim().min(6).max(40),
-  city: z.string().trim().max(120).optional().default(""),
-  currentRole: z.string().trim().max(160).optional().default(""),
-  experienceYears: z.string().trim().max(40).optional().default(""),
+  city: z.string().trim().min(2).max(120),
+  currentRole: z.string().trim().min(2).max(160),
+  experienceYears: z.string().trim().min(1).max(40),
   coverNote: z.string().trim().max(3000).optional().default(""),
   linkUrl: z.string().trim().max(300).optional().default(""),
 });

@@ -1,6 +1,5 @@
-import { useRouteContext, Outlet, Link, createRootRouteWithContext, HeadContent, Scripts } from "@tanstack/react-router";
+import { useRouter, Outlet, Link, createRootRouteWithContext, HeadContent, Scripts } from "@tanstack/react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import type { ReactNode } from "react";
 
 interface RouterContext {
   queryClient: QueryClient;
@@ -129,7 +128,8 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  const { queryClient } = useRouteContext({ from: "__root__" });
+  const router = useRouter();
+  const queryClient = (router as unknown as { options: { context: RouterContext } }).options.context.queryClient;
   return (
     <QueryClientProvider client={queryClient}>
       <Outlet />

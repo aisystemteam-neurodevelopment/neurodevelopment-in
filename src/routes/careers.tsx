@@ -205,6 +205,49 @@ function ApplicationForm({
 }) {
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [values, setValues] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    city: "",
+    currentRole: "",
+    experienceYears: "",
+    linkUrl: "",
+    coverNote: "",
+  });
+
+  const contactComplete =
+    values.fullName.trim().length >= 2 &&
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim()) &&
+    values.phone.trim().length >= 6 &&
+    values.city.trim().length >= 2 &&
+    values.currentRole.trim().length >= 2 &&
+    values.experienceYears.trim().length >= 1;
+
+  const errorFor = (field: keyof typeof values, label: string) => {
+    if (!touched[field]) return null;
+    const v = values[field].trim();
+    switch (field) {
+      case "fullName":
+      case "currentRole":
+      case "city":
+        return v.length < 2 ? `${label} is required` : null;
+      case "email":
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? null : "Enter a valid email";
+      case "phone":
+        return v.length < 6 ? `${label} is required` : null;
+      case "experienceYears":
+        return v.length < 1 ? `${label} is required` : null;
+      default:
+        return null;
+    }
+  };
+
+  const update = (field: keyof typeof values, value: string) => {
+    setValues((s) => ({ ...s, [field]: value }));
+    setTouched((s) => ({ ...s, [field]: true }));
+  };
 
   if (done) {
     return (
@@ -225,6 +268,20 @@ function ApplicationForm({
       className="mt-6 space-y-4 text-left"
       onSubmit={async (e) => {
         e.preventDefault();
+        if (!contactComplete) {
+          setTouched({
+            fullName: true,
+            email: true,
+            phone: true,
+            city: true,
+            currentRole: true,
+            experienceYears: true,
+            linkUrl: true,
+            coverNote: true,
+          });
+          toast.error("Please complete all contact details before uploading your resume.");
+          return;
+        }
         const form = e.currentTarget;
         const fd = new FormData(form);
         if (selected?.id) fd.set("jobId", selected.id);
@@ -238,6 +295,17 @@ function ApplicationForm({
             return;
           }
           form.reset();
+          setValues({
+            fullName: "",
+            email: "",
+            phone: "",
+            city: "",
+            currentRole: "",
+            experienceYears: "",
+            linkUrl: "",
+            coverNote: "",
+          });
+          setTouched({});
           setDone(true);
         } catch {
           toast.error("Network error. Please try again.");
@@ -247,52 +315,113 @@ function ApplicationForm({
       }}
     >
       <div className="grid gap-4 sm:grid-cols-2">
-        <div>
-          <Label htmlFor="fullName">Full name *</Label>
-          <Input id="fullName" name="fullName" required maxLength={120} className="mt-1.5" />
-        </div>
-        <div>
-          <Label htmlFor="email">Email *</Label>
-          <Input id="email" name="email" type="email" required maxLength={200} className="mt-1.5" />
-        </div>
-        <div>
-          <Label htmlFor="phone">Phone / WhatsApp *</Label>
-          <Input id="phone" name="phone" required maxLength={40} className="mt-1.5" />
-        </div>
-        <div>
-          <Label htmlFor="city">City</Label>
-          <Input id="city" name="city" maxLength={120} className="mt-1.5" />
-        </div>
-        <div>
-          <Label htmlFor="currentRole">Current role</Label>
-          <Input id="currentRole" name="currentRole" maxLength={160} className="mt-1.5" />
-        </div>
-        <div>
-          <Label htmlFor="experienceYears">Years of experience</Label>
-          <Input id="experienceYears" name="experienceYears" maxLength={40} className="mt-1.5" />
-        </div>
+        <TextField
+          id="fullName"
+          name="fullName"
+          label="Full name"
+          required
+          maxLength={120}
+          value={values.fullName}
+          error={errorFor("fullName", "Full name")}
+          onChange={(v) => update("fullName", v)}
+        />
+        <TextField
+          id="email"
+          name="email"
+          type="email"
+          label="Email"
+          required
+          maxLength={200}
+          value={values.email}
+          error={errorFor("email", "Email")}
+          onChange={(v) => update("email", v)}
+        />
+        <TextField
+          id="phone"
+          name="phone"
+          label="Phone / WhatsApp"
+          required
+          maxLength={40}
+          value={values.phone}
+          error={errorFor("phone", "Phone / WhatsApp")}
+          onChange={(v) => update("phone", v)}
+        />
+        <TextField
+          id="city"
+          name="city"
+          label="City"
+          required
+          maxLength={120}
+          value={values.city}
+          error={errorFor("city", "City")}
+          onChange={(v) => update("city", v)}
+        />
+        <TextField
+          id="currentRole"
+          name="currentRole"
+          label="Current role"
+          required
+          maxLength={160}
+          value={values.currentRole}
+          error={errorFor("currentRole", "Current role")}
+          onChange={(v) => update("currentRole", v)}
+        />
+        <TextField
+          id="experienceYears"
+          name="experienceYears"
+          label="Years of experience"
+          required
+          maxLength={40}
+          value={values.experienceYears}
+          error={errorFor("experienceYears", "Years of experience")}
+          onChange={(v) => update("experienceYears", v)}
+        />
       </div>
 
       <div>
         <Label htmlFor="linkUrl">LinkedIn / portfolio link</Label>
-        <Input id="linkUrl" name="linkUrl" placeholder="https://" maxLength={300} className="mt-1.5" />
+        <Input
+          id="linkUrl"
+          name="linkUrl"
+          placeholder="https://"
+          maxLength={300}
+          value={values.linkUrl}
+          onChange={(e) => update("linkUrl", e.target.value)}
+          className="mt-1.5"
+        />
       </div>
 
       <div>
         <Label htmlFor="coverNote">Why you're a fit</Label>
-        <Textarea id="coverNote" name="coverNote" rows={5} maxLength={3000} className="mt-1.5" />
+        <Textarea
+          id="coverNote"
+          name="coverNote"
+          rows={5}
+          maxLength={3000}
+          value={values.coverNote}
+          onChange={(e) => update("coverNote", e.target.value)}
+          className="mt-1.5"
+        />
       </div>
 
       <div>
-        <Label htmlFor="resume">Resume (PDF, DOC or DOCX, max 8 MB) *</Label>
+        <Label htmlFor="resume" className={contactComplete ? "" : "text-muted-foreground"}>
+          Resume (PDF, DOC or DOCX, max 8 MB) *
+        </Label>
         <Input
           id="resume"
           name="resume"
           type="file"
           required
+          disabled={!contactComplete}
           accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
           className="mt-1.5"
         />
+        {!contactComplete ? (
+          <p className="mt-1.5 text-xs text-destructive">
+            Complete all contact details above before uploading your resume.
+          </p>
+        ) : null}
       </div>
 
       <Button type="submit" disabled={busy} className="w-full rounded-full gap-2">
@@ -303,6 +432,49 @@ function ApplicationForm({
         Your details and resume are stored securely and used only for recruitment.
       </p>
     </form>
+  );
+}
+
+function TextField({
+  id,
+  name,
+  label,
+  type = "text",
+  required,
+  maxLength,
+  value,
+  error,
+  onChange,
+}: {
+  id: string;
+  name: string;
+  label: string;
+  type?: string;
+  required?: boolean;
+  maxLength?: number;
+  value: string;
+  error: string | null;
+  onChange: (value: string) => void;
+}) {
+  return (
+    <div>
+      <Label htmlFor={id}>
+        {label}
+        {required ? " *" : null}
+      </Label>
+      <Input
+        id={id}
+        name={name}
+        type={type}
+        required={required}
+        maxLength={maxLength}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className={`mt-1.5 ${error ? "border-destructive focus-visible:ring-destructive" : ""}`}
+        aria-invalid={error ? "true" : "false"}
+      />
+      {error ? <p className="mt-1 text-xs text-destructive">{error}</p> : null}
+    </div>
   );
 }
 

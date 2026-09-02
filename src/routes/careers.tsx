@@ -204,6 +204,9 @@ function ApplicationForm({
   onDone: () => void;
 }) {
   const [busy, setBusy] = useState(false);
+  const [progress, setProgress] = useState<number | null>(null);
+  const [resumeError, setResumeError] = useState<string | null>(null);
+  const [resumeOk, setResumeOk] = useState(false);
   const [done, setDone] = useState(false);
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [values, setValues] = useState({
@@ -243,6 +246,43 @@ function ApplicationForm({
         return null;
     }
   };
+
+  const MAX_RESUME_BYTES = 8 * 1024 * 1024;
+  const ALLOWED_EXTENSIONS = ["pdf", "doc", "docx"];
+  const ALLOWED_MIMES = [
+    "application/pdf",
+    "application/msword",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  ];
+
+  const validateResume = (file: File | null | undefined): string | null => {
+    if (!file || file.size === 0) return "Please attach your resume";
+    if (file.size > MAX_RESUME_BYTES) return "Resume must be under 8 MB";
+    const ext = file.name.split(".").pop()?.toLowerCase() ?? "";
+    const extOk = ALLOWED_EXTENSIONS.includes(ext);
+    const mimeOk = file.type === "" || ALLOWED_MIMES.includes(file.type);
+    if (!extOk || !mimeOk) return "Only PDF, DOC or DOCX files are allowed";
+    return null;
+  };
+
+  const submitWithProgress = (fd: FormData) =>
+    new Promise<{ ok: boolean; error?: string }>((resolve) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "/api/public/job-application");
+      xhr.upload.onprogress = (e) => {
+        if (e.lengthComputable) setProgress(Math.round((e.loaded / e.total) * 100));
+      };
+      xhr.onload = () => {
+        try {
+          const json = JSON.parse(xhr.responseText) as { ok?: boolean; error?: string };
+          resolve(xhr.status >= 200 && xhr.status < 300 && json.ok ? { ok: true } : { ok: false, error: json.error ?? "Could not submit your application" });
+        } catch {
+          resolve({ ok: false, error: "Could not submit your application" });
+        }
+      };
+      xhr.onerror = () => resolve({ ok: false, error: "Network error. Please try again." });
+      xhr.send(fd);
+    });
 
   const update = (field: keyof typeof values, value: string) => {
     setValues((s) => ({ ...s, [field]: value }));
@@ -284,17 +324,27 @@ function ApplicationForm({
         }
         const form = e.currentTarget;
         const fd = new FormData(form);
+        const file = form.resume.files?.[0] as File | undefined;
+        const fileError = validateResume(file);
+        if (fileError) {
+          setResumeError(fileError);
+          setResumeOk(false);
+          toast.error(fileError);
+          return;
+        }
         if (selected?.id) fd.set("jobId", selected.id);
         fd.set("jobTitle", selected?.title ?? "General application");
         setBusy(true);
+        setProgress(0);
         try {
-          const res = await fetch("/api/public/job-application", { method: "POST", body: fd });
-          const json = (await res.json()) as { ok?: boolean; error?: string };
-          if (!res.ok || !json.ok) {
-            toast.error(json.error ?? "Could not submit your application");
+          const result = await submitWithProgress(fd);
+          if (!result.ok) {
+            toast.error(result.error ?? "Could not submit your application");
             return;
           }
           form.reset();
+          setResumeOk(false);
+          setResumeError(null);
           setValues({
             fullName: "",
             email: "",
@@ -311,6 +361,7 @@ function ApplicationForm({
           toast.error("Network error. Please try again.");
         } finally {
           setBusy(false);
+          setProgress(null);
         }
       }}
     >
@@ -413,20 +464,50 @@ function ApplicationForm({
           name="resume"
           type="file"
           required
-          disabled={!contactComplete}
+          disabled={!contactComplete || busy}
           accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-          className="mt-1.5"
+          className={`mt-1.5 ${resumeError ? "border-destructive focus-visible:ring-destructive" : ""}`}
+          aria-invalid={resumeError ? "true" : "false"}
+          onChange={(e) => {
+            const err = validateResume(e.target.files?.[0]);
+            setResumeError(err);
+            setResumeOk(!err);
+            if (err) toast.error(err);
+          }}
         />
         {!contactComplete ? (
           <p className="mt-1.5 text-xs text-destructive">
             Complete all contact details above before uploading your resume.
           </p>
+        ) : resumeError ? (
+          <p className="mt-1.5 text-xs text-destructive">{resumeError}</p>
+        ) : resumeOk ? (
+          <p className="mt-1.5 text-xs text-green-500">Resume looks good — ready to submit.</p>
         ) : null}
       </div>
 
-      <Button type="submit" disabled={busy} className="w-full rounded-full gap-2">
+      {busy && progress !== null ? (
+        <div aria-live="polite">
+          <div className="flex items-center justify-between text-xs text-muted-foreground">
+            <span>{progress < 100 ? "Uploading resume…" : "Processing application…"}</span>
+            <span>{progress}%</span>
+          </div>
+          <div className="mt-1.5 h-2 w-full overflow-hidden rounded-full bg-muted">
+            <div
+              className="h-full rounded-full bg-primary transition-all duration-200"
+              style={{ width: `${progress}%` }}
+              role="progressbar"
+              aria-valuenow={progress}
+              aria-valuemin={0}
+              aria-valuemax={100}
+            />
+          </div>
+        </div>
+      ) : null}
+
+      <Button type="submit" disabled={busy || !contactComplete} className="w-full rounded-full gap-2">
         <Upload className="h-4 w-4" />
-        {busy ? "Submitting…" : "Submit application"}
+        {busy ? (progress !== null && progress < 100 ? `Uploading… ${progress}%` : "Submitting…") : "Submit application"}
       </Button>
       <p className="text-xs text-muted-foreground">
         Your details and resume are stored securely and used only for recruitment.

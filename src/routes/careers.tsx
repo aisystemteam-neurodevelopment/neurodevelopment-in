@@ -464,20 +464,50 @@ function ApplicationForm({
           name="resume"
           type="file"
           required
-          disabled={!contactComplete}
+          disabled={!contactComplete || busy}
           accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-          className="mt-1.5"
+          className={`mt-1.5 ${resumeError ? "border-destructive focus-visible:ring-destructive" : ""}`}
+          aria-invalid={resumeError ? "true" : "false"}
+          onChange={(e) => {
+            const err = validateResume(e.target.files?.[0]);
+            setResumeError(err);
+            setResumeOk(!err);
+            if (err) toast.error(err);
+          }}
         />
         {!contactComplete ? (
           <p className="mt-1.5 text-xs text-destructive">
             Complete all contact details above before uploading your resume.
           </p>
+        ) : resumeError ? (
+          <p className="mt-1.5 text-xs text-destructive">{resumeError}</p>
+        ) : resumeOk ? (
+          <p className="mt-1.5 text-xs text-green-500">Resume looks good — ready to submit.</p>
         ) : null}
       </div>
 
-      <Button type="submit" disabled={busy} className="w-full rounded-full gap-2">
+      {busy && progress !== null ? (
+        <div aria-live="polite">
+          <div className="flex items-center justify-between text-xs text-muted-foreground">
+            <span>{progress < 100 ? "Uploading resume…" : "Processing application…"}</span>
+            <span>{progress}%</span>
+          </div>
+          <div className="mt-1.5 h-2 w-full overflow-hidden rounded-full bg-muted">
+            <div
+              className="h-full rounded-full bg-primary transition-all duration-200"
+              style={{ width: `${progress}%` }}
+              role="progressbar"
+              aria-valuenow={progress}
+              aria-valuemin={0}
+              aria-valuemax={100}
+            />
+          </div>
+        </div>
+      ) : null}
+
+      <Button type="submit" disabled={busy || !contactComplete} className="w-full rounded-full gap-2">
         <Upload className="h-4 w-4" />
-        {busy ? "Submitting…" : "Submit application"}
+        {busy ? (progress !== null && progress < 100 ? `Uploading… ${progress}%` : "Submitting…") : "Submit application"}
       </Button>
       <p className="text-xs text-muted-foreground">
         Your details and resume are stored securely and used only for recruitment.

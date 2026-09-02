@@ -324,17 +324,27 @@ function ApplicationForm({
         }
         const form = e.currentTarget;
         const fd = new FormData(form);
+        const file = form.resume.files?.[0] as File | undefined;
+        const fileError = validateResume(file);
+        if (fileError) {
+          setResumeError(fileError);
+          setResumeOk(false);
+          toast.error(fileError);
+          return;
+        }
         if (selected?.id) fd.set("jobId", selected.id);
         fd.set("jobTitle", selected?.title ?? "General application");
         setBusy(true);
+        setProgress(0);
         try {
-          const res = await fetch("/api/public/job-application", { method: "POST", body: fd });
-          const json = (await res.json()) as { ok?: boolean; error?: string };
-          if (!res.ok || !json.ok) {
-            toast.error(json.error ?? "Could not submit your application");
+          const result = await submitWithProgress(fd);
+          if (!result.ok) {
+            toast.error(result.error ?? "Could not submit your application");
             return;
           }
           form.reset();
+          setResumeOk(false);
+          setResumeError(null);
           setValues({
             fullName: "",
             email: "",

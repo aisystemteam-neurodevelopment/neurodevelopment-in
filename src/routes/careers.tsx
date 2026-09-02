@@ -247,6 +247,43 @@ function ApplicationForm({
     }
   };
 
+  const MAX_RESUME_BYTES = 8 * 1024 * 1024;
+  const ALLOWED_EXTENSIONS = ["pdf", "doc", "docx"];
+  const ALLOWED_MIMES = [
+    "application/pdf",
+    "application/msword",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  ];
+
+  const validateResume = (file: File | null | undefined): string | null => {
+    if (!file || file.size === 0) return "Please attach your resume";
+    if (file.size > MAX_RESUME_BYTES) return "Resume must be under 8 MB";
+    const ext = file.name.split(".").pop()?.toLowerCase() ?? "";
+    const extOk = ALLOWED_EXTENSIONS.includes(ext);
+    const mimeOk = file.type === "" || ALLOWED_MIMES.includes(file.type);
+    if (!extOk || !mimeOk) return "Only PDF, DOC or DOCX files are allowed";
+    return null;
+  };
+
+  const submitWithProgress = (fd: FormData) =>
+    new Promise<{ ok: boolean; error?: string }>((resolve) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "/api/public/job-application");
+      xhr.upload.onprogress = (e) => {
+        if (e.lengthComputable) setProgress(Math.round((e.loaded / e.total) * 100));
+      };
+      xhr.onload = () => {
+        try {
+          const json = JSON.parse(xhr.responseText) as { ok?: boolean; error?: string };
+          resolve(xhr.status >= 200 && xhr.status < 300 && json.ok ? { ok: true } : { ok: false, error: json.error ?? "Could not submit your application" });
+        } catch {
+          resolve({ ok: false, error: "Could not submit your application" });
+        }
+      };
+      xhr.onerror = () => resolve({ ok: false, error: "Network error. Please try again." });
+      xhr.send(fd);
+    });
+
   const update = (field: keyof typeof values, value: string) => {
     setValues((s) => ({ ...s, [field]: value }));
     setTouched((s) => ({ ...s, [field]: true }));

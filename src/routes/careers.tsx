@@ -361,6 +361,7 @@ function ApplicationForm({
           toast.error("Network error. Please try again.");
         } finally {
           setBusy(false);
+          setProgress(null);
         }
       }}
     >

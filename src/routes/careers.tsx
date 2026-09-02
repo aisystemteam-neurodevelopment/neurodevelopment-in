@@ -204,6 +204,9 @@ function ApplicationForm({
   onDone: () => void;
 }) {
   const [busy, setBusy] = useState(false);
+  const [progress, setProgress] = useState<number | null>(null);
+  const [resumeError, setResumeError] = useState<string | null>(null);
+  const [resumeOk, setResumeOk] = useState(false);
   const [done, setDone] = useState(false);
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [values, setValues] = useState({

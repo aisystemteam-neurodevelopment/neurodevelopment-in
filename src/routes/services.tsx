@@ -95,6 +95,38 @@ function ServicesPage() {
         </div>
       </section>
 
+      {/* How we work — visual */}
+      <section className="mx-auto max-w-6xl px-5 pb-12">
+        <div className="overflow-hidden rounded-3xl border border-border bg-card">
+          <div className="grid md:grid-cols-2">
+            <img
+              src={parentChildActivity.url}
+              alt="Parent and child doing a structured activity together at home"
+              width={1200}
+              height={800}
+              loading="lazy"
+              className="h-64 w-full object-cover md:h-full"
+            />
+            <div className="flex flex-col justify-center p-8 md:p-10">
+              <h2 className="font-display text-2xl md:text-3xl">The real work happens at home</h2>
+              <p className="mt-4 text-muted-foreground">
+                Sessions and assessments create the roadmap. But the daily, parent-led
+                actions — woven into play, meals, routines, and bedtime — are what turn
+                a developmental plan into measurable progress.
+              </p>
+              <p className="mt-3 text-sm text-muted-foreground">
+                We coach the system. You become the growth engine.
+              </p>
+              <div className="mt-6">
+                <Button asChild variant="outline" className="rounded-full px-5">
+                  <Link to="/approach">See our approach</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-secondary/40 py-16">
         <div className="mx-auto max-w-5xl px-5">
           <h2 className="font-display text-3xl">Outcomes families typically work toward</h2>

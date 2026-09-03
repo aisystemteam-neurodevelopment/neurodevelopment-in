@@ -162,6 +162,38 @@ function HomePage() {
             no one has handed them a structured pathway. That is what IND replaces.
           </p>
         </div>
+
+        <div className="mt-10 overflow-hidden rounded-3xl border border-border bg-card">
+          <div className="grid md:grid-cols-2">
+            <img
+              src={parentChildActivity.url}
+              alt="Parent and child doing a structured activity together at home"
+              width={1200}
+              height={800}
+              loading="lazy"
+              className="h-64 w-full object-cover md:h-full"
+            />
+            <div className="flex flex-col justify-center p-8 md:p-10">
+              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs text-muted-foreground">
+                <HeartHandshake className="h-3 w-3" /> Parent-led at home
+              </span>
+              <h3 className="mt-4 font-display text-2xl md:text-3xl">
+                The system lives in your daily routine, not just the clinic.
+              </h3>
+              <p className="mt-4 text-muted-foreground">
+                We design small, doable practices that fit into existing routines — play,
+                meals, bedtime, transitions — so progress compounds without adding hours
+                of therapy to your calendar.
+              </p>
+              <div className="mt-6">
+                <Button asChild variant="outline" className="rounded-full px-5">
+                  <Link to="/approach">See the Flightpath</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="mt-10 grid gap-10 md:grid-cols-3">
           {[
             {

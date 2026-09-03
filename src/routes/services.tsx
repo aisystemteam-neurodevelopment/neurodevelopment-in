@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
+import parentChildActivity from "@/assets/parent-child-activity.jpg.asset.json";
+
 
 export const Route = createFileRoute("/services")({
   head: () => ({

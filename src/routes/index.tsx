@@ -7,6 +7,7 @@ import { LeadMagnetForm } from "@/components/site/LeadMagnetForm";
 import { TestimonialStories } from "@/components/site/TestimonialStories";
 import heroBg from "@/assets/hero-mountain.png.asset.json";
 import heroBgMobile from "@/assets/hero-mountain-mobile.png.asset.json";
+import parentChildActivity from "@/assets/parent-child-activity.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({

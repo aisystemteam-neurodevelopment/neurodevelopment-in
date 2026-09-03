@@ -2,6 +2,10 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { Hourglass, ListOrdered, Target, ArrowRight } from "lucide-react";
+import sensoryWork from "@/assets/sensory-work.jpg.asset.json";
+import structuredPlay from "@/assets/structured-play.jpg.asset.json";
+import communicationPractice from "@/assets/communication-practice.jpg.asset.json";
+import dailyRoutines from "@/assets/daily-routines.jpg.asset.json";
 
 export const Route = createFileRoute("/approach")({
   head: () => ({

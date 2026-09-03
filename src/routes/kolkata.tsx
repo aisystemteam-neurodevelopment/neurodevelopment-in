@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { MapPin, Phone, Clock, Mail, Calendar, ArrowRight, Check, Stethoscope, Brain, Baby, Speech, Activity } from "lucide-react";
+import kolkataClinic from "@/assets/kolkata-clinic.jpg.asset.json";
 
 export const Route = createFileRoute("/kolkata")({
   head: () => ({

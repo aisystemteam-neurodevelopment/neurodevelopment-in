@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { listOpenings } from "@/lib/careers.functions";
 import { Briefcase, MapPin, Clock, Upload, Building2 } from "lucide-react";
+import teamCulture from "@/assets/team-culture.jpg.asset.json";
 
 const openingsQuery = queryOptions({
   queryKey: ["job-openings"],
@@ -78,13 +79,25 @@ function CareersPage() {
 
   return (
     <SiteLayout>
-      <section className="mx-auto max-w-5xl px-5 py-16 md:py-20">
+      <section className="mx-auto max-w-5xl px-5 pt-16 pb-6 md:pt-20">
         <Badge variant="outline" className="rounded-full">We're hiring</Badge>
         <h1 className="mt-4 font-display text-3xl md:text-5xl">Careers at Institute of NeuroDevelopment</h1>
         <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
           We're building a parent-led neurodevelopment system for families across India and beyond.
           If you care about measurable progress over endless therapy cycles, we'd like to meet you.
         </p>
+      </section>
+      <section className="mx-auto max-w-5xl px-5 pb-10">
+        <div className="overflow-hidden rounded-3xl border border-border">
+          <img
+            src={teamCulture.url}
+            alt="IND team collaborating in a bright, respectful workspace"
+            width={1200}
+            height={800}
+            loading="lazy"
+            className="h-56 w-full object-cover md:h-80"
+          />
+        </div>
       </section>
 
       <section className="mx-auto max-w-5xl px-5 pb-8">

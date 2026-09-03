@@ -3,6 +3,7 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { Compass, Layers, HeartHandshake, LineChart, Sparkles, ArrowRight } from "lucide-react";
 import drDas from "@/assets/dr-das.png.asset.json";
+import kolkataClinic from "@/assets/kolkata-clinic.jpg.asset.json";
 import { LinkedInIcon, LINKEDIN_URL } from "@/components/site/SocialIcons";
 
 export const Route = createFileRoute("/about")({
@@ -245,17 +246,29 @@ function AboutPage() {
               that parents can understand, implement, and sustain.
             </p>
           </div>
-          <div className="rounded-3xl border border-border bg-card p-6">
-            <h3 className="font-display text-xl">By the numbers</h3>
-            <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-              <li>· Working with children since 2005</li>
-              <li>· Institute of NeuroDevelopment founded in 2020</li>
-              <li>· 10,000+ families served</li>
-              <li>· Parents reached in 10+ countries</li>
-              <li>· 200+ active Breakthrough Flightpath families</li>
-              <li>· 170+ parent-education webinars delivered</li>
-              <li>· Weekly live parent webinars since 2023</li>
-            </ul>
+          <div className="space-y-5">
+            <div className="overflow-hidden rounded-3xl border border-border">
+              <img
+                src={kolkataClinic.url}
+                alt="Child-friendly consultation room at the Institute of NeuroDevelopment Kolkata clinic"
+                width={1200}
+                height={800}
+                loading="lazy"
+                className="h-48 w-full object-cover md:h-56"
+              />
+            </div>
+            <div className="rounded-3xl border border-border bg-card p-6">
+              <h3 className="font-display text-xl">By the numbers</h3>
+              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                <li>· Working with children since 2005</li>
+                <li>· Institute of NeuroDevelopment founded in 2020</li>
+                <li>· 10,000+ families served</li>
+                <li>· Parents reached in 10+ countries</li>
+                <li>· 200+ active Breakthrough Flightpath families</li>
+                <li>· 170+ parent-education webinars delivered</li>
+                <li>· Weekly live parent webinars since 2023</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>

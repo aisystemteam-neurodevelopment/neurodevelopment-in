@@ -2,6 +2,10 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { Hourglass, ListOrdered, Target, ArrowRight } from "lucide-react";
+import sensoryWork from "@/assets/sensory-work.jpg.asset.json";
+import structuredPlay from "@/assets/structured-play.jpg.asset.json";
+import communicationPractice from "@/assets/communication-practice.jpg.asset.json";
+import dailyRoutines from "@/assets/daily-routines.jpg.asset.json";
 
 export const Route = createFileRoute("/approach")({
   head: () => ({
@@ -247,21 +251,31 @@ function ApproachPage() {
           </p>
           <div className="mt-8 grid gap-4 md:grid-cols-4">
             {[
-              { n: "Phase 1", t: "Connection, Engagement & Regulation", d: "Build the foundation: attunement, calm, joint attention, regulated days." },
-              { n: "Phase 2", t: "Play, Adaptive Learning & Problem-Solving", d: "Curiosity, exploration, daily-living capacity, flexible thinking." },
-              { n: "Phase 3", t: "Thinking-Based Speech & Expression", d: "Functional, intent-driven communication — not rote scripts." },
-              { n: "Phase 4", t: "Social-Emotional Mastery & Executive Function", d: "Independence, social fluency, life-ready executive skills." },
+              { n: "Phase 1", t: "Connection, Engagement & Regulation", d: "Build the foundation: attunement, calm, joint attention, regulated days.", img: sensoryWork, alt: "Calm sensory activity that supports regulation and engagement" },
+              { n: "Phase 2", t: "Play, Adaptive Learning & Problem-Solving", d: "Curiosity, exploration, daily-living capacity, flexible thinking.", img: structuredPlay, alt: "Child engaged in structured play with puzzles" },
+              { n: "Phase 3", t: "Thinking-Based Speech & Expression", d: "Functional, intent-driven communication — not rote scripts.", img: communicationPractice, alt: "Parent and child practicing communication with picture cards" },
+              { n: "Phase 4", t: "Social-Emotional Mastery & Executive Function", d: "Independence, social fluency, life-ready executive skills.", img: dailyRoutines, alt: "Family daily routine moment supporting independence" },
             ].map((p) => (
-              <div key={p.n} className="rounded-2xl border border-background/20 bg-background p-5">
-                <div className="font-display text-sm text-primary">{p.n}</div>
-                <div
-                  className="mt-1 font-display text-lg"
-                  dangerouslySetInnerHTML={{ __html: p.t }}
+              <div key={p.n} className="flex flex-col overflow-hidden rounded-2xl border border-background/20 bg-background">
+                <img
+                  src={p.img.url}
+                  alt={p.alt}
+                  width={800}
+                  height={600}
+                  loading="lazy"
+                  className="h-40 w-full object-cover"
                 />
-                <p
-                  className="mt-2 text-sm text-muted-foreground"
-                  dangerouslySetInnerHTML={{ __html: p.d }}
-                />
+                <div className="flex flex-1 flex-col p-5">
+                  <div className="font-display text-sm text-primary">{p.n}</div>
+                  <div
+                    className="mt-1 font-display text-lg"
+                    dangerouslySetInnerHTML={{ __html: p.t }}
+                  />
+                  <p
+                    className="mt-2 flex-1 text-sm text-muted-foreground"
+                    dangerouslySetInnerHTML={{ __html: p.d }}
+                  />
+                </div>
               </div>
             ))}
           </div>

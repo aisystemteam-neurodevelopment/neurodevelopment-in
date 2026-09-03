@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { MapPin, Phone, Clock, Mail, Calendar, ArrowRight, Check, Stethoscope, Brain, Baby, Speech, Activity } from "lucide-react";
+import kolkataClinic from "@/assets/kolkata-clinic.jpg.asset.json";
 
 export const Route = createFileRoute("/kolkata")({
   head: () => ({
@@ -256,6 +257,16 @@ function KolkataPage() {
         <div className="grid gap-10 md:grid-cols-2">
           <div>
             <h2 className="font-display text-3xl">Clinic location</h2>
+            <div className="mt-5 overflow-hidden rounded-3xl border border-border">
+              <img
+                src={kolkataClinic.url}
+                alt="Warm, child-friendly consultation room at the Institute of NeuroDevelopment Kolkata clinic"
+                width={1200}
+                height={800}
+                loading="lazy"
+                className="h-56 w-full object-cover md:h-64"
+              />
+            </div>
             <div className="mt-5 rounded-3xl border border-border bg-card p-6">
               <div className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary" />

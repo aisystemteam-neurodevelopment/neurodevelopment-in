@@ -75,7 +75,7 @@ function HomePage() {
           aria-hidden="true"
         />
         <div
-          className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(105deg,rgba(13,11,26,0.88)_0%,rgba(30,20,60,0.60)_45%,rgba(74,44,138,0.35)_70%,rgba(13,11,26,0.20)_100%)]"
+          className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(105deg,rgba(255,251,247,0.92)_0%,rgba(255,248,243,0.55)_45%,rgba(234,105,139,0.22)_70%,rgba(130,47,175,0.12)_100%)]"
           aria-hidden="true"
         />
         <div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 md:grid-cols-2 md:py-28">

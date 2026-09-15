@@ -369,6 +369,54 @@ export type Database = {
           },
         ]
       }
+      lead_conversion_events: {
+        Row: {
+          created_at: string
+          details: Json
+          event_type: string
+          id: string
+          lead_id: string
+          occurred_at: string
+          parent_id: string | null
+          source: string
+        }
+        Insert: {
+          created_at?: string
+          details?: Json
+          event_type: string
+          id?: string
+          lead_id: string
+          occurred_at?: string
+          parent_id?: string | null
+          source?: string
+        }
+        Update: {
+          created_at?: string
+          details?: Json
+          event_type?: string
+          id?: string
+          lead_id?: string
+          occurred_at?: string
+          parent_id?: string | null
+          source?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_conversion_events_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lead_conversion_events_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       lead_messages: {
         Row: {
           content: string
@@ -406,19 +454,26 @@ export type Database = {
           anon_session_id: string | null
           area: string | null
           attachment_path: string | null
+          campaign: string | null
           child_age: string | null
           child_id: string | null
           child_name: string | null
           contact_email: string | null
           contact_name: string | null
           contact_phone: string | null
+          contacted_at: string | null
+          counselling_completed_at: string | null
+          counselling_scheduled_at: string | null
           country: string | null
           created_at: string
           district: string | null
+          enrolled_at: string | null
+          first_paid_at: string | null
           id: string
           owner_id: string | null
           parent_id: string | null
           parent_name: string | null
+          payment_pending_at: string | null
           phone: string | null
           source: string
           stage: Database["public"]["Enums"]["lead_stage"]
@@ -431,19 +486,26 @@ export type Database = {
           anon_session_id?: string | null
           area?: string | null
           attachment_path?: string | null
+          campaign?: string | null
           child_age?: string | null
           child_id?: string | null
           child_name?: string | null
           contact_email?: string | null
           contact_name?: string | null
           contact_phone?: string | null
+          contacted_at?: string | null
+          counselling_completed_at?: string | null
+          counselling_scheduled_at?: string | null
           country?: string | null
           created_at?: string
           district?: string | null
+          enrolled_at?: string | null
+          first_paid_at?: string | null
           id?: string
           owner_id?: string | null
           parent_id?: string | null
           parent_name?: string | null
+          payment_pending_at?: string | null
           phone?: string | null
           source?: string
           stage?: Database["public"]["Enums"]["lead_stage"]
@@ -456,19 +518,26 @@ export type Database = {
           anon_session_id?: string | null
           area?: string | null
           attachment_path?: string | null
+          campaign?: string | null
           child_age?: string | null
           child_id?: string | null
           child_name?: string | null
           contact_email?: string | null
           contact_name?: string | null
           contact_phone?: string | null
+          contacted_at?: string | null
+          counselling_completed_at?: string | null
+          counselling_scheduled_at?: string | null
           country?: string | null
           created_at?: string
           district?: string | null
+          enrolled_at?: string | null
+          first_paid_at?: string | null
           id?: string
           owner_id?: string | null
           parent_id?: string | null
           parent_name?: string | null
+          payment_pending_at?: string | null
           phone?: string | null
           source?: string
           stage?: Database["public"]["Enums"]["lead_stage"]
@@ -823,6 +892,17 @@ export type Database = {
         Returns: boolean
       }
       is_staff: { Args: { _user_id: string }; Returns: boolean }
+      record_lead_conversion_event: {
+        Args: {
+          _details?: Json
+          _event_type: string
+          _lead_id: string
+          _occurred_at?: string
+          _parent_id: string
+          _source: string
+        }
+        Returns: undefined
+      }
     }
     Enums: {
       app_role:

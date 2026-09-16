@@ -1,0 +1,5 @@
+- [ ] Add secure parent account linking and portal data functions
+- [ ] Add email/Google login, registration, and password recovery
+- [ ] Add protected My Portal with overview, progress, sessions, payments, and profile
+- [ ] Update navigation for signed-in and signed-out families
+- [ ] Verify authentication, privacy boundaries, and portal rendering
